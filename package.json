@@ -1,0 +1,16 @@
+{
+  "name": "letters-teacher",
+  "version": "0.0.1",
+  "description": "Обучалка буквам",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "pilot114",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "~1.6.2",
+    "bootstrap" : "3.3.7",
+    "jquery": "3.2.1"
+  }
+}
