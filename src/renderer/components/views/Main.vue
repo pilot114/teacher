@@ -30,87 +30,96 @@
     window.jQuery = window.$ = require('jquery');
     window.Bootstrap = require('bootstrap');
 
-    function getRandomLetter() {
-        var letters = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя';
-        return function () {
-            var randomLetter = letters.charAt(Math.floor(Math.random() * letters.length));
-            letters = letters.replace(randomLetter, '');
-            return randomLetter;
-        }
-    }
-
-    function getRandomSyllable() {
-        var consonants = 'бвгджзклмнпрстфхцчшщ'; // 20
-        var vowels = 'аеёиоуыэюя'; // 10
-
-        return function () {
-            var randomConsonant = consonants.charAt(Math.floor(Math.random() * consonants.length));
-            consonants = consonants.replace(randomConsonant, '');
-
-            var randomVovel = vowels.charAt(Math.floor(Math.random() * vowels.length));
-            vowels = vowels.replace(randomVovel, '');
-
-            return randomConsonant + randomVovel;
-        }
-    }
-
-    function createQuestion() {
-        // var genRand = getRandomLetter();
-        var genRand = getRandomSyllable();
-
-        var randomVariant = Math.floor(Math.random() * (4 - 1));
-
-        answer = genRand();
-        // audio.src = 'static/sound/letters/' + answer + '.mp3';
-        audio.src = 'static/sound/syllable/' + answer + '.mp3';
-        console.log(audio.src);
-
-        $('.answer').each(function (i, v) {
-            if (i === randomVariant) {
-                $(v).text(answer);
-            } else {
-                $(v).text(genRand());
+        function getRandomLetter() {
+            let letters = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя';
+            return function () {
+                let randomLetter = letters.charAt(Math.floor(Math.random() * letters.length));
+                letters = letters.replace(randomLetter, '');
+                return randomLetter;
             }
-        });
-    }
-
-    function init() {
-        createQuestion();
-
-        $('#play_question').click(function () {
-            audio.play();
-        });
-
-        $('.answer').click(function () {
-            if ($(this).text() === answer) {
-                var counter = parseInt($('#counter').text());
-                $('#counter').text(counter + 1);
-                if (counter + 1 === 15) {
-                    var img = new Image();
-                    img.src = 'static/win.png';
-                    $('body').empty().append(img);
-                }
-            } else {
-                $('#counter').text(0);
-                var counterLose = parseInt($('#counter_lose').text());
-                $('#counter_lose').text(counterLose + 1);
-                if (counterLose + 1 == 3) {
-                    var img = new Image();
-                    img.src = 'static/lose.png';
-                    $('body').empty().append(img);
-                }
+        }
+        function getRandomSyllable() {
+            let consonants = 'бвгджзклмнпрстфхцчшщ'; // 20
+            let vowels = 'аеёиоуыэюя'; // 10
+            return function () {
+                let randomConsonant = consonants.charAt(Math.floor(Math.random() * consonants.length));
+                consonants = consonants.replace(randomConsonant, '');
+                let randomVovel = vowels.charAt(Math.floor(Math.random() * vowels.length));
+                vowels = vowels.replace(randomVovel, '');
+                return randomConsonant + randomVovel;
             }
-            createQuestion();
-        });
-    }
+        }
 
-    let answer = "";
-    let audio = new Audio();
-    let wrongAnswer = 0;
+        function getRandomMultiple() {
+            let a = '123';
+            let b = '123456789';
+            return function () {
+                let randA = a.charAt(Math.floor(Math.random() * a.length));
+                a = a.replace(randA, '');
+                let randB = b.charAt(Math.floor(Math.random() * b.length));
+                b = b.replace(randB, '');
 
-    window.onload = function () {
-        init();
-    };
+                if (Math.random() <= 0.5) {
+                    return [randB, randA];
+                }
+                return [randA, randB];
+            }
+        }
+
+        function createQuestion(type) {
+            let genRand = null;
+            if (type === 'letters') {
+                genRand = getRandomLetter();
+            }
+            if (type === 'syllable') {
+                genRand = getRandomSyllable();
+            }
+            if (type === 'multiple') {
+                genRand = getRandomMultiple();
+            }
+
+            let randomVariant = Math.floor(Math.random() * (4 - 1));
+            console.log(genRand);
+            answer = genRand();
+            audio.src = 'static/sound/' + type + '/' + answer + '.mp3';
+            $('.answer').each(function (i, v) {
+                let variant = (i === randomVariant) ? answer : genRand();
+                $(v).text(variant);
+            });
+        }
+        function init() {
+            createQuestion('syllable');
+
+            $('#play_question').click(function () {
+                audio.play();
+            });
+            $('.answer').click(function () {
+                if ($(this).text() === answer) {
+                    let counter = parseInt($('#counter').text());
+                    $('#counter').text(counter + 1);
+                    if (counter + 1 === 15) {
+                        let img = new Image();
+                        img.src = 'static/win.png';
+                        $('body').empty().append(img);
+                    }
+                } else {
+                    $('#counter').text(0);
+                    let counterLose = parseInt($('#counter_lose').text());
+                    $('#counter_lose').text(counterLose + 1);
+                    if (counterLose + 1 == 3) {
+                        let img = new Image();
+                        img.src = 'static/lose.png';
+                        $('body').empty().append(img);
+                    }
+                }
+                createQuestion();
+            });
+        }
+        let answer = "";
+        let audio = new Audio();
+        window.onload = function () {
+            init();
+        };
 
 
     export default {
