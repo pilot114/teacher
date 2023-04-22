@@ -1,9 +1,0 @@
-dist/electron/*
-dist/web/*
-build/*
-!build/icons
-node_modules/
-npm-debug.log
-npm-debug.log.*
-thumbs.db
-!.gitkeep
