@@ -3,8 +3,9 @@ const path = require('path')
 
 const createWindow = () => {
     const mainWindow = new BrowserWindow({
-        width: 800,
-        height: 600,
+        height: 563,
+        width: 1000,
+        useContentSize: true,
         webPreferences: {
             preload: path.join(__dirname, 'preload.js')
         }
@@ -17,10 +18,14 @@ app.whenReady().then(() => {
     createWindow()
 
     app.on('activate', () => {
-        if (BrowserWindow.getAllWindows().length === 0) createWindow()
+        if (BrowserWindow.getAllWindows().length === 0) {
+            createWindow()
+        }
     })
 })
 
 app.on('window-all-closed', () => {
-    if (process.platform !== 'darwin') app.quit()
+    if (process.platform !== 'darwin') {
+        app.quit()
+    }
 })
