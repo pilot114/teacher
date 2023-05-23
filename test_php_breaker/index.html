@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>PHP code breaker</title>
+  <script src="./ace/ace.js" type="text/javascript" charset="utf-8"></script>
+  <style>
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 30px;
+    }
+
+    .checklist {
+      width: 500px;
+      margin-right: 20px;
+    }
+
+    #editor {
+      width: 500px;
+      height: 500px;
+    }
+    #run {
+      width: 100px;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="checklist">
+    <input type="checkbox" disabled>Scales<br>
+    <input type="checkbox" disabled>Scales<br>
+    <input type="checkbox" disabled>Scales<br>
+    <input type="checkbox" disabled>Scales<br>
+  </div>
+  <div id="editor">&lt;?php
+
+echo 'hello world!';
+</div>
+  <button id="run"> RUN </button>
+</div>
+<script>
+  let editor = ace.edit("editor", {
+    mode: "ace/mode/php"
+  });
+  editor.setTheme("ace/theme/monokai");
+</script>
+</body>
+</html>
