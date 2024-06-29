@@ -1,0 +1,8 @@
+{
+  "name": "solver",
+  "type": "module",
+  "version": "0.1.0",
+  "dependencies": {
+    "readline-sync": "^1.4.10"
+  }
+}
