@@ -28,7 +28,7 @@ export default {
   data() {
     return {
       subjects: [
-        { value: 'math', label: 'Математика' },
+        { value: 'math', label: 'Математика 5 класс' },
         { value: 'physics', label: 'Физика' },
         { value: 'informatics', label: 'Информатика' },
       ],
