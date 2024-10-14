@@ -29,10 +29,11 @@ export default {
     return {
       subjects: [
         { value: 'math', label: 'Математика 5 класс' },
+        { value: 'math2', label: 'Математика 6 класс' },
         { value: 'physics', label: 'Физика' },
         { value: 'informatics', label: 'Информатика' },
       ],
-      selectedSubject: 'math',
+      selectedSubject: 'math2',
       topics: [],
       selectedContent: null,
       selectedTopic: null
@@ -45,6 +46,9 @@ export default {
 
       if (this.selectedSubject === 'math') {
         const { default: topic } = await import('../data/math');
+        this.topics = topic;
+      } else if (this.selectedSubject === 'math2') {
+        const { default: topic } = await import('../data/math2');
         this.topics = topic;
       } else if (this.selectedSubject === 'physics') {
         const { default: topic } = await import('../data/physics');
