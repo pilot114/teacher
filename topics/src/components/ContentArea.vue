@@ -9,12 +9,22 @@
         <div class="tasks" v-if="content.tasks">
           <h3>Задания для самопроверки</h3>
           <ol>
-            <li
-                v-for="(task, index) in content.tasks"
-                :key="index"
-                v-html="task"
-            >
-            </li>
+            <template v-if="viewAnswers">
+              <li
+                  v-for="(task, index) in content.tasks"
+                  :key="index"
+                  v-html="task.question + task.answer"
+              >
+              </li>
+            </template>
+            <template v-else>
+              <li
+                  v-for="(task, index) in content.tasks"
+                  :key="index"
+                  v-html="task.question ?? task"
+              >
+              </li>
+            </template>
           </ol>
         </div>
       </div>
@@ -28,7 +38,32 @@
 <script>
 export default {
   name: 'ContentArea',
-  props: ['content']
+  props: ['content'],
+  data() {
+    return {
+      inputSequence: '',
+      viewAnswers: false,
+    };
+  },
+  mounted() {
+    window.addEventListener('keydown', this.handleKeydown);
+  },
+  beforeUnmount() {
+    window.removeEventListener('keydown', this.handleKeydown);
+  },
+  methods: {
+    handleKeydown(event) {
+      this.viewAnswers = false;
+      this.inputSequence += event.key;
+      if (this.inputSequence.includes('iddqd')) {
+        this.viewAnswers = true;
+        this.inputSequence = '';
+      }
+      if (this.inputSequence.length > 5) {
+        this.inputSequence = this.inputSequence.slice(-5);
+      }
+    }
+  }
 };
 </script>
 

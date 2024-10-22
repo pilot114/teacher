@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="header">
-      <label for="subject-select">Выберите предмет:</label>
+      <label for="subject-select">Выбери предмет:</label>
       <select id="subject-select" v-model="selectedSubject" @change="loadTopics">
         <option v-for="subject in subjects" :key="subject.value" :value="subject.value">
           {{ subject.label }}
@@ -30,8 +30,8 @@ export default {
       subjects: [
         { value: 'math', label: 'Математика 5 класс' },
         { value: 'math2', label: 'Математика 6 класс' },
-        { value: 'physics', label: 'Физика' },
-        { value: 'informatics', label: 'Информатика' },
+        { value: 'physics', label: 'Физика 6 класс' },
+        { value: 'informatics', label: 'Информатика 6 класс' },
       ],
       selectedSubject: 'math2',
       topics: [],
