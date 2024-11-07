@@ -7,9 +7,18 @@
       @update:selectedSection="selectSection"
       @load-topics="loadTopics"
     ></header-menu>
-    <div class="container">
+    <div class="container" v-if="selectedSection === 'Учебники'">
       <sidebar-menu :topics="topics" :selected-topic="selectedTopic" @select-topic="selectTopic"></sidebar-menu>
       <content-area :content="selectedContent"></content-area>
+    </div>
+    <div class="container" v-if="selectedSection === 'Таблица умножения'">
+      2
+    </div>
+    <div class="container" v-if="selectedSection === 'Задачи'">
+      3
+    </div>
+    <div class="container" v-if="selectedSection === 'Python'">
+      4
     </div>
   </div>
 </template>
@@ -23,7 +32,7 @@ export default {
   name: 'App',
   components: {
     SidebarMenu,
-    HeaderMenu
+    HeaderMenu,
     ContentArea
   },
   data() {

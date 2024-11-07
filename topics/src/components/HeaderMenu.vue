@@ -8,12 +8,6 @@
         <li :class="{ active: selectedSection === 'Python' }" @click="selectSection('Python')">Python</li>
       </ul>
     </nav>
-    <label for="subject-select">Выбери предмет:</label>
-    <select id="subject-select" v-model="selectedSubject" @change="loadTopics">
-      <option v-for="subject in subjects" :key="subject.value" :value="subject.value">
-        {{ subject.label }}
-      </option>
-    </select>
   </div>
 </template>
 
