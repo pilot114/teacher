@@ -12,28 +12,31 @@
       <content-area :content="selectedContent"></content-area>
     </div>
     <div class="container" v-if="selectedSection === 'Таблица умножения'">
-      2
+      в разработке
     </div>
     <div class="container" v-if="selectedSection === 'Задачи'">
-      3
+      <Solver/>
     </div>
     <div class="container" v-if="selectedSection === 'Python'">
-      4
+      в разработке
     </div>
   </div>
 </template>
 
 <script>
+import 'modern-normalize';
 import SidebarMenu from './components/SidebarMenu.vue';
 import HeaderMenu from './components/HeaderMenu.vue';
 import ContentArea from './components/ContentArea.vue';
+import Solver from "@/components/Solver.vue";
 
 export default {
   name: 'App',
   components: {
+    Solver,
     SidebarMenu,
     HeaderMenu,
-    ContentArea
+    ContentArea,
   },
   data() {
     return {
@@ -85,10 +88,28 @@ export default {
 </script>
 
 <style>
+* {
+  font-family: 'Calibri', sans-serif;
+  font-size: 16px;
+}
+
+h1 {
+  font-size: 22px;
+}
+h2 {
+  font-size: 20px;
+}
+h3 {
+  font-size: 18px;
+}
+
+
 .container {
   display: flex;
   font-family: Verdana, Geneva, sans-serif;
+  padding: 10px 20px;
 }
+
 .main-menu {
   background-color: #333;
   color: white;
@@ -110,5 +131,8 @@ export default {
 .main-menu li.active {
   font-weight: bold;
   text-decoration: underline;
+}
+[v-cloak] {
+  display: none;
 }
 </style>

@@ -1,13 +1,16 @@
 <template>
   <div class="content-area">
     <div v-if="content">
-      <h2>{{ content.title }}</h2>
+      <h1>
+        {{ content.title }}
+      </h1>
       <div class="columns">
         <div class="description">
+          <h2>Краткое содержание</h2>
           <div v-html="content.description"></div>
         </div>
         <div class="tasks" v-if="content.tasks">
-          <h3>Задания для самопроверки</h3>
+          <h2>Задания для самопроверки</h2>
           <ol>
             <template v-if="viewAnswers">
               <li
@@ -30,13 +33,23 @@
       </div>
     </div>
     <div v-else>
-      <p>Пожалуйста, выберите тему из меню.</p>
+      <p>
+        <ScatterText>
+          Пожалуйста, выберите тему из меню.
+        </ScatterText>
+      </p>
     </div>
   </div>
 </template>
 
+
 <script>
+import ScatterText from './ScatterText.vue';
+
 export default {
+  components: {
+    ScatterText,
+  },
   name: 'ContentArea',
   props: ['content'],
   data() {
