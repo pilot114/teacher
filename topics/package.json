@@ -5,9 +5,8 @@
   "homepage": "https://pilot114.github.io/teacher/",
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build && npm run copy",
-    "lint": "vue-cli-service lint",
-    "copy": "cp -r data dist/data && cp -r dist ../docs"
+    "build": "vue-cli-service build && cp -r data dist/data && cp -r dist ../docs",
+    "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "core-js": "^3.8.3",
