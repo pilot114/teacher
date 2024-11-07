@@ -1,6 +1,14 @@
 <template>
   <div id="app">
     <div class="header">
+      <nav class="main-menu">
+        <ul>
+          <li :class="{ active: selectedSection === 'Учебники' }" @click="selectSection('Учебники')">Учебники</li>
+          <li :class="{ active: selectedSection === 'Таблица умножения' }" @click="selectSection('Таблица умножения')">Таблица умножения</li>
+          <li :class="{ active: selectedSection === 'Задачи' }" @click="selectSection('Задачи')">Задачи</li>
+          <li :class="{ active: selectedSection === 'Python' }" @click="selectSection('Python')">Python</li>
+        </ul>
+      </nav>
       <label for="subject-select">Выбери предмет:</label>
       <select id="subject-select" v-model="selectedSubject" @change="loadTopics">
         <option v-for="subject in subjects" :key="subject.value" :value="subject.value">
@@ -36,7 +44,8 @@ export default {
       selectedSubject: 'math2',
       topics: [],
       selectedContent: null,
-      selectedTopic: null
+      selectedTopic: null,
+      selectedSection: 'Учебники'
     };
   },
   methods: {
@@ -61,6 +70,10 @@ export default {
     selectTopic(content, topicTitle) {
       this.selectedContent = content;
       this.selectedTopic = topicTitle;
+    },
+    selectSection(section) {
+      this.selectedSection = section;
+      // Add logic here to handle section changes if needed
     }
   },
   created() {
@@ -74,4 +87,25 @@ export default {
   display: flex;
   font-family: Verdana, Geneva, sans-serif;
 }
-</style>
+.main-menu {
+  background-color: #333;
+  color: white;
+  padding: 10px;
+}
+
+.main-menu ul {
+  list-style: none;
+  display: flex;
+  padding: 0;
+  margin: 0;
+}
+
+.main-menu li {
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.main-menu li.active {
+  font-weight: bold;
+  text-decoration: underline;
+}
