@@ -1,21 +1,12 @@
 <template>
   <div id="app">
-    <div class="header">
-      <nav class="main-menu">
-        <ul>
-          <li :class="{ active: selectedSection === 'Учебники' }" @click="selectSection('Учебники')">Учебники</li>
-          <li :class="{ active: selectedSection === 'Таблица умножения' }" @click="selectSection('Таблица умножения')">Таблица умножения</li>
-          <li :class="{ active: selectedSection === 'Задачи' }" @click="selectSection('Задачи')">Задачи</li>
-          <li :class="{ active: selectedSection === 'Python' }" @click="selectSection('Python')">Python</li>
-        </ul>
-      </nav>
-      <label for="subject-select">Выбери предмет:</label>
-      <select id="subject-select" v-model="selectedSubject" @change="loadTopics">
-        <option v-for="subject in subjects" :key="subject.value" :value="subject.value">
-          {{ subject.label }}
-        </option>
-      </select>
-    </div>
+    <header-menu
+      :selected-section="selectedSection"
+      :selected-subject="selectedSubject"
+      :subjects="subjects"
+      @update:selectedSection="selectSection"
+      @load-topics="loadTopics"
+    ></header-menu>
     <div class="container">
       <sidebar-menu :topics="topics" :selected-topic="selectedTopic" @select-topic="selectTopic"></sidebar-menu>
       <content-area :content="selectedContent"></content-area>
@@ -25,12 +16,14 @@
 
 <script>
 import SidebarMenu from './components/SidebarMenu.vue';
+import HeaderMenu from './components/HeaderMenu.vue';
 import ContentArea from './components/ContentArea.vue';
 
 export default {
   name: 'App',
   components: {
     SidebarMenu,
+    HeaderMenu
     ContentArea
   },
   data() {
