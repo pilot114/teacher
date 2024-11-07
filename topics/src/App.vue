@@ -109,3 +109,4 @@ export default {
   font-weight: bold;
   text-decoration: underline;
 }
+</style>
