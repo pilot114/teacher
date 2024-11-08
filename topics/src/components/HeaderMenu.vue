@@ -14,14 +14,11 @@
 <script>
 export default {
   name: 'HeaderMenu',
-  props: ['selectedSection', 'selectedSubject', 'subjects'],
+  props: ['selectedSection'],
   methods: {
     selectSection(section) {
       this.$emit('update:selectedSection', section);
     },
-    loadTopics() {
-      this.$emit('load-topics');
-    }
   }
 };
 </script>

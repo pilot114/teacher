@@ -5,7 +5,7 @@
   "homepage": "https://pilot114.github.io/teacher/",
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build && cp -r data dist/data && cp -r dist ../docs",
+    "build": "rm -Rf ../docs && vue-cli-service build && cp -r data dist/data && cp -r dist ../docs",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
