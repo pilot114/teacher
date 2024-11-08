@@ -8,13 +8,13 @@
       <Topics/>
     </div>
     <div class="container" v-if="selectedSection === 'Таблица умножения'">
-      в разработке
+      <MultiplicationTrainer />
     </div>
     <div class="container" v-if="selectedSection === 'Задачи'">
       <Solver/>
     </div>
     <div class="container" v-if="selectedSection === 'Python'">
-      в разработке
+      <PythonExecutor/>
     </div>
   </div>
 </template>
@@ -23,14 +23,18 @@
 import 'modern-normalize';
 import HeaderMenu from './components/HeaderMenu.vue';
 import Solver from "@/components/Solver.vue";
+import MultiplicationTrainer from "@/components/MultiplicationTrainer.vue";
 import Topics from "@/views/Topics.vue";
+import PythonExecutor from "@/views/PythonExecutor.vue";
 
 export default {
   name: 'App',
   components: {
+    PythonExecutor,
     Topics,
     Solver,
     HeaderMenu,
+    MultiplicationTrainer,
   },
   data() {
     return {

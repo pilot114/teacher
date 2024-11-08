@@ -75,4 +75,14 @@ export default {
 .sidebar li.active {
   background-color: #d0e4fe;
 }
+
+select {
+  padding: 8px;
+  margin-left: 32px;
+  margin-top: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  background: white;
+}
 </style>

@@ -9,8 +9,10 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "codejar": "^4.2.0",
     "core-js": "^3.8.3",
     "modern-normalize": "^3.0.1",
+    "prismjs": "^1.29.0",
     "vue": "^3.2.13"
   },
   "devDependencies": {

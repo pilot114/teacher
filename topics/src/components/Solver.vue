@@ -90,7 +90,10 @@ export default {
     },
     status() {
       const minutes = Math.floor(this.timer / 60);
-      const seconds = this.timer - minutes * 60;
+      let seconds = String(this.timer - minutes * 60);
+      if (seconds.length === 0) {
+        seconds = '0'+seconds;
+      }
       return `Баллов: ${this.points}, таймер: ${minutes}:${seconds}`;
     },
   },
@@ -121,8 +124,8 @@ button:hover {
 }
 
 input[type="text"] {
-  padding: 10px;
-  margin-right: 10px;
+  padding: 8px;
+  margin-right: 8px;
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 16px;
