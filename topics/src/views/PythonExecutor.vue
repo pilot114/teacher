@@ -12,9 +12,8 @@
       <div class="column">
         <ContentTabs activeTab="stdout">
           <ContentTab name="stdin" label="stdin">
-            <pre contenteditable="true">
-              {{ stdin }}
-            </pre>
+            <textarea v-model="stdin">
+            </textarea>
           </ContentTab>
           <ContentTab name="stdout" label="stdout">
             <pre>{{ stdout }}</pre>
@@ -128,5 +127,20 @@ pre {
   to {
     transform: rotate(360deg);
   }
+}
+
+textarea {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  overflow: hidden;
+  width: 400px;
+  padding: 1em;
+
+  min-height: 300px;
+  font-family: 'Fira Code', monospace;
+  font-size: 14px;
+  outline: none;
+  white-space: pre;
+  background-color: #f5f5f5;
 }
 </style>

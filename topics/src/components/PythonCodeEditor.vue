@@ -82,5 +82,6 @@ export default {
   outline: none;
   white-space: pre;
   overflow: auto;
+  background-color: #f5f5f5;
 }
 </style>

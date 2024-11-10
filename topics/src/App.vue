@@ -4,17 +4,13 @@
       :selected-section="selectedSection"
       @update:selectedSection="selectSection"
     ></header-menu>
-    <div class="container" v-if="selectedSection === 'Учебники'">
-      <Topics/>
-    </div>
-    <div class="container" v-if="selectedSection === 'Таблица умножения'">
-      <MultiplicationTrainer />
-    </div>
-    <div class="container" v-if="selectedSection === 'Задачи'">
-      <Solver/>
-    </div>
-    <div class="container" v-if="selectedSection === 'Python'">
-      <PythonExecutor/>
+    <div class="container">
+      <Topics  v-if="selectedSection === 'Учебники'"/>
+      <MultiplicationTrainer v-if="selectedSection === 'Таблица умножения'"/>
+      <Solver v-if="selectedSection === 'Задачи'"/>
+      <PythonExecutor v-if="selectedSection === 'Python'"/>
+      <PoetryList v-if="selectedSection === 'Стихи'"/>
+      <StudyPerf v-if="selectedSection === 'Успеваемость'"/>
     </div>
   </div>
 </template>
@@ -22,9 +18,12 @@
 <script>
 import 'modern-normalize';
 import HeaderMenu from './components/HeaderMenu.vue';
-import Solver from "@/components/Solver.vue";
-import MultiplicationTrainer from "@/components/MultiplicationTrainer.vue";
+
+import Solver from "@/views/Solver.vue";
+import MultiplicationTrainer from "@/views/MultiplicationTrainer.vue";
 import Topics from "@/views/Topics.vue";
+import PoetryList from "@/views/PoetryList.vue";
+import StudyPerf from "@/views/StudyPerf.vue";
 import PythonExecutor from "@/views/PythonExecutor.vue";
 
 export default {
@@ -35,6 +34,8 @@ export default {
     Solver,
     HeaderMenu,
     MultiplicationTrainer,
+    PoetryList,
+    StudyPerf,
   },
   data() {
     return {

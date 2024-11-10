@@ -1,5 +1,8 @@
 <template>
-  <div id="container">
+  <button v-show="isStart" @click="isStart = false">
+    Начать
+  </button>
+  <div v-show="!isStart" id="container">
     <div id="question">{{ questionText }}</div>
     <input
         type="number"
@@ -51,6 +54,7 @@ export default {
       stats: {},
       isDisabled: false,
       msOnAnswer: 10000,
+      isStart: true,
     };
   },
   computed: {
@@ -168,6 +172,17 @@ export default {
 </script>
 
 <style scoped>
+button {
+  background: linear-gradient(to bottom, #3498db, #2980b9);
+  border: none;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
 #container {
   width: 100%;
   max-width: 600px;
@@ -181,20 +196,17 @@ export default {
 }
 
 #inputAnswer {
-  font-size: 24px;
   padding: 10px;
   width: 150px;
   text-align: center;
 }
 
 button {
-  font-size: 24px;
   padding: 10px 20px;
   margin-left: 10px;
 }
 
 #message {
-  font-size: 24px;
   color: #d9534f;
   margin-top: 15px;
 }

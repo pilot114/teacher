@@ -58,7 +58,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .sidebar {
   width: 250px;
   border-right: 1px solid #ccc;
