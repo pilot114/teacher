@@ -8,15 +8,28 @@
 import { ref, onMounted, onBeforeUnmount, watch } from 'vue';
 import { CodeJar } from 'codejar';
 import { highlight, languages } from 'prismjs/components/prism-core';
-import 'prismjs/components/prism-python';
 import 'prismjs/themes/prism.css';
 
+// Импорт всех необходимых языков через динамическую загрузку
+const loadLanguage = async (lang) => {
+  try {
+    console.log(`Loading language: ${lang}`);
+    await import(`prismjs/components/prism-${lang}`);
+    console.log(`Language ${lang} loaded successfully`);
+  } catch (e) {
+    console.warn(`Failed to load Prism language: ${lang}`);
+  }
+};
+
 export default {
-  name: 'PythonCodeEditor',
+  name: 'CodeEditor',
   props: {
     modelValue: {
       type: String,
       default: '',
+    },
+    language: {
+      type: String,
     },
   },
   emits: ['update:modelValue'],
@@ -24,13 +37,15 @@ export default {
     const editorRef = ref(null);
     let jar = null;
 
-    // Функция для подсветки синтаксиса
     const highlightSyntax = (editor) => {
       const code = editor.textContent;
-      editor.innerHTML = highlight(code, languages.python, 'python');
+      const lang = languages[props.language] || languages['javascript'];
+      editor.innerHTML = highlight(code, lang, props.language);
     };
 
-    onMounted(() => {
+    onMounted(async () => {
+      await loadLanguage(props.language);
+
       if (editorRef.value) {
         jar = CodeJar(editorRef.value, highlightSyntax, {
           tab: '    ', // Четыре пробела вместо табуляции
@@ -55,6 +70,16 @@ export default {
         (newVal) => {
           if (jar && newVal !== jar.toString()) {
             jar.updateCode(newVal);
+          }
+        }
+    );
+
+    watch(
+        () => props.language,
+        async (newLang) => {
+          await loadLanguage(newLang);
+          if (editorRef.value) {
+            highlightSyntax(editorRef.value);
           }
         }
     );

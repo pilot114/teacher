@@ -1,5 +1,5 @@
 // pyodideWorker.js
-self.importScripts('https://cdn.jsdelivr.net/pyodide/v0.26.3/full/pyodide.js');
+self.importScripts('https://cdn.jsdelivr.net/pyodide/v0.26.4/full/pyodide.js');
 
 let pyodideReadyPromise = (async () => {
     /* global loadPyodide */
@@ -26,10 +26,8 @@ let pyodideReadyPromise = (async () => {
 self.onmessage = async (event) => {
     await pyodideReadyPromise;
 
-    const { code } = event.data;
-
     try {
-        const result = await self.pyodide.runPythonAsync(code);
+        const result = await self.pyodide.runPythonAsync(event.data);
         self.postMessage({ type: 'result', result });
     } catch (error) {
         self.postMessage({ type: 'error', error: error.message });

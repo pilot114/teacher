@@ -1,6 +1,6 @@
 {
   "name": "topics",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "homepage": "https://pilot114.github.io/teacher/",
   "scripts": {
@@ -12,6 +12,7 @@
     "codejar": "^4.2.0",
     "core-js": "^3.8.3",
     "modern-normalize": "^3.0.1",
+    "php-wasm": "^0.0.8",
     "prismjs": "^1.29.0",
     "vue": "^3.2.13"
   },

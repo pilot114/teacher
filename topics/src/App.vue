@@ -8,7 +8,7 @@
       <Topics  v-if="selectedSection === 'Учебники'"/>
       <MultiplicationTrainer v-if="selectedSection === 'Таблица умножения'"/>
       <Solver v-if="selectedSection === 'Задачи'"/>
-      <PythonExecutor v-if="selectedSection === 'Python'"/>
+      <CodeExecutor v-if="selectedSection === 'Code'"/>
       <PoetryList v-if="selectedSection === 'Стихи'"/>
       <StudyPerf v-if="selectedSection === 'Успеваемость'"/>
     </div>
@@ -24,12 +24,12 @@ import MultiplicationTrainer from "@/views/MultiplicationTrainer.vue";
 import Topics from "@/views/Topics.vue";
 import PoetryList from "@/views/PoetryList.vue";
 import StudyPerf from "@/views/StudyPerf.vue";
-import PythonExecutor from "@/views/PythonExecutor.vue";
+import CodeExecutor from "@/views/CodeExecutor.vue";
 
 export default {
   name: 'App',
   components: {
-    PythonExecutor,
+    CodeExecutor,
     Topics,
     Solver,
     HeaderMenu,
@@ -39,7 +39,7 @@ export default {
   },
   data() {
     return {
-      selectedSection: 'Учебники'
+      selectedSection: 'Code'
     };
   },
   methods: {

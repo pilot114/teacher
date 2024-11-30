@@ -5,7 +5,7 @@
         <li :class="{ active: selectedSection === 'Учебники' }" @click="selectSection('Учебники')">Учебники</li>
         <li :class="{ active: selectedSection === 'Таблица умножения' }" @click="selectSection('Таблица умножения')">Таблица умножения</li>
         <li :class="{ active: selectedSection === 'Задачи' }" @click="selectSection('Задачи')">Задачи</li>
-        <li :class="{ active: selectedSection === 'Python' }" @click="selectSection('Python')">Python</li>
+        <li :class="{ active: selectedSection === 'Code' }" @click="selectSection('Code')">Программирование</li>
         <li :class="{ active: selectedSection === 'Стихи' }" @click="selectSection('Стихи')">Стихи</li>
         <li :class="{ active: selectedSection === 'Успеваемость' }" @click="selectSection('Успеваемость')">Успеваемость</li>
       </ul>
