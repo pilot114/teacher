@@ -6,12 +6,31 @@
             v-for="language in languages"
             :key="language.name"
         >
-          <a href="#" @click="selectLanguage(language.name)">{{ language.name }}</a>
+          <a
+              v-if="language.isSupported"
+              href="#" @click="selectLanguage(language.name)"
+          >
+            {{ language.name }}
+          </a>
         </div>
       </div>
+
+      <div class="column" style="width:100px;">
+        <div
+            v-for="(code, name) in codes[currentLanguage]"
+            :key="name"
+        >
+          <a
+              href="#" @click="currentCode = code"
+          >
+            {{ name }}
+          </a>
+        </div>
+      </div>
+
       <div class="column">
         <h3>Код:</h3>
-        <CodeEditor v-model="codes[currentLanguage][0]" :language="currentLanguage" />
+        <CodeEditor v-model="currentCode" :language="currentLanguage" />
 
         <button @click="runCode">Выполнить</button>
         <span class="loader" v-if="isLoading"></span>
@@ -59,18 +78,22 @@ export default {
         {name: 'php', logo: 'https://upload.wikimedia.org/wikipedia/commons/2/27/PHP-logo.svg', isSupported: true},
         {name: 'javascript', logo: 'https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png', isSupported: true},
         {name: 'golang', logo: 'https://upload.wikimedia.org/wikipedia/commons/0/05/Go_Logo_Blue.svg', isSupported: false},
-        {name: 'c', logo: 'https://upload.wikimedia.org/wikipedia/commons/3/35/The_C_Programming_Language_logo.svg', isSupported: false},
-        {name: 'c#', logo: 'https://upload.wikimedia.org/wikipedia/commons/d/d2/C_Sharp_Logo_2023.svg', isSupported: false},
-        {name: 'rust', logo: 'https://upload.wikimedia.org/wikipedia/commons/d/d5/Rust_programming_language_black_logo.svg', isSupported: false},
       ],
       currentLanguage: 'python',
+      currentCode: '',
       codes: {
-        python: [
-          'print("Hello, World!")',
-        ],
-        php: [
-          '<?php\necho "hello world!";',
-        ],
+        python: {
+          'hello world': 'print("Hello, World!")',
+          'math': '2 ** 10',
+        },
+        php: {
+          'hello world': '<?php\n\necho "hello world!";',
+          'math': '<?php\n\necho 345 + 123;',
+        },
+        javascript: {
+          'hello world': 'console.log("hello world!")',
+          'math': '35 / 23',
+        },
       },
       args: '',
       stdin: '',
@@ -82,22 +105,8 @@ export default {
     };
   },
   mounted() {
-    this.wrapper = new ExecutionWrapper('python');
-
-    this.wrapper.onResult((result) => {
-      this.result = result;
-      this.isLoading = false;
-    });
-
-    this.wrapper.onOutput((out) => {
-      this.stdout = out;
-      this.isLoading = false;
-    });
-
-    this.wrapper.onError((error) => {
-      this.stderr = error;
-      this.isLoading = false;
-    });
+    this.initWrapper();
+    this.autoSelectCode();
   },
   beforeUnmount() {
     if (this.wrapper) {
@@ -108,6 +117,29 @@ export default {
   methods: {
     selectLanguage(name) {
       this.currentLanguage = name;
+      this.initWrapper();
+      this.autoSelectCode();
+    },
+    initWrapper() {
+      this.wrapper = new ExecutionWrapper(this.currentLanguage);
+
+      this.wrapper.onResult((result) => {
+        this.result = result;
+        this.isLoading = false;
+      });
+
+      this.wrapper.onOutput((out) => {
+        this.stdout = out;
+        this.isLoading = false;
+      });
+
+      this.wrapper.onError((error) => {
+        this.stderr = error;
+        this.isLoading = false;
+      });
+    },
+    autoSelectCode() {
+      this.currentCode = Object.values(this.codes[this.currentLanguage])[0];
     },
     runCode() {
       this.output = '';
@@ -115,7 +147,7 @@ export default {
       this.stderr = '';
       if (this.wrapper) {
         this.isLoading = true;
-        this.wrapper.sendCode(this.code);
+        this.wrapper.sendCode(this.currentCode);
       }
     },
   },
@@ -132,11 +164,6 @@ export default {
 
 .column {
   flex: 1;
-}
-
-.code-input {
-  width: 100%;
-  height: 100%;
 }
 
 pre {

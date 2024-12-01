@@ -75,4 +75,9 @@ h3 {
 [v-cloak] {
   display: none;
 }
+
+pre {
+  margin: 0;
+  padding: 0;
+}
 </style>

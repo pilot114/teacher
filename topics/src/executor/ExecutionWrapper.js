@@ -43,24 +43,26 @@ class PhpExecutor {
     constructor() {
         this.php = new PhpWeb();
 
-        this.php.addEventListener('output', (event) => this.onOutput(event));
-        this.php.addEventListener('error', (event) => this.onError(event));
+        this.php.addEventListener('output', (event) => {
+            const data = event.detail.join("\n");
+            this.onOutput(data)
+        });
+        this.php.addEventListener('error', (event) => {
+            const data = event.detail.join("\n");
+            this.onError(data)
+        });
 
         this.result = null;
     }
 
     sendInput(input) {
-        this.php.inputString(input);
+        // TODO
+        console.log('php input: ' + input);
+        // this.php.inputString(input);
     }
 
-    async sendCode() {
-        const exitCode = await this.php.run(`
-        <?php
-        echo file_get_contents("php://stdin") . "\n";
-        foreach(get_loaded_extensions() as $module) {
-          echo "$module\n";
-        }
-        `);
+    async sendCode(code) {
+        const exitCode = await this.php.run(code);
         this.onResult(exitCode);
     }
 
