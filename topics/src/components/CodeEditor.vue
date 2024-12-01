@@ -11,7 +11,7 @@ const highlighter = await createHighlighter({
   themes: [
     'one-dark-pro', 'light-plus', 'none',
   ],
-  langs: ['javascript', 'python', 'php'],
+  langs: ['javascript', 'python', 'php', 'go'],
 })
 
 // fix bg
@@ -66,7 +66,7 @@ export default {
         () => props.modelValue,
         (newVal) => {
           if (jar && newVal !== jar.toString()) {
-            jar.updateCode(newVal);
+            jar.updateCode(newVal.trim());
           }
         }
     );

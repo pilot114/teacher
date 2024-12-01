@@ -28,12 +28,17 @@ class PythonExecutor {
         this.worker.postMessage(code);
     }
 
-    onOutput = null;
-    onError = null;
-    onResult = null;
-
     terminate() {
         this.worker.terminate();
+    }
+}
+
+class GolangExecutor {
+    sendCode(code) {
+        this.onOutput(code);
+    }
+
+    terminate() {
     }
 }
 
@@ -66,10 +71,6 @@ class PhpExecutor {
         this.onResult(exitCode);
     }
 
-    onOutput = null;
-    onError = null;
-    onResult = null;
-
     async terminate() {
         await this.php.refresh();
     }
@@ -78,12 +79,16 @@ class PhpExecutor {
 class ExecutionWrapper {
 
     constructor(language) {
-        if (language === 'python') {
+        if (language === Langs.PYTHON) {
             this.executor = new PythonExecutor();
             return;
         }
-        if (language === 'php') {
+        if (language === Langs.PHP) {
             this.executor = new PhpExecutor();
+            return;
+        }
+        if (language === Langs.GO) {
+            this.executor = new GolangExecutor();
             return;
         }
         console.error("Unsupported language: " + language);
@@ -111,4 +116,10 @@ class ExecutionWrapper {
     }
 }
 
-export { ExecutionWrapper };
+const Langs = Object.freeze({
+    PHP: 'php',
+    PYTHON: 'python',
+    GO: 'go',
+});
+
+export { ExecutionWrapper, Langs };

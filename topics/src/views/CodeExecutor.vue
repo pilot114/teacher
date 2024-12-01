@@ -17,11 +17,11 @@
 
       <div class="column" style="width:100px;">
         <div
-            v-for="(code, name) in codes[currentLanguage]"
+            v-for="(code, name) in sources[currentLanguage]"
             :key="name"
         >
           <a
-              href="#" @click="currentCode = code"
+              href="#" @click="selectCurrentCode(name)"
           >
             {{ name }}
           </a>
@@ -65,8 +65,9 @@
 import ContentTabs from "@/components/ContentTabs.vue";
 import ContentTab from "@/components/ContentTab.vue";
 import CodeEditor from "@/components/CodeEditor.vue";
+import {sources} from "@/sources.js";
 
-import {ExecutionWrapper} from "@/executor/ExecutionWrapper";
+import {ExecutionWrapper, Langs} from "@/executor/ExecutionWrapper";
 
 export default {
   name: 'CodeExecutor',
@@ -74,27 +75,13 @@ export default {
   data() {
     return {
       languages: [
-        {name: 'python', logo: 'https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg', isSupported: true},
-        {name: 'php', logo: 'https://upload.wikimedia.org/wikipedia/commons/2/27/PHP-logo.svg', isSupported: true},
-        {name: 'javascript', logo: 'https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png', isSupported: true},
-        {name: 'golang', logo: 'https://upload.wikimedia.org/wikipedia/commons/0/05/Go_Logo_Blue.svg', isSupported: false},
+        {name: Langs.PYTHON, logo: 'https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg', isSupported: true},
+        {name: Langs.PHP, logo: 'https://upload.wikimedia.org/wikipedia/commons/2/27/PHP-logo.svg', isSupported: true},
+        {name: Langs.GO, logo: 'https://upload.wikimedia.org/wikipedia/commons/0/05/Go_Logo_Blue.svg', isSupported: true},
       ],
-      currentLanguage: 'python',
+      currentLanguage: Langs.PYTHON,
       currentCode: '',
-      codes: {
-        python: {
-          'hello world': 'print("Hello, World!")',
-          'math': '2 ** 10',
-        },
-        php: {
-          'hello world': '<?php\n\necho "hello world!";',
-          'math': '<?php\n\necho 345 + 123;',
-        },
-        javascript: {
-          'hello world': 'console.log("hello world!")',
-          'math': '35 / 23',
-        },
-      },
+      sources: sources,
       args: '',
       stdin: '',
       stdout: '',
@@ -115,6 +102,9 @@ export default {
   },
 
   methods: {
+    selectCurrentCode(codeName) {
+      this.currentCode = this.sources[this.currentLanguage][codeName];
+    },
     selectLanguage(name) {
       this.currentLanguage = name;
       this.initWrapper();
@@ -139,7 +129,7 @@ export default {
       });
     },
     autoSelectCode() {
-      this.currentCode = Object.values(this.codes[this.currentLanguage])[0];
+      this.currentCode = Object.values(this.sources[this.currentLanguage])[0];
     },
     runCode() {
       this.output = '';
