@@ -33,9 +33,39 @@ class PythonExecutor {
     }
 }
 
+import "@/wasm/wasm_exec.js";
+
+if (!WebAssembly.instantiateStreaming) {
+    // polyfill
+    WebAssembly.instantiateStreaming = async (resp, importObject) => {
+        const source = await (await resp).arrayBuffer();
+        return await WebAssembly.instantiate(source, importObject);
+    };
+}
+
 class GolangExecutor {
-    sendCode(code) {
-        this.onOutput(code);
+    constructor() {
+        // eslint-disable-next-line no-undef
+        this.go = new Go();
+        this.result = null;
+
+        let outputBuf = '';
+        const decoder = new TextDecoder("utf-8");
+
+        const self = this;
+
+        global.fs.writeSync = function(fd, buf) {
+            outputBuf += decoder.decode(buf);
+            self.onOutput(outputBuf);
+            return buf.length;
+        };
+    }
+
+    async sendCode(code, name) {
+        let result = await WebAssembly.instantiateStreaming(fetch("go/" + name + ".wasm"), this.go.importObject)
+        this.go.run(result.instance).catch((err) => {
+            this.onError(err.message || "Неизвестная ошибка");
+        });
     }
 
     terminate() {
@@ -97,8 +127,8 @@ class ExecutionWrapper {
     sendInput(input) {
         this.executor.sendInput(input);
     }
-    sendCode(code) {
-        this.executor.sendCode(code);
+    sendCode(code, name) {
+        this.executor.sendCode(code, name);
     }
 
     onOutput(cb) {

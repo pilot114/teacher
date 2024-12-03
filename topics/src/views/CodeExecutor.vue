@@ -6,9 +6,10 @@
             v-for="language in languages"
             :key="language.name"
         >
+          <img :src="language.logo" width="20" height="20">
           <a
               v-if="language.isSupported"
-              href="#" @click="selectLanguage(language.name)"
+              href="#" @click="selectLanguage(language)"
           >
             {{ language.name }}
           </a>
@@ -17,7 +18,7 @@
 
       <div class="column" style="width:100px;">
         <div
-            v-for="(code, name) in sources[currentLanguage]"
+            v-for="(code, name) in sources[currentLanguage.name]"
             :key="name"
         >
           <a
@@ -30,7 +31,11 @@
 
       <div class="column">
         <h3>Код:</h3>
-        <CodeEditor v-model="currentCode" :language="currentLanguage" />
+        <CodeEditor
+            v-model="currentCode"
+            :language="currentLanguage.name"
+            :readonly="currentLanguage.isReadonly"
+        />
 
         <button @click="runCode">Выполнить</button>
         <span class="loader" v-if="isLoading"></span>
@@ -69,18 +74,21 @@ import {sources} from "@/sources.js";
 
 import {ExecutionWrapper, Langs} from "@/executor/ExecutionWrapper";
 
+const languages = [
+  {name: Langs.PYTHON, logo: 'https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg', isSupported: true, isReadonly: false},
+  {name: Langs.PHP, logo: 'https://upload.wikimedia.org/wikipedia/commons/2/27/PHP-logo.svg', isSupported: true, isReadonly: false},
+  {name: Langs.GO, logo: 'https://upload.wikimedia.org/wikipedia/commons/0/05/Go_Logo_Blue.svg', isSupported: true, isReadonly: true},
+];
+
 export default {
   name: 'CodeExecutor',
   components: {ContentTab, ContentTabs, CodeEditor},
   data() {
     return {
-      languages: [
-        {name: Langs.PYTHON, logo: 'https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg', isSupported: true},
-        {name: Langs.PHP, logo: 'https://upload.wikimedia.org/wikipedia/commons/2/27/PHP-logo.svg', isSupported: true},
-        {name: Langs.GO, logo: 'https://upload.wikimedia.org/wikipedia/commons/0/05/Go_Logo_Blue.svg', isSupported: true},
-      ],
-      currentLanguage: Langs.PYTHON,
+      languages: languages,
+      currentLanguage: languages[2],
       currentCode: '',
+      currentCodeName: '',
       sources: sources,
       args: '',
       stdin: '',
@@ -103,15 +111,16 @@ export default {
 
   methods: {
     selectCurrentCode(codeName) {
-      this.currentCode = this.sources[this.currentLanguage][codeName];
+      this.currentCodeName = codeName;
+      this.currentCode = this.sources[this.currentLanguage.name][codeName];
     },
-    selectLanguage(name) {
-      this.currentLanguage = name;
+    selectLanguage(language) {
+      this.currentLanguage = language;
       this.initWrapper();
       this.autoSelectCode();
     },
     initWrapper() {
-      this.wrapper = new ExecutionWrapper(this.currentLanguage);
+      this.wrapper = new ExecutionWrapper(this.currentLanguage.name);
 
       this.wrapper.onResult((result) => {
         this.result = result;
@@ -129,7 +138,8 @@ export default {
       });
     },
     autoSelectCode() {
-      this.currentCode = Object.values(this.sources[this.currentLanguage])[0];
+      this.currentCodeName = Object.keys(this.sources[this.currentLanguage.name])[0];
+      this.currentCode = Object.values(this.sources[this.currentLanguage.name])[0];
     },
     runCode() {
       this.output = '';
@@ -137,7 +147,7 @@ export default {
       this.stderr = '';
       if (this.wrapper) {
         this.isLoading = true;
-        this.wrapper.sendCode(this.currentCode);
+        this.wrapper.sendCode(this.currentCode, this.currentCodeName);
       }
     },
   },

@@ -29,11 +29,32 @@ export default {
     language: {
       type: String,
     },
+    readonly: {
+      type: Boolean,
+    },
   },
   emits: ['update:modelValue'],
   setup(props, { emit }) {
     const editorRef = ref(null);
     let jar = null;
+
+    const switchJar = function(isReadonly){
+      jar = CodeJar(editorRef.value, highlightSyntax, {
+        tab: '    ', // Четыре пробела вместо табуляции
+      });
+
+      jar.updateCode(props.modelValue);
+      jar.onUpdate((code) => {
+        emit('update:modelValue', code);
+      });
+
+      if (isReadonly) {
+        if (jar) {
+          jar.destroy();
+        }
+        editorRef.value.removeAttribute('contenteditable');
+      }
+    }
 
     const highlightSyntax = async (editor) => {
       editor.innerHTML = highlighter.codeToHtml(editor.textContent, {
@@ -43,17 +64,7 @@ export default {
     };
 
     onMounted(async () => {
-      if (editorRef.value) {
-        jar = CodeJar(editorRef.value, highlightSyntax, {
-          tab: '    ', // Четыре пробела вместо табуляции
-        });
-
-        jar.updateCode(props.modelValue);
-
-        jar.onUpdate((code) => {
-          emit('update:modelValue', code);
-        });
-      }
+      switchJar(props.readonly)
     });
 
     onBeforeUnmount(() => {
@@ -69,6 +80,11 @@ export default {
             jar.updateCode(newVal.trim());
           }
         }
+    );
+
+    watch(
+        () => props.readonly,
+        (newVal) => switchJar(newVal)
     );
 
     return {
