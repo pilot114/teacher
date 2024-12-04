@@ -1,5 +1,5 @@
 
-class PythonExecutor {
+class PythonProcess {
     constructor() {
         this.worker = new Worker(new URL('../executor/pyWorker.js', import.meta.url), { type: 'module' })
 
@@ -43,25 +43,55 @@ if (!WebAssembly.instantiateStreaming) {
     };
 }
 
-class GolangExecutor {
+class GolangProcess {
     constructor() {
         // eslint-disable-next-line no-undef
         this.go = new Go();
-        this.result = null;
 
-        let outputBuf = '';
         const decoder = new TextDecoder("utf-8");
-
         const self = this;
 
+        let outputBuf = '';
+        let errorBuf = '';
+
+        global.fs.read = function(fd, buffer, offset, length, position, callback) {
+
+            if (fd !== 0) {
+                callback(null, 0);
+            }
+
+            const input = prompt("Введите данные для программы:");
+
+            if (input !== null) {
+                const bytes = new TextEncoder().encode(input);
+                const toRead = Math.min(length, bytes.length - position);
+                for (let i = 0; i < toRead; i++) {
+                    buffer[offset + i] = bytes[position + i];
+                }
+                callback(null, toRead);
+            } else {
+                callback(null, 0);
+            }
+        };
+
         global.fs.writeSync = function(fd, buf) {
-            outputBuf += decoder.decode(buf);
-            self.onOutput(outputBuf);
+            if (fd === 1) {
+                outputBuf += decoder.decode(buf);
+                self.onOutput(outputBuf);
+            }
+            if (fd === 2) {
+                errorBuf += decoder.decode(buf);
+                self.onError(errorBuf);
+            }
             return buf.length;
         };
     }
 
-    async sendCode(code, name) {
+    async sendCode(code, name, env = {}, args = []) {
+        this.go.exit = this.onResult;
+        this.go.env = env;
+        this.go.argv = args;
+
         let result = await WebAssembly.instantiateStreaming(fetch("go/" + name + ".wasm"), this.go.importObject)
         this.go.run(result.instance).catch((err) => {
             this.onError(err.message || "Неизвестная ошибка");
@@ -74,7 +104,7 @@ class GolangExecutor {
 
 import { PhpWeb } from 'php-wasm/PhpWeb.mjs';
 
-class PhpExecutor {
+class PhpProcess {
     constructor() {
         this.php = new PhpWeb();
 
@@ -106,19 +136,19 @@ class PhpExecutor {
     }
 }
 
-class ExecutionWrapper {
+class WasmProcessManager {
 
     constructor(language) {
         if (language === Langs.PYTHON) {
-            this.executor = new PythonExecutor();
+            this.executor = new PythonProcess();
             return;
         }
         if (language === Langs.PHP) {
-            this.executor = new PhpExecutor();
+            this.executor = new PhpProcess();
             return;
         }
         if (language === Langs.GO) {
-            this.executor = new GolangExecutor();
+            this.executor = new GolangProcess();
             return;
         }
         console.error("Unsupported language: " + language);
@@ -127,8 +157,8 @@ class ExecutionWrapper {
     sendInput(input) {
         this.executor.sendInput(input);
     }
-    sendCode(code, name) {
-        this.executor.sendCode(code, name);
+    sendCode(code, name, env = {}, args = []) {
+        this.executor.sendCode(code, name, env, args);
     }
 
     onOutput(cb) {
@@ -152,4 +182,4 @@ const Langs = Object.freeze({
     GO: 'go',
 });
 
-export { ExecutionWrapper, Langs };
+export { WasmProcessManager, Langs };

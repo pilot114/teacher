@@ -5,6 +5,7 @@
         <div
             v-for="language in languages"
             :key="language.name"
+            class="language-container"
         >
           <img :src="language.logo" width="20" height="20">
           <a
@@ -30,26 +31,27 @@
       </div>
 
       <div class="column">
-        <h3>Код:</h3>
         <CodeEditor
             v-model="currentCode"
             :language="currentLanguage.name"
             :readonly="currentLanguage.isReadonly"
         />
+      </div>
 
+      <div class="column">
         <button @click="runCode">Выполнить</button>
         <span class="loader" v-if="isLoading"></span>
       </div>
 
       <div class="column">
         <ContentTabs activeTab="stdout">
-          <ContentTab name="args" label="args">
-            <textarea v-model="args">
-            </textarea>
+          <ContentTab name="args & envs" label="args & envs">
+            <input v-model="args" type="text">
+            <br>
+            <input v-model="envs" type="text">
           </ContentTab>
           <ContentTab name="stdin" label="stdin">
-            <textarea v-model="stdin">
-            </textarea>
+            <textarea v-model="stdin" type="text" rows="10"></textarea>
           </ContentTab>
           <ContentTab name="stdout" label="stdout">
             <pre>{{ stdout }}</pre>
@@ -72,7 +74,7 @@ import ContentTab from "@/components/ContentTab.vue";
 import CodeEditor from "@/components/CodeEditor.vue";
 import {sources} from "@/sources.js";
 
-import {ExecutionWrapper, Langs} from "@/executor/ExecutionWrapper";
+import {WasmProcessManager, Langs} from "@/executor/WasmProcessManager";
 
 const languages = [
   {name: Langs.PYTHON, logo: 'https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg', isSupported: true, isReadonly: false},
@@ -90,11 +92,14 @@ export default {
       currentCode: '',
       currentCodeName: '',
       sources: sources,
-      args: '',
-      stdin: '',
+
+      args: 'qwe asd zxc',
+      envs: '{"test": 123}',
+      stdin: 'test',
       stdout: '',
       stderr: '',
       result: '',
+
       wrapper: null,
       isLoading: false,
     };
@@ -102,6 +107,7 @@ export default {
   mounted() {
     this.initWrapper();
     this.autoSelectCode();
+    this.selectCurrentCode('check_io');
   },
   beforeUnmount() {
     if (this.wrapper) {
@@ -120,20 +126,18 @@ export default {
       this.autoSelectCode();
     },
     initWrapper() {
-      this.wrapper = new ExecutionWrapper(this.currentLanguage.name);
-
-      this.wrapper.onResult((result) => {
-        this.result = result;
-        this.isLoading = false;
-      });
+      this.wrapper = new WasmProcessManager(this.currentLanguage.name);
 
       this.wrapper.onOutput((out) => {
         this.stdout = out;
-        this.isLoading = false;
       });
 
       this.wrapper.onError((error) => {
         this.stderr = error;
+      });
+
+      this.wrapper.onResult((result) => {
+        this.result = result;
         this.isLoading = false;
       });
     },
@@ -147,7 +151,12 @@ export default {
       this.stderr = '';
       if (this.wrapper) {
         this.isLoading = true;
-        this.wrapper.sendCode(this.currentCode, this.currentCodeName);
+        this.wrapper.sendCode(
+            this.currentCode,
+            this.currentCodeName,
+            JSON.parse(this.envs),
+            this.args.split(' '),
+        );
       }
     },
   },
@@ -157,9 +166,8 @@ export default {
 <style scoped>
 .columns {
   display: flex;
-  justify-content: space-between;
+  justify-content: start;
   gap: 1em;
-  margin-bottom: 1em;
 }
 
 .column {
@@ -173,9 +181,9 @@ pre {
 
 .loader {
   display: inline-block;
-  width: 16px;
-  height: 16px;
-  border: 2px solid rgba(0, 0, 0, 0.2);
+  width: 32px;
+  height: 32px;
+  border: 4px solid rgba(0, 0, 0, 0.2);
   border-top-color: rgba(0, 0, 0, 0.8);
   border-radius: 50%;
   animation: spin 0.6s linear infinite;
@@ -189,18 +197,22 @@ pre {
   }
 }
 
-textarea {
+textarea, input {
   border: 1px solid #ccc;
   border-radius: 4px;
   overflow: hidden;
   width: 400px;
-  padding: 1em;
+  padding: .5em;
+  margin-bottom: 1em;
 
-  min-height: 300px;
-  font-family: 'Fira Code', monospace;
-  font-size: 14px;
   outline: none;
   white-space: pre;
   background-color: #f5f5f5;
+}
+
+.language-container {
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 </style>

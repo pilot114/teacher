@@ -68,7 +68,7 @@ h3 {
 
 .container {
   display: flex;
-  font-family: Verdana, Geneva, sans-serif;
+  font-family: 'Calibri', sans-serif;
   padding: 10px 20px;
 }
 
@@ -79,5 +79,6 @@ h3 {
 pre {
   margin: 0;
   padding: 0;
+  font-family: 'Calibri', sans-serif;
 }
 </style>
