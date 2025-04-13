@@ -75,7 +75,7 @@ export default {
 
 <style scoped>
 .tabs-container {
-  max-width: 800px;
+  width: 400px;
   margin: 0 auto;
 }
 
