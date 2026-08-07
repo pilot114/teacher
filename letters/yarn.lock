@@ -242,9 +242,10 @@
   optionalDependencies:
     global-agent "^3.0.0"
 
-"@electron/node-gyp@git+https://github.com/electron/node-gyp.git#06b29aafb7708acef8b3669835c8a7857ebc92d2":
+"@electron/node-gyp@https://github.com/electron/node-gyp#06b29aafb7708acef8b3669835c8a7857ebc92d2":
   version "10.2.0-electron.1"
-  resolved "git+https://github.com/electron/node-gyp.git#06b29aafb7708acef8b3669835c8a7857ebc92d2"
+  uid "06b29aafb7708acef8b3669835c8a7857ebc92d2"
+  resolved "https://github.com/electron/node-gyp#06b29aafb7708acef8b3669835c8a7857ebc92d2"
   dependencies:
     env-paths "^2.2.0"
     exponential-backoff "^3.1.1"
@@ -462,19 +463,12 @@
   resolved "https://registry.yarnpkg.com/@types/minimatch/-/minimatch-5.1.2.tgz#07508b45797cb81ec3f273011b054cd0755eddca"
   integrity sha512-K0VQKziLUWkVKiRVrx4a40iPaxTUefQmjtkQofBkYRcoaaL/8rhwDWww9qWbrgicNOgnpIsMxyNIUM4+n6dUIA==
 
-"@types/node@*":
-  version "22.8.3"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-22.8.3.tgz#ebc5dc6fdd37c4a0f992a7b4ca510c733617eaa7"
-  integrity sha512-ZlijaZM38In/raEdZoNKKfIVJEA+4NTsvhGQTgQt4y2/Zgokyz4NUvOch108O3Q1q5lJ170h1hShfPfRPW7BwA==
+"@types/node@*", "@types/node@^22.7.7":
+  version "22.20.1"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-22.20.1.tgz#84e7cdf63cdaa20c134aa317ccc901aa21e16f0e"
+  integrity sha512-EANqOCF9QFyra+4pfxUcX9STKJpCLjMbObVzljIJomAWSnuSIEAvyzEU53GaajbXJEgdh0iEcPL+DGvpUd4k1Q==
   dependencies:
-    undici-types "~6.19.8"
-
-"@types/node@^20.9.0":
-  version "20.17.2"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.17.2.tgz#3ca40ef7d776c85a1db3df23cbb5bfb3c384a92e"
-  integrity sha512-OOHK4sjXqkL7yQ7VEEHcf6+0jSvKjWqwnaCtY7AKD/VLEvRHMsxxu7eI8ErnjxHS8VwmekD4PeVCpu4qZEZSxg==
-  dependencies:
-    undici-types "~6.19.2"
+    undici-types "~6.21.0"
 
 "@types/responselike@^1.0.0":
   version "1.0.3"
@@ -979,13 +973,13 @@ electron-winstaller@^5.3.0:
   optionalDependencies:
     "@electron/windows-sign" "^1.1.2"
 
-electron@^33.0:
-  version "33.0.2"
-  resolved "https://registry.yarnpkg.com/electron/-/electron-33.0.2.tgz#db31b105bf0edd7c8600dfb70c2dfc214e3789f1"
-  integrity sha512-C2WksfP0COsMHbYXSJG68j6S3TjuGDrw/YT42B526yXalIlNQZ2GeAYKryg6AEMkIp3p8TUfDRD0+HyiyCt/nw==
+electron@^39.8:
+  version "39.8.10"
+  resolved "https://registry.yarnpkg.com/electron/-/electron-39.8.10.tgz#998d9c5b9e7601debb70bd7355e8d4dfd6d70f43"
+  integrity sha512-zbYtGPYUI7PzqLAzkk21Rk6j67WN0hxn0Mq/njErZo1d0HSf33is4f8ICI5fMLy5vYe0JtCtM5sYunNOaochSQ==
   dependencies:
     "@electron/get" "^2.0.0"
-    "@types/node" "^20.9.0"
+    "@types/node" "^22.7.7"
     extract-zip "^2.0.1"
 
 emoji-regex@^8.0.0:
@@ -2684,10 +2678,10 @@ type-fest@^1.0.2:
   resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-1.4.0.tgz#e9fb813fe3bf1744ec359d55d1affefa76f14be1"
   integrity sha512-yGSza74xk0UG8k+pLh5oeoYirvIiWo5t0/o3zHHAO2tRDiZcxWP7fywNlXhqb6/r6sWvwi+RsyQMWhVLe4BVuA==
 
-undici-types@~6.19.2, undici-types@~6.19.8:
-  version "6.19.8"
-  resolved "https://registry.yarnpkg.com/undici-types/-/undici-types-6.19.8.tgz#35111c9d1437ab83a7cdc0abae2f26d88eda0a02"
-  integrity sha512-ve2KP6f/JnbPBFyobGHuerC9g1FYGn/F8n1LWTwNxCEzd6IfqTwUQcNXgEtmmQ6DlRrC1hrSrBnCZPokRrDHjw==
+undici-types@~6.21.0:
+  version "6.21.0"
+  resolved "https://registry.yarnpkg.com/undici-types/-/undici-types-6.21.0.tgz#691d00af3909be93a7faa13be61b3a5b50ef12cb"
+  integrity sha512-iwDZqg0QAGrg9Rav5H4n0M64c3mkR59cJ6wQp+7C4nI0gsmExaedaYLNO44eT4AtBBwjbTiGPMlt2Md0T9H9JQ==
 
 unique-filename@^2.0.0:
   version "2.0.1"
