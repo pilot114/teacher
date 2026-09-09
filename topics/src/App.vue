@@ -2,14 +2,19 @@
   <div id="app">
     <header-menu
       :selected-section="selectedSection"
+      :selected-practice="selectedPractice"
       @update:selectedSection="selectSection"
+      @update:selectedPractice="selectPractice"
     ></header-menu>
     <div class="container">
-      <Topics  v-if="selectedSection === 'Учебники'"/>
-      <MultiplicationTrainer v-if="selectedSection === 'Таблица умножения'"/>
-      <Solver v-if="selectedSection === 'Задачи'"/>
-      <CodeExecutor v-if="selectedSection === 'Code'"/>
-      <PoetryList v-if="selectedSection === 'Стихи'"/>
+      <Topics  v-if="selectedSection === 'Учебники'" :target="topicsTarget"/>
+      <Progress v-if="selectedSection === 'Прогресс'" @open-theory="openTheory"/>
+      <template v-if="selectedSection === 'Практика'">
+        <MultiplicationTrainer v-if="selectedPractice === 'Таблица умножения'"/>
+        <Solver v-if="selectedPractice === 'Задачи'"/>
+        <CodeExecutor v-if="selectedPractice === 'Программирование'"/>
+        <PoetryList v-if="selectedPractice === 'Стихи'"/>
+      </template>
       <StudyPerf v-if="selectedSection === 'Успеваемость'"/>
     </div>
   </div>
@@ -25,11 +30,19 @@ import Topics from "@/views/Topics.vue";
 import PoetryList from "@/views/PoetryList.vue";
 import StudyPerf from "@/views/StudyPerf.vue";
 import CodeExecutor from "@/views/CodeExecutor.vue";
+import Progress from "@/views/Progress.vue";
+import {
+  rememberPractice,
+  rememberSection,
+  restorePractice,
+  restoreSection,
+} from "@/sections.js";
 
 export default {
   name: 'App',
   components: {
     CodeExecutor,
+    Progress,
     Topics,
     Solver,
     HeaderMenu,
@@ -39,12 +52,26 @@ export default {
   },
   data() {
     return {
-      selectedSection: 'Code'
+      selectedSection: restoreSection(),
+      selectedPractice: restorePractice(),
+      topicsTarget: null,
     };
+  },
+  watch: {
+    selectedSection: rememberSection,
+    selectedPractice: rememberPractice,
   },
   methods: {
     selectSection(section) {
+      this.topicsTarget = null;
       this.selectedSection = section;
+    },
+    selectPractice(section) {
+      this.selectedPractice = section;
+    },
+    openTheory(target) {
+      this.topicsTarget = target;
+      this.selectedSection = 'Учебники';
     }
   },
 };

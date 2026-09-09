@@ -13,53 +13,13 @@
     </tr>
     </thead>
     <tbody>
-    <tr>
-      <td class="subject-column">Математика</td>
-      <td>4</td>
-      <td>5</td>
-      <td>4</td>
-      <td>5</td>
-      <td>5</td>
+    <tr v-for="row in rows" :key="row.subject">
+      <td class="subject-column">{{ row.subject }}</td>
+      <td v-for="(mark, index) in row.marks" :key="index">{{ mark }}</td>
+      <td>{{ row.total }}</td>
     </tr>
-    <tr>
-      <td class="subject-column">Русский язык</td>
-      <td>5</td>
-      <td>5</td>
-      <td>4</td>
-      <td>5</td>
-      <td>5</td>
-    </tr>
-    <tr>
-      <td class="subject-column">История</td>
-      <td>4</td>
-      <td>4</td>
-      <td>5</td>
-      <td>5</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <td class="subject-column">Физика</td>
-      <td>3</td>
-      <td>4</td>
-      <td>4</td>
-      <td>5</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <td class="subject-column">Английский язык</td>
-      <td>5</td>
-      <td>4</td>
-      <td>4</td>
-      <td>5</td>
-      <td>5</td>
-    </tr>
-    <tr>
-      <td class="subject-column">Химия</td>
-      <td>4</td>
-      <td>3</td>
-      <td>4</td>
-      <td>4</td>
-      <td>4</td>
+    <tr v-if="!rows.length">
+      <td class="empty" colspan="6">Оценок пока нет</td>
     </tr>
     </tbody>
   </table>
@@ -70,6 +30,7 @@
 export default {
   data() {
     return {
+      rows: [],
     }
   },
 };
@@ -99,5 +60,9 @@ th {
 
 .subject-column {
   text-align: left;
+}
+
+.empty {
+  color: #888;
 }
 </style>

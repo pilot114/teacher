@@ -1,10 +1,17 @@
 <template>
   <div class="sidebar">
-    <select id="subject-select" v-model="selectedSubject" @change="load">
-      <option v-for="subject in subjects" :key="subject.value" :value="subject.value">
-        {{ subject.label }}
-      </option>
-    </select>
+    <div class="selectors">
+      <select id="grade-select" :value="selectedGrade" @change="selectGrade(Number($event.target.value))">
+        <option v-for="grade in grades" :key="grade" :value="grade">
+          {{ grade }} класс
+        </option>
+      </select>
+      <select id="subject-select" :value="selectedSubject" @change="load($event.target.value)">
+        <option v-for="subject in gradeSubjects" :key="subject.value" :value="subject.value">
+          {{ subjectLabel(subject) }}
+        </option>
+      </select>
+    </div>
     <ul>
       <li v-for="topic in topics" :key="topic.title">
         <div @click="toggle(topic)">
@@ -26,21 +33,30 @@
 </template>
 
 <script>
+import {grades, subjectsForGrade} from "@/subjects.js";
+
 export default {
   name: 'SidebarMenu',
-  props: ['topics', 'selectedTopic'],
+  props: ['topics', 'selectedTopic', 'selectedSubject', 'selectedGrade'],
   data() {
     return {
-      subjects: [
-        { value: 'math', label: 'Математика 5 класс' },
-        { value: 'math2', label: 'Математика 6 класс' },
-        { value: 'physics', label: 'Физика 6 класс' },
-        { value: 'informatics', label: 'Информатика 6 класс' },
-      ],
-      selectedSubject: 'math2',
+      grades: grades,
     };
   },
+  computed: {
+    gradeSubjects() {
+      return subjectsForGrade(this.selectedGrade);
+    },
+  },
   methods: {
+    subjectLabel(subject) {
+      return subject.label === subject.labelRu
+          ? subject.label
+          : `${subject.label} (${subject.labelRu})`;
+    },
+    selectGrade(grade) {
+      this.$emit('select-grade', grade);
+    },
     toggle(topic) {
       topic.expanded = !topic.expanded;
     },
@@ -48,8 +64,8 @@ export default {
       event.stopPropagation();
       this.$emit('select-topic', subtopic.content, title);
     },
-    load() {
-      this.$emit('load-topics', this.selectedSubject);
+    load(subject) {
+      this.$emit('load-topics', subject);
     },
     isActive(title) {
       return this.selectedTopic === title;
@@ -76,10 +92,15 @@ export default {
   background-color: #d0e4fe;
 }
 
+.selectors {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px;
+}
+
 select {
   padding: 8px;
-  margin-left: 32px;
-  margin-top: 8px;
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 16px;

@@ -1,9 +1,20 @@
 <template>
   <div class="content-area">
     <div v-if="content">
-      <h1>
-        {{ content.title }}
-      </h1>
+      <div class="content-head">
+        <div>
+          <h1>
+            {{ content.title }}
+          </h1>
+          <p class="title-ru" v-if="content.titleRu">
+            {{ content.titleRu }}
+          </p>
+        </div>
+        <div class="practice" v-if="practice">
+          <button type="button" class="practice-btn" @click="$emit('open-practice')">Практика</button>
+          <span class="practice-hint">Тест по теме, 2 попытки</span>
+        </div>
+      </div>
       <div class="columns">
         <div class="description">
           <h2>Краткое содержание</h2>
@@ -51,7 +62,8 @@ export default {
     ScatterText,
   },
   name: 'ContentArea',
-  props: ['content'],
+  props: ['content', 'practice'],
+  emits: ['open-practice'],
   data() {
     return {
       inputSequence: '',
@@ -86,6 +98,23 @@ export default {
   padding: 20px;
 }
 
+.content-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 16px;
+}
+
+.content-head h1 {
+  margin: 0;
+}
+
+.content-area .title-ru {
+  margin: 4px 0 0;
+  color: #777;
+}
+
 .columns {
   display: flex;
   flex-direction: row;
@@ -106,6 +135,32 @@ export default {
 
 .tasks ol {
   padding-left: 20px;
+}
+
+.practice {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.practice-btn {
+  padding: 8px 20px;
+  border-radius: 6px;
+  border: 1px solid #1a63c4;
+  background-color: #1a63c4;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.practice-btn:hover {
+  background-color: #1755a8;
+}
+
+.practice-hint {
+  font-size: 12px;
+  color: #999;
 }
 
 @media (max-width: 800px) {

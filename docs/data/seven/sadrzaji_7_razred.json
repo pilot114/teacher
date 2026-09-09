@@ -1,0 +1,3884 @@
+{
+  "meta": {
+    "description": "Оглавления (садржаји) сербских учебников для 7 класса, распознанные с фотографий",
+    "grade": 7,
+    "recognized_on": "2026-09-04",
+    "source_dir": "/home/oleg/Загрузки/Telegram Desktop/knig",
+    "notes": "page = номер страницы из оглавления; null означает, что у заголовка в оглавлении номер страницы не указан. num — нумерация раздела, как напечатана в книге.",
+    "books_count": 13,
+    "images_count": 22
+  },
+  "books": [
+    {
+      "id": "srpski-jezik-gramatika-7",
+      "subject_sr": "Српски језик и језичка култура (граматика)",
+      "subject_ru": "Сербский язык (грамматика)",
+      "language": "sr-Cyrl",
+      "source_images": [
+        "photo_2026-09-04_19-58-58.jpg",
+        "photo_2026-09-04_19-58-57.jpg"
+      ],
+      "toc": [
+        {
+          "title": "Водич кроз уџбеник",
+          "page": 6
+        },
+        {
+          "title": "МОРФОЛОГИЈА",
+          "page": null,
+          "children": [
+            {
+              "title": "Непроменљиве речи",
+              "page": 10,
+              "children": [
+                {
+                  "title": "Везници",
+                  "page": 10
+                },
+                {
+                  "title": "Узвици",
+                  "page": 13
+                },
+                {
+                  "title": "Речце",
+                  "page": 17
+                }
+              ]
+            },
+            {
+              "title": "Подсетник (Непроменљиве речи)",
+              "page": 22
+            },
+            {
+              "title": "Тест 1 (Непроменљиве речи)",
+              "page": 24
+            },
+            {
+              "title": "Глаголски облици",
+              "page": 27,
+              "children": [
+                {
+                  "title": "Футур II",
+                  "page": 27
+                },
+                {
+                  "title": "Императив",
+                  "page": 30
+                },
+                {
+                  "title": "Потенцијал",
+                  "page": 35
+                },
+                {
+                  "title": "Глаголски прилог садашњи",
+                  "page": 39
+                },
+                {
+                  "title": "Глаголски прилог прошли",
+                  "page": 42
+                },
+                {
+                  "title": "Трпни глаголски придев",
+                  "page": 46
+                },
+                {
+                  "title": "Подела глаголских облика",
+                  "page": 50
+                }
+              ]
+            },
+            {
+              "title": "Правописна решења у вези са глаголским облицима",
+              "page": 54
+            },
+            {
+              "title": "Допуњавање текста различитим облицима променљивих речи и непроменљивим речима",
+              "page": 59
+            },
+            {
+              "title": "Подсетник (Глаголски облици)",
+              "page": 63
+            },
+            {
+              "title": "Тест 2 (Глаголски облици)",
+              "page": 65
+            }
+          ]
+        },
+        {
+          "title": "СИНТАКСА",
+          "page": null,
+          "children": [
+            {
+              "title": "Реченични чланови",
+              "page": 68
+            },
+            {
+              "title": "Предикат",
+              "page": 69,
+              "children": [
+                {
+                  "title": "Сложен глаголски предикат",
+                  "page": 70
+                }
+              ]
+            },
+            {
+              "title": "Субјекат",
+              "page": 73,
+              "children": [
+                {
+                  "title": "Логички субјекат",
+                  "page": 74
+                }
+              ]
+            },
+            {
+              "title": "Подсетник (Реченични чланови)",
+              "page": 77
+            },
+            {
+              "title": "Тест 3 (Реченични чланови)",
+              "page": 78
+            },
+            {
+              "title": "Синтагма",
+              "page": 80
+            },
+            {
+              "title": "Атрибут",
+              "page": 82
+            },
+            {
+              "title": "Именичке синтагме",
+              "page": 85
+            },
+            {
+              "title": "Придевске синтагме",
+              "page": 88
+            },
+            {
+              "title": "Прилошке синтагме",
+              "page": 90
+            },
+            {
+              "title": "Глаголске синтагме",
+              "page": 92
+            },
+            {
+              "title": "Подсетник (Синтагма)",
+              "page": 95
+            },
+            {
+              "title": "Тест 4 (Синтагма)",
+              "page": 96
+            },
+            {
+              "title": "Конгруенција",
+              "page": 98,
+              "children": [
+                {
+                  "title": "Слагање атрибута са именицом у оквиру именичке синтагме",
+                  "page": 99
+                },
+                {
+                  "title": "Слагање глаголског предиката са субјектом",
+                  "page": 100
+                },
+                {
+                  "title": "Слагање именског дела предиката са субјектом",
+                  "page": 102
+                }
+              ]
+            },
+            {
+              "title": "Напоредни односи међу реченичним члановима",
+              "page": 105,
+              "children": [
+                {
+                  "title": "Саставни однос",
+                  "page": 106
+                },
+                {
+                  "title": "Раставни однос",
+                  "page": 108
+                },
+                {
+                  "title": "Супротни однос",
+                  "page": 110
+                }
+              ]
+            },
+            {
+              "title": "Појам предикатске и комуникативне реченице",
+              "page": 113
+            },
+            {
+              "title": "Независносложене реченице",
+              "page": 116,
+              "children": [
+                {
+                  "title": "Напоредни односи међу независним реченицама",
+                  "page": 117
+                },
+                {
+                  "title": "Саставни однос међу независним реченицама",
+                  "page": 117
+                },
+                {
+                  "title": "Раставни однос међу независним реченицама",
+                  "page": 120
+                },
+                {
+                  "title": "Супротни однос међу независним реченицама",
+                  "page": 122
+                }
+              ]
+            },
+            {
+              "title": "Подсетник (Конгруенција; напоредни односи међу реченичним члановима)",
+              "page": 124
+            },
+            {
+              "title": "Тест 5 (Конгруенција; напоредни односи међу реченичним члановима и међу независним реченицама)",
+              "page": 125
+            },
+            {
+              "title": "Зависносложена реченица",
+              "page": 127,
+              "children": [
+                {
+                  "title": "Изричне реченице",
+                  "page": 128
+                },
+                {
+                  "title": "Односне реченице",
+                  "page": 132
+                },
+                {
+                  "title": "Месне реченице",
+                  "page": 137
+                },
+                {
+                  "title": "Временске реченице",
+                  "page": 139
+                },
+                {
+                  "title": "Начинске (поредбене) реченице",
+                  "page": 142
+                },
+                {
+                  "title": "Узрочне реченице",
+                  "page": 144
+                },
+                {
+                  "title": "Условне реченице",
+                  "page": 148
+                },
+                {
+                  "title": "Намерне реченице",
+                  "page": 151
+                },
+                {
+                  "title": "Последичне реченице",
+                  "page": 154
+                },
+                {
+                  "title": "Допусне реченице",
+                  "page": 158
+                }
+              ]
+            },
+            {
+              "title": "Интерпункција у зависносложеној реченици",
+              "page": 160
+            },
+            {
+              "title": "Подсетник (Зависне реченице; исти везници у различитим зависним реченицама)",
+              "page": 164,
+              "page_range": "164–165"
+            },
+            {
+              "title": "Тест 6 (Зависносложена реченица)",
+              "page": 166
+            },
+            {
+              "title": "Реченични чланови исказани речју, предлошко-падежном конструкцијом, синтагмом и зависном реченицом",
+              "page": 169
+            }
+          ]
+        },
+        {
+          "title": "ПРАВОПИС И ЈЕЗИЧКА КУЛТУРА",
+          "page": null,
+          "children": [
+            {
+              "title": "Писање скраћеница",
+              "page": 174
+            },
+            {
+              "title": "Писање правописних знакова",
+              "page": 178
+            },
+            {
+              "title": "Дугосилазни и дугоузлазни акценат",
+              "page": 182
+            },
+            {
+              "title": "Нелинеарни текстови: табеле, графикони, легенде и мапе ума",
+              "page": 185
+            },
+            {
+              "title": "Фразеологизми",
+              "page": 188
+            },
+            {
+              "title": "Књижевноуметнички и публицистички текстови – Репортажа",
+              "page": 192
+            },
+            {
+              "title": "Цитати и фусноте у различитим књижевним и неуметничким текстовима",
+              "page": 198
+            },
+            {
+              "title": "Технички и сугестивни опис",
+              "page": 201
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "citanka-7",
+      "subject_sr": "Српски језик и књижевност – Читанка",
+      "subject_ru": "Сербская литература (хрестоматия)",
+      "language": "sr-Cyrl",
+      "source_images": [
+        "photo_2026-09-04_19-59-02.jpg",
+        "photo_2026-09-04_19-59-00.jpg"
+      ],
+      "toc": [
+        {
+          "title": "Водич кроз уџбеник",
+          "page": 6
+        },
+        {
+          "title": "ДРЕВНА ПРОШЛОСТ",
+          "page": null,
+          "children": [
+            {
+              "title": "СВЕТИ САВА У КЊИЖЕВНОСТИ",
+              "page": null,
+              "children": [
+                {
+                  "title": "Свети Сава, Житије Светог Симеона (одломак)",
+                  "page": 10
+                },
+                {
+                  "title": "Свети Сава и ђаво, легендарна прича",
+                  "page": 15
+                },
+                {
+                  "title": "Савине вериге, народно предање",
+                  "page": 21
+                }
+              ]
+            },
+            {
+              "title": "ИЗБОР ИЗ АУТОРСКЕ ПОЕЗИЈЕ О СВЕТОМ САВИ",
+              "page": null,
+              "children": [
+                {
+                  "title": "Матија Бећковић, Прича о Светом Сави",
+                  "page": 24
+                },
+                {
+                  "title": "Десанка Максимовић, Савин монолог",
+                  "page": 28
+                }
+              ]
+            },
+            {
+              "title": "ЕПСКЕ НАРОДНЕ ПЕСМЕ ПОКОСОВСКОГ ТЕМАТСКОГ КРУГА",
+              "page": null,
+              "children": [
+                {
+                  "title": "Диоба Јакшића, народна епска песма",
+                  "page": 32
+                },
+                {
+                  "title": "Смрт војводе Пријезде, народна епска песма",
+                  "page": 36
+                },
+                {
+                  "title": "Смрт војводе Кајице, народна епска песма",
+                  "page": 41
+                }
+              ]
+            },
+            {
+              "title": "ЕПСКЕ НАРОДНЕ ПЕСМЕ О ХАЈДУЦИМА И УСКОЦИМА",
+              "page": null,
+              "children": [
+                {
+                  "title": "Старина Новак и кнез Богосав, народна епска песма",
+                  "page": 47
+                },
+                {
+                  "title": "Стари Вујадин, народна епска песма",
+                  "page": 52
+                },
+                {
+                  "title": "Мали Радојица, народна епска песма",
+                  "page": 55
+                },
+                {
+                  "title": "Иво Сенковић и ага од Рибника, народна епска песма",
+                  "page": 61
+                },
+                {
+                  "title": "Ропство Јанковић Стојана, народна епска песма",
+                  "page": 70
+                }
+              ]
+            },
+            {
+              "title": "Тест 1",
+              "page": 76
+            }
+          ]
+        },
+        {
+          "title": "СВЕДОЦИ ПРОШЛОСТИ",
+          "page": null,
+          "children": [
+            {
+              "title": "Милан Ракић, Божур",
+              "page": 78
+            },
+            {
+              "title": "Владислав Петковић Дис, Међу својима",
+              "page": 82
+            },
+            {
+              "title": "Милутин Бојић, Плава гробница",
+              "page": 87
+            },
+            {
+              "title": "Милош Црњански, Крф, плава гробница",
+              "page": 93
+            },
+            {
+              "title": "Десанка Максимовић, Крвава бајка",
+              "page": 100
+            },
+            {
+              "title": "Dnevnik Ane Frank (odlomak)",
+              "page": 104
+            },
+            {
+              "title": "Тест 2",
+              "page": 109
+            }
+          ]
+        },
+        {
+          "title": "ПОРУКЕ ПРОШЛОСТИ",
+          "page": null,
+          "children": [
+            {
+              "title": "Стефан Митров Љубиша, Кањош Мацедоновић (одломак)",
+              "page": 112
+            },
+            {
+              "title": "Вида Огњеновић, Кањош Мацедоновић (одломак)",
+              "page": 119
+            },
+            {
+              "title": "Радоје Домановић, Вођа (одломак)",
+              "page": 126
+            },
+            {
+              "title": "Бранислав Нушић, Власт (одломак)",
+              "page": 137
+            },
+            {
+              "title": "Јован Јовановић Змај, Југутунска јухахаха",
+              "page": 146
+            },
+            {
+              "title": "Anton Pavlovič Čehov, Činovnikova smrt",
+              "page": 151
+            },
+            {
+              "title": "Кратке народне умотворине",
+              "page": 156
+            },
+            {
+              "title": "Душан Радовић, Афоризми (избор)",
+              "page": 158
+            },
+            {
+              "title": "Тест 3",
+              "page": 161
+            }
+          ]
+        },
+        {
+          "title": "СЕЋАЊЕ НА ДЕТИЊСТВО",
+          "page": null,
+          "children": [
+            {
+              "title": "Међедовић, народна бајка",
+              "page": 164
+            },
+            {
+              "title": "Rabindranat Tagore, Papirni brodovi",
+              "page": 172
+            },
+            {
+              "title": "Данило Киш, Еолска харфа",
+              "page": 176
+            },
+            {
+              "title": "Алфонс Доде, Последњи час",
+              "page": 182
+            },
+            {
+              "title": "Ефраим Кишон, Подели па владај",
+              "page": 189
+            },
+            {
+              "title": "Михајло Пупин, Са пашњака до научењака (одломак)",
+              "page": 196
+            },
+            {
+              "title": "Градимир Стојковић, Хајдук у Београду (одломак)",
+              "page": 200
+            },
+            {
+              "title": "Игор Коларов, Дванаесто море (одломак)",
+              "page": 207
+            },
+            {
+              "title": "Душан Ковачевић, Свемирски змај (одломак)",
+              "page": 213
+            },
+            {
+              "title": "Тест 4",
+              "page": 220
+            }
+          ]
+        },
+        {
+          "title": "СЛИКЕ ПРИРОДЕ",
+          "page": null,
+          "children": [
+            {
+              "title": "Јован Дучић, Подне",
+              "page": 222
+            },
+            {
+              "title": "Стеван Раичковић, После кише",
+              "page": 227
+            },
+            {
+              "title": "Пеђа Милосављевић, Потера за пејзажима",
+              "page": 231
+            },
+            {
+              "title": "Вислава Шимборска, Облаци",
+              "page": 237
+            },
+            {
+              "title": "Петар Кочић, Кроз мећаву (одломак)",
+              "page": 240
+            },
+            {
+              "title": "Иван Сергејевич Тургењев, Шума и степа (одломак)",
+              "page": 248
+            },
+            {
+              "title": "Јелена Димитријевић, Египатски музеј (одломак)",
+              "page": 254
+            },
+            {
+              "title": "Тест 5",
+              "page": 259
+            }
+          ]
+        },
+        {
+          "title": "СЛИКЕ ИЗ МАШТЕ",
+          "page": null,
+          "children": [
+            {
+              "title": "Иво Андрић, Јелена, жена које нема (одломак)",
+              "page": 262
+            },
+            {
+              "title": "Мирослав Антић, Плави чуперак (избор песама)",
+              "page": 269
+            },
+            {
+              "title": "Kornelija Funke, Srce od mastila (odlomak)",
+              "page": 274
+            },
+            {
+              "title": "Душица Лукић, Земља је у квару",
+              "page": 281
+            },
+            {
+              "title": "Дејан Алексић, Људи који никада нису били деца",
+              "page": 288
+            },
+            {
+              "title": "Тест 6",
+              "page": 294
+            }
+          ]
+        },
+        {
+          "title": "Регистар појмова",
+          "page": 296
+        }
+      ]
+    },
+    {
+      "id": "engleski-jezik-7",
+      "subject_sr": "Енглески језик",
+      "subject_ru": "Английский язык",
+      "language": "en",
+      "publisher": "Express Publishing",
+      "source_images": [
+        "photo_2026-09-04_19-59-12.jpg"
+      ],
+      "format": "Оглавление оформлено как таблица-карта курса (Contents / Map of the Book): строки — модули, столбцы — Vocabulary, Grammar, Reading & Listening, Speaking, Writing; справа отдельные рубрики CLIL, Projects, Presentation Skills, Values с номерами страниц.",
+      "modules": [
+        {
+          "module": "Starter",
+          "title": null,
+          "pages": "4-9",
+          "vocabulary": [
+            "Appearance & Clothes",
+            "Free-time activities",
+            "Daily routines",
+            "Means of transportation",
+            "Food/Drinks",
+            "Animals"
+          ],
+          "grammar": [
+            "Subject/Object personal pronouns – Possessive adjectives/pronouns",
+            "Possessive case",
+            "Question words",
+            "Prepositions of time",
+            "Prepositions of place/movement",
+            "C/U nouns – Quantifiers – Plurals",
+            "both/neither/either",
+            "some/any/no/every & compounds",
+            "Order of adjectives"
+          ],
+          "reading_listening": [],
+          "speaking": [
+            "Describing a person",
+            "Expressing likes",
+            "Giving directions"
+          ],
+          "writing": []
+        },
+        {
+          "module": "1",
+          "title": "Our world",
+          "pages": "10-23",
+          "progress_check": "Progress Check 1, pp 24-25",
+          "vocabulary": [
+            "Geographical features",
+            "Cardinal directions",
+            "Shapes",
+            "Types of buildings",
+            "City life – Country life",
+            "Features of a city",
+            "Phrasal verbs: come"
+          ],
+          "grammar": [
+            "Present simple – Present continuous – Adverbs of frequency – Stative verbs",
+            "Present perfect – have been/have gone",
+            "(to) infinitive – -ing form",
+            "Imperative",
+            "Prepositions",
+            "Word Formation: -th suffix to form nouns"
+          ],
+          "reading_listening": [
+            "Building High",
+            "Historic cities",
+            "Listening: an advert (note-taking)",
+            "Culture: Boston, USA"
+          ],
+          "speaking": [
+            "Discussing about places to live",
+            "Deciding where to go for the weekend",
+            "Intonation: 3-syllable word stress"
+          ],
+          "writing": [
+            "A text about a building",
+            "An article about a city"
+          ]
+        },
+        {
+          "module": "2",
+          "title": "Me & the others",
+          "pages": "26-39",
+          "progress_check": "Progress Check 2, pp 40-41",
+          "vocabulary": [
+            "Fun activities",
+            "School life",
+            "Body language in the UK",
+            "Cultural etiquette in the UK",
+            "Phrasal verbs: carry"
+          ],
+          "grammar": [
+            "Past simple (the verb to be)",
+            "Past simple vs Past continuous",
+            "used to",
+            "Past simple vs Present perfect",
+            "Adverbs of manner",
+            "Prepositions",
+            "Word Formation: -ing/-ed adjectives"
+          ],
+          "reading_listening": [
+            "Michael's Blog",
+            "A meal to remember by Eliza Jones",
+            "Listening: a story (order photos)",
+            "Culture: 'fist bump'"
+          ],
+          "speaking": [
+            "A story",
+            "Intonation: expressing interest/surprise"
+          ],
+          "writing": [
+            "A blog entry",
+            "A story"
+          ]
+        },
+        {
+          "module": "3",
+          "title": "What if …?",
+          "pages": "42-55",
+          "progress_check": "Progress Check 3, pp 56-57",
+          "vocabulary": [
+            "Environmental problems & weather",
+            "Jobs",
+            "Endangered species",
+            "Types of holidays",
+            "Phrasal verbs: look"
+          ],
+          "grammar": [
+            "will – be going to – Present simple – Present continuous",
+            "Time clauses (when, after, before, as soon as)",
+            "Conditionals (0-1)",
+            "Prepositions"
+          ],
+          "reading_listening": [
+            "Dolphin Doc for a day",
+            "Footprints Camp Golija Nature Park, Serbia",
+            "Listening: a dialogue (multiple choice)",
+            "Culture: The Peace River Refuge and Ranch, Florida"
+          ],
+          "speaking": [
+            "Making predictions",
+            "Discussing future plans",
+            "Pronunciation: silent letters"
+          ],
+          "writing": [
+            "An article about a job",
+            "A blog entry about your summer plans"
+          ]
+        },
+        {
+          "module": "4",
+          "title": "Arts & Festivals",
+          "pages": "58-71",
+          "progress_check": "Progress Check 4, pp 72-73",
+          "vocabulary": [
+            "Festivals & Events",
+            "Recyclable materials",
+            "Types of music",
+            "Festival activities",
+            "Types of novels",
+            "Phrasal verbs: turn"
+          ],
+          "grammar": [
+            "The passive",
+            "a/an – the – one/ones",
+            "Relative pronouns (who, which, whose, that, where)",
+            "Comparative – Superlative (adjectives – adverbs)",
+            "too – enough",
+            "Prepositions"
+          ],
+          "reading_listening": [
+            "That's rubbish!",
+            "One Con to Rule them All",
+            "Listening: a dialogue (multiple matching)",
+            "Culture: Reading festival"
+          ],
+          "speaking": [
+            "Inviting – Accepting/Refusing",
+            "Booking tickets for a performance",
+            "Pronunciation: /ɒ/, /iː/"
+          ],
+          "writing": [
+            "An article about unusual ways to create art",
+            "An article about a festival"
+          ]
+        },
+        {
+          "module": "5",
+          "title": "Health is wealth",
+          "pages": "74-87",
+          "progress_check": "Progress Check 5, pp 88-89",
+          "vocabulary": [
+            "Sports & Exercise",
+            "Injuries/accidents",
+            "Health problems – treatments",
+            "Teen problems",
+            "Phrasal verbs: put"
+          ],
+          "grammar": [
+            "Modals (present – past modals)",
+            "Modals of deduction",
+            "Singular/Plural nouns – Uncountable nouns",
+            "Reflexive pronouns",
+            "Prepositions",
+            "Word Formation: forming negative adjectives (un-, im-, ir-)"
+          ],
+          "reading_listening": [
+            "The Future of Sport?",
+            "A Teen Survival Guide",
+            "Listening: a dialogue (multiple choice)",
+            "Culture: Superbowl"
+          ],
+          "speaking": [
+            "Giving/Responding to advice",
+            "At the doctor's",
+            "Pronunciation: rhyming words"
+          ],
+          "writing": [
+            "An article about the national sport of your country",
+            "An email giving advice"
+          ]
+        },
+        {
+          "module": "6",
+          "title": "In the news",
+          "pages": "90-103",
+          "progress_check": "Progress Check 6, pp 104-105",
+          "vocabulary": [
+            "Technology/Inventions",
+            "Places in an airport",
+            "Means of communication & Social Media",
+            "Education",
+            "Phrasal verbs: take"
+          ],
+          "grammar": [
+            "Reported requests/demands",
+            "Reported suggestions/advice",
+            "Clauses of concession",
+            "Question tags",
+            "Prepositions"
+          ],
+          "reading_listening": [
+            "A warm welcome from EMIEW3",
+            "Teen Tech Forum",
+            "Listening: monologues (multiple matching)",
+            "Culture: Robot academy"
+          ],
+          "speaking": [
+            "Talking about technology",
+            "Giving instructions",
+            "Pronunciation: /ɪ/, /aɪ/"
+          ],
+          "writing": [
+            "An article about your robot hotel",
+            "A pros and cons essay"
+          ]
+        }
+      ],
+      "sections": {
+        "CLIL": [
+          {
+            "module": 1,
+            "topic": "(Citizenship): Green neighbourhood",
+            "page": 22
+          },
+          {
+            "module": 2,
+            "topic": "(Personal & Social Growth): Don't stereotype me!",
+            "page": 38
+          },
+          {
+            "module": 3,
+            "topic": "(Science): Parts of a plant",
+            "page": 54
+          },
+          {
+            "module": 4,
+            "topic": "(Literature): Book descriptions",
+            "page": 70
+          },
+          {
+            "module": 5,
+            "topic": "(PSHE): Food for Life",
+            "page": 86
+          },
+          {
+            "module": 6,
+            "topic": "(History): Louis Braille",
+            "page": 102
+          }
+        ],
+        "Projects": [
+          {
+            "module": 1,
+            "topic": "A map – Create an ideal neighbourhood",
+            "page": 23
+          },
+          {
+            "module": 2,
+            "topic": "A poster – Films that break stereotypes",
+            "page": 39
+          },
+          {
+            "module": 3,
+            "topic": "A leaflet – Nature reserves",
+            "page": 55
+          },
+          {
+            "module": 4,
+            "topic": "A table – Book characters",
+            "page": 71
+          },
+          {
+            "module": 5,
+            "topic": "A leaflet – Dos & Don'ts for a healthy lifestyle",
+            "page": 87
+          },
+          {
+            "module": 6,
+            "topic": "Inventions of the 20th century",
+            "page": 103
+          }
+        ],
+        "Presentation Skills": [
+          {
+            "module": 1,
+            "topic": "Ideal neighbourhood",
+            "page": 23
+          },
+          {
+            "module": 2,
+            "topic": "A film that breaks stereotypes",
+            "page": 39
+          },
+          {
+            "module": 3,
+            "topic": "Nature reserves",
+            "page": 55
+          },
+          {
+            "module": 4,
+            "topic": "A book character",
+            "page": 71
+          },
+          {
+            "module": 5,
+            "topic": "How to lead a healthy lifestyle",
+            "page": 87
+          },
+          {
+            "module": 6,
+            "topic": "An invention of the 20th century",
+            "page": 103
+          }
+        ],
+        "Values": [
+          {
+            "module": 1,
+            "topic": "Partnership",
+            "page": 23
+          },
+          {
+            "module": 2,
+            "topic": "Equality",
+            "page": 39
+          },
+          {
+            "module": 3,
+            "topic": "Nature",
+            "page": 55
+          },
+          {
+            "module": 4,
+            "topic": "Heroism",
+            "page": 71
+          },
+          {
+            "module": 5,
+            "topic": "Health",
+            "page": 87
+          },
+          {
+            "module": 6,
+            "topic": "Innovation",
+            "page": 103
+          }
+        ]
+      }
+    },
+    {
+      "id": "ruski-jezik-7",
+      "subject_sr": "Руски језик",
+      "subject_ru": "Русский язык",
+      "language": "ru",
+      "source_images": [
+        "photo_2026-09-04_19-59-15.jpg"
+      ],
+      "toc": [
+        {
+          "num": "ПЕРВЫЙ РАЗДЕЛ",
+          "title": "РОССИЙСКИЕ ПРОСТОРЫ",
+          "page": 8
+        },
+        {
+          "num": "ВТОРОЙ РАЗДЕЛ",
+          "title": "В ЗДОРОВОМ ТЕЛЕ – ЗДОРОВЫЙ ДУХ",
+          "page": 22
+        },
+        {
+          "num": "ТРЕТИЙ РАЗДЕЛ",
+          "title": "АХ, ЭТА МОДА!",
+          "page": 36
+        },
+        {
+          "num": "ЧЕТВЁРТЫЙ РАЗДЕЛ",
+          "title": "МОЛОДОСТЬ ВСЕГДА В ПУТИ",
+          "page": 52
+        },
+        {
+          "num": "ПЯТЫЙ РАЗДЕЛ",
+          "title": "ДЕЛУ ВРЕМЯ – ПОТЕХЕ ЧАС",
+          "page": 68
+        },
+        {
+          "num": "ШЕСТОЙ РАЗДЕЛ",
+          "title": "СЕМЬЯ ВСЕМУ НАЧАЛО",
+          "page": 82
+        },
+        {
+          "num": "СЕДЬМОЙ РАЗДЕЛ",
+          "title": "ЭКРАН И СЦЕНА – ОКНО В МИР",
+          "page": 96
+        },
+        {
+          "num": "ВОСЬМОЙ РАЗДЕЛ",
+          "title": "ЗЕМЛЯ ЖДЁТ ТВОЕЙ ПОМОЩИ",
+          "page": 108
+        }
+      ]
+    },
+    {
+      "id": "istorija-7",
+      "subject_sr": "Историја",
+      "subject_ru": "История",
+      "language": "sr-Cyrl",
+      "source_images": [
+        "photo_2026-09-04_19-59-17.jpg",
+        "photo_2026-09-04_19-59-04.jpg"
+      ],
+      "toc": [
+        {
+          "title": "ОСНОВИ ПРОУЧАВАЊА ПРОШЛОСТИ",
+          "page": 9,
+          "children": [
+            {
+              "title": "Од Индустријске револуције до завршетка Првог светског рата",
+              "page": 10
+            },
+            {
+              "title": "Историјски извори за изучавање периода од Индустријске револуције до завршетка Првог светског рата",
+              "page": 13
+            },
+            {
+              "title": "Тест – Основи проучавања прошлости",
+              "page": 16
+            }
+          ]
+        },
+        {
+          "title": "ЕВРОПА И СВЕТ НА ПОЧЕТКУ ИНДУСТРИЈСКОГ ДОБА",
+          "page": 19,
+          "children": [
+            {
+              "title": "Индустријска револуција",
+              "page": 20
+            },
+            {
+              "title": "Америчка револуција",
+              "page": 25
+            },
+            {
+              "title": "Француска револуција",
+              "page": 30
+            },
+            {
+              "title": "Наполеон и његово доба",
+              "page": 36
+            },
+            {
+              "title": "Револуције 1848/49.",
+              "page": 42
+            },
+            {
+              "title": "Тест – Европа и свет на почетку индустријског доба",
+              "page": 48
+            }
+          ]
+        },
+        {
+          "title": "СРПСКЕ ДРЖАВЕ И НАРОД ДО СРЕДИНЕ XIX ВЕКА",
+          "page": 51,
+          "children": [
+            {
+              "title": "Српски народ између два царства",
+              "page": 52
+            },
+            {
+              "title": "Српска револуција – доба устанака 1804–1815",
+              "page": 57
+            },
+            {
+              "title": "Српска револуција – доба дипломатије 1815–1835",
+              "page": 64
+            },
+            {
+              "title": "Развој модерне српске државе – доба уставобранитеља",
+              "page": 70
+            },
+            {
+              "title": "Српско друштво у првој половини XIX века",
+              "page": 75
+            },
+            {
+              "title": "Срби у Хабзбуршкој монархији до средине XIX века",
+              "page": 80
+            },
+            {
+              "title": "Црна Гора до средине XIX века",
+              "page": 85
+            },
+            {
+              "title": "Тест – Српске државе и народ до средине XIX века",
+              "page": 90
+            }
+          ]
+        },
+        {
+          "title": "ЕВРОПА И СВЕТ У ДРУГОЈ ПОЛОВИНИ XIX И ПОЧЕТКОМ XX ВЕКА",
+          "page": 93,
+          "children": [
+            {
+              "title": "Настанак националних држава Италије и Немачке",
+              "page": 94
+            },
+            {
+              "title": "Источно питање",
+              "page": 100
+            },
+            {
+              "title": "Свет у другој половини XIX и почетком XX века",
+              "page": 106
+            },
+            {
+              "title": "Међународни односи и сукоби империја",
+              "page": 111
+            },
+            {
+              "title": "Привреда, друштво и култура у другој половини XIX и почетком XX века",
+              "page": 117
+            },
+            {
+              "title": "Тест – Европа и свет у другој половини XIX и почетком XX века",
+              "page": 124
+            }
+          ]
+        },
+        {
+          "title": "СРПСКЕ ДРЖАВЕ И НАРОД У ДРУГОЈ ПОЛОВИНИ XIX И ПОЧЕТКОМ XX ВЕКА",
+          "page": 127,
+          "children": [
+            {
+              "title": "Србија у доба кнеза Михаила Обреновића 1860–1868",
+              "page": 128
+            },
+            {
+              "title": "Србија у доба Милана Обреновића",
+              "page": 132
+            },
+            {
+              "title": "Србија у доба краља Александра Обреновића",
+              "page": 139
+            },
+            {
+              "title": "Србија у доба краља Петра I Карађорђевића",
+              "page": 144
+            },
+            {
+              "title": "Српско друштво у другој половини XIX и почетком XX века",
+              "page": 149
+            },
+            {
+              "title": "Црна Гора у другој половини XIX и почетком XX века",
+              "page": 155
+            },
+            {
+              "title": "Срби у Османском царству у другој половини XIX и почетком XX века",
+              "page": 161
+            },
+            {
+              "title": "Срби у Аустроугарској монархији",
+              "page": 167
+            },
+            {
+              "title": "Балкански ратови",
+              "page": 173
+            },
+            {
+              "title": "Тест – Српске државе и народ у другој половини XIX и почетком XX века",
+              "page": 178
+            }
+          ]
+        },
+        {
+          "title": "ЕВРОПА, СВЕТ И СРБИЈА У ВЕЛИКОМ РАТУ",
+          "page": 181,
+          "children": [
+            {
+              "title": "Велики рат",
+              "page": 182
+            },
+            {
+              "title": "Друштво у Великом рату",
+              "page": 189
+            },
+            {
+              "title": "Србија у рату 1914–1915.",
+              "page": 193
+            },
+            {
+              "title": "Војни слом и ослобођење",
+              "page": 200
+            },
+            {
+              "title": "Српска ратна свакодневница",
+              "page": 206
+            },
+            {
+              "title": "Тест – Европа, свет и Србија у Великом рату",
+              "page": 212
+            }
+          ]
+        },
+        {
+          "title": "РЕШЕЊА ТЕСТОВА",
+          "page": 214
+        }
+      ]
+    },
+    {
+      "id": "geografija-7",
+      "subject_sr": "Географија",
+      "subject_ru": "География",
+      "language": "sr-Cyrl",
+      "publisher": "Фреска",
+      "source_images": [
+        "photo_2026-09-04_19-59-14.jpg",
+        "photo_2026-09-04_19-59-08.jpg",
+        "photo_2026-09-04_19-59-07.jpg",
+        "photo_2026-09-04_19-59-06.jpg"
+      ],
+      "toc": [
+        {
+          "title": "УВОДНА РЕЧ",
+          "page": 7
+        },
+        {
+          "title": "КРАТАК ВОДИЧ КРОЗ УЏБЕНИК",
+          "page": 8
+        },
+        {
+          "num": "1.",
+          "title": "РЕГИОНАЛНА ГЕОГРАФИЈА",
+          "page": 10,
+          "children": [
+            {
+              "num": "1.1.",
+              "title": "ПРЕДМЕТ ПРОУЧАВАЊА, ЗАДАТАК И ПОДЕЛА РЕГИОНАЛНЕ ГЕОГРАФИЈЕ",
+              "page": 11,
+              "children": [
+                {
+                  "num": "1.1.1.",
+                  "title": "Принципи регионализације",
+                  "page": 12
+                },
+                {
+                  "num": "1.1.2.",
+                  "title": "Величина и границе географских регија",
+                  "page": 12
+                }
+              ]
+            },
+            {
+              "title": "НАУЧИЛИ СМО",
+              "page": 14
+            },
+            {
+              "title": "ТЕСТ – ПРОВЕРИ СВОЈЕ ЗНАЊЕ",
+              "page": 15
+            }
+          ]
+        },
+        {
+          "num": "2.",
+          "title": "ГЕОГРАФСКЕ РЕГИЈЕ ЕВРОПЕ",
+          "page": 16,
+          "children": [
+            {
+              "num": "2.1.",
+              "title": "ЈУЖНА ЕВРОПА",
+              "page": 17,
+              "children": [
+                {
+                  "num": "2.1.1.",
+                  "title": "Географски положај и природне карактеристике",
+                  "page": 17
+                },
+                {
+                  "num": "2.1.2.",
+                  "title": "Политичка подела",
+                  "page": 18
+                },
+                {
+                  "num": "2.1.3.",
+                  "title": "Културна обележја, становништво и привреда",
+                  "page": 19
+                },
+                {
+                  "num": "2.1.4.",
+                  "title": "Географске карактеристике држава насталих на територији бивше Социјалистичке Федеративне Републике Југославије",
+                  "page": 23,
+                  "children": [
+                    {
+                      "num": "2.1.4.1.",
+                      "title": "Република Србија",
+                      "page": 23
+                    },
+                    {
+                      "num": "2.1.4.2.",
+                      "title": "Босна и Херцеговина",
+                      "page": 25
+                    },
+                    {
+                      "num": "2.1.4.3.",
+                      "title": "Црна Гора",
+                      "page": 26
+                    },
+                    {
+                      "num": "2.1.4.4.",
+                      "title": "Република Хрватска",
+                      "page": 27
+                    },
+                    {
+                      "num": "2.1.4.5.",
+                      "title": "Република Словенија",
+                      "page": 28
+                    },
+                    {
+                      "num": "2.1.4.6.",
+                      "title": "Република Северна Македонија",
+                      "page": 29
+                    }
+                  ]
+                },
+                {
+                  "num": "2.1.5.",
+                  "title": "Географске карактеристике Италије, Шпаније и Грчке",
+                  "page": null,
+                  "children": [
+                    {
+                      "num": "2.1.5.1.",
+                      "title": "Република Италија",
+                      "page": 31
+                    },
+                    {
+                      "num": "2.1.5.2.",
+                      "title": "Краљевина Шпанија",
+                      "page": 34
+                    },
+                    {
+                      "num": "2.1.5.3.",
+                      "title": "Република Грчка",
+                      "page": 35
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "num": "2.2.",
+              "title": "СРЕДЊА ЕВРОПА",
+              "page": 38,
+              "children": [
+                {
+                  "num": "2.2.1.",
+                  "title": "Географски положај и природне карактеристике",
+                  "page": 38
+                },
+                {
+                  "num": "2.2.2.",
+                  "title": "Политичка подела",
+                  "page": 39
+                },
+                {
+                  "num": "2.2.3.",
+                  "title": "Културна обележја и становништво",
+                  "page": 39
+                },
+                {
+                  "num": "2.2.4.",
+                  "title": "Привреда",
+                  "page": 40
+                },
+                {
+                  "num": "2.2.5.",
+                  "title": "Велики градови и урбане регије",
+                  "page": 42
+                },
+                {
+                  "num": "2.2.6.",
+                  "title": "Географске карактеристике Савезне Републике Немачке",
+                  "page": 44
+                }
+              ]
+            },
+            {
+              "num": "2.3.",
+              "title": "ЗАПАДНА ЕВРОПА",
+              "page": 47,
+              "children": [
+                {
+                  "num": "2.3.1.",
+                  "title": "Географски положај и природне карактеристике",
+                  "page": 47
+                },
+                {
+                  "num": "2.3.2.",
+                  "title": "Политичка подела",
+                  "page": 48
+                },
+                {
+                  "num": "2.3.3.",
+                  "title": "Становништво",
+                  "page": 48
+                },
+                {
+                  "num": "2.3.4.",
+                  "title": "Културни и привредни развој",
+                  "page": 48
+                },
+                {
+                  "num": "2.3.5.",
+                  "title": "Велики градови и урбане регије",
+                  "page": 49
+                },
+                {
+                  "num": "2.3.6.",
+                  "title": "Географске карактеристике Уједињеног Краљевства Велике Британије и Северне Ирске и Републике Француске",
+                  "page": 52,
+                  "children": [
+                    {
+                      "num": "2.3.6.1.",
+                      "title": "Уједињено Краљевство Велике Британије и Северне Ирске",
+                      "page": 52
+                    },
+                    {
+                      "num": "2.3.6.2.",
+                      "title": "Република Француска",
+                      "page": 53
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "num": "2.4.",
+              "title": "СЕВЕРНА ЕВРОПА",
+              "page": 57,
+              "children": [
+                {
+                  "num": "2.4.1.",
+                  "title": "Географски положај и природне карактеристике",
+                  "page": 57
+                },
+                {
+                  "num": "2.4.2.",
+                  "title": "Политичка подела",
+                  "page": 58
+                },
+                {
+                  "num": "2.4.3.",
+                  "title": "Становништво",
+                  "page": 58
+                },
+                {
+                  "num": "2.4.4.",
+                  "title": "Природно богатство, привреда и велики градови",
+                  "page": 58
+                },
+                {
+                  "num": "2.4.5.",
+                  "title": "Географске карактеристике Краљевине Норвешке",
+                  "page": 60
+                }
+              ]
+            },
+            {
+              "num": "2.5.",
+              "title": "ИСТОЧНА ЕВРОПА СА РУСИЈОМ",
+              "page": 62,
+              "children": [
+                {
+                  "num": "2.5.1.",
+                  "title": "Географски положај и природне карактеристике",
+                  "page": 62
+                },
+                {
+                  "num": "2.5.2.",
+                  "title": "Политичка подела",
+                  "page": 63
+                },
+                {
+                  "num": "2.5.3.",
+                  "title": "Културни развој и становништво",
+                  "page": 63
+                },
+                {
+                  "num": "2.5.4.",
+                  "title": "Природно богатство, привреда и урбане регије",
+                  "page": 64
+                },
+                {
+                  "num": "2.5.5.",
+                  "title": "Географске карактеристике Руске Федерације",
+                  "page": 68
+                }
+              ]
+            },
+            {
+              "num": "2.6.",
+              "title": "ЕВРОПСКА УНИЈА",
+              "page": 71,
+              "children": [
+                {
+                  "num": "2.6.1.",
+                  "title": "Настанак и развој",
+                  "page": 71
+                },
+                {
+                  "num": "2.6.2.",
+                  "title": "Природни ресурси",
+                  "page": 72
+                },
+                {
+                  "num": "2.6.3.",
+                  "title": "Карактеристике развоја привреде",
+                  "page": 73
+                }
+              ]
+            },
+            {
+              "title": "НАУЧИЛИ СМО",
+              "page": 75
+            },
+            {
+              "title": "ТЕСТ – ПРОВЕРИ СВОЈЕ ЗНАЊЕ",
+              "page": 76
+            }
+          ]
+        },
+        {
+          "num": "3.",
+          "title": "АЗИЈА",
+          "page": null,
+          "children": [
+            {
+              "num": "3.1.",
+              "title": "ГЕОГРАФСКИ ПОЛОЖАЈ И ПРИРОДНЕ КАРАКТЕРИСТИКЕ АЗИЈЕ",
+              "page": 81,
+              "children": [
+                {
+                  "num": "3.1.1.",
+                  "title": "Рељеф",
+                  "page": 81
+                },
+                {
+                  "num": "3.1.2.",
+                  "title": "Клима",
+                  "page": 83
+                },
+                {
+                  "num": "3.1.3.",
+                  "title": "Воде",
+                  "page": 85
+                },
+                {
+                  "num": "3.1.4.",
+                  "title": "Биљни и животињски свет",
+                  "page": 86
+                }
+              ]
+            },
+            {
+              "num": "3.2.",
+              "title": "ДРУШТВЕНО-ГЕОГРАФСКЕ ОДЛИКЕ АЗИЈЕ",
+              "page": 88,
+              "children": [
+                {
+                  "num": "3.2.1.",
+                  "title": "Становништво и насеља",
+                  "page": 88
+                },
+                {
+                  "num": "3.2.2.",
+                  "title": "Природно богатство и привреда",
+                  "page": 90
+                }
+              ]
+            },
+            {
+              "num": "3.3.",
+              "title": "РЕГИОНАЛНА И ПОЛИТИЧКА ПОДЕЛА АЗИЈЕ",
+              "page": 92,
+              "children": [
+                {
+                  "num": "3.3.1.",
+                  "title": "Југозападна Азија",
+                  "page": 92
+                },
+                {
+                  "num": "3.3.2.",
+                  "title": "Јужна Азија",
+                  "page": 99
+                },
+                {
+                  "num": "3.3.3.",
+                  "title": "Југоисточна Азија",
+                  "page": 104
+                },
+                {
+                  "num": "3.3.4.",
+                  "title": "Источна Азија",
+                  "page": 109
+                },
+                {
+                  "num": "3.3.5.",
+                  "title": "Централна Азија",
+                  "page": 116
+                }
+              ]
+            },
+            {
+              "title": "НАУЧИЛИ СМО",
+              "page": 120
+            },
+            {
+              "title": "ТЕСТ – ПРОВЕРИ СВОЈЕ ЗНАЊЕ",
+              "page": 121
+            }
+          ]
+        },
+        {
+          "num": "4.",
+          "title": "АФРИКА",
+          "page": null,
+          "children": [
+            {
+              "num": "4.1.",
+              "title": "ГЕОГРАФСКИ ПОЛОЖАЈ И ПРИРОДНЕ КАРАКТЕРИСТИКЕ АФРИКЕ",
+              "page": 125,
+              "children": [
+                {
+                  "num": "4.1.1.",
+                  "title": "Рељеф",
+                  "page": 125
+                },
+                {
+                  "num": "4.1.2.",
+                  "title": "Клима",
+                  "page": 126
+                },
+                {
+                  "num": "4.1.3.",
+                  "title": "Воде",
+                  "page": 127
+                },
+                {
+                  "num": "4.1.4.",
+                  "title": "Биљни и животињски свет",
+                  "page": 128
+                }
+              ]
+            },
+            {
+              "num": "4.2.",
+              "title": "ДРУШТВЕНО-ГЕОГРАФСКЕ ОДЛИКЕ АФРИКЕ",
+              "page": 131,
+              "children": [
+                {
+                  "num": "4.2.1.",
+                  "title": "Становништво и насеља",
+                  "page": 131
+                },
+                {
+                  "num": "4.2.2.",
+                  "title": "Природно богатство и привреда",
+                  "page": 133
+                }
+              ]
+            },
+            {
+              "num": "4.3.",
+              "title": "РЕГИОНАЛНА И ПОЛИТИЧКА ПОДЕЛА АФРИКЕ",
+              "page": 135,
+              "children": [
+                {
+                  "num": "4.3.1.",
+                  "title": "Северна Африка",
+                  "page": 136
+                },
+                {
+                  "num": "4.3.2.",
+                  "title": "Подсахарска Африка",
+                  "page": 143
+                }
+              ]
+            },
+            {
+              "title": "НАУЧИЛИ СМО",
+              "page": 159
+            },
+            {
+              "title": "ТЕСТ – ПРОВЕРИ СВОЈЕ ЗНАЊЕ",
+              "page": 160
+            }
+          ]
+        },
+        {
+          "num": "5.",
+          "title": "СЕВЕРНА АМЕРИКА",
+          "page": null,
+          "children": [
+            {
+              "num": "5.1.",
+              "title": "ГЕОГРАФСКИ ПОЛОЖАЈ И РЕГИОНАЛНА ПОДЕЛА СЕВЕРНЕ АМЕРИКЕ",
+              "page": 163
+            },
+            {
+              "num": "5.2.",
+              "title": "ПРИРОДНЕ КАРАКТЕРИСТИКЕ АНГЛОАМЕРИКЕ",
+              "page": 165,
+              "children": [
+                {
+                  "num": "5.2.1.",
+                  "title": "Рељеф",
+                  "page": 165
+                },
+                {
+                  "num": "5.2.2.",
+                  "title": "Клима",
+                  "page": 166
+                },
+                {
+                  "num": "5.2.3.",
+                  "title": "Воде",
+                  "page": 167
+                },
+                {
+                  "num": "5.2.4.",
+                  "title": "Биљни и животињски свет",
+                  "page": 168
+                }
+              ]
+            },
+            {
+              "num": "5.3.",
+              "title": "ДРУШТВЕНО-ГЕОГРАФСКЕ КАРАКТЕРИСТИКЕ АНГЛОАМЕРИКЕ",
+              "page": 171,
+              "children": [
+                {
+                  "num": "5.3.1.",
+                  "title": "Становништво и насеља",
+                  "page": 171
+                },
+                {
+                  "num": "5.3.2.",
+                  "title": "Природно богатство и привреда",
+                  "page": 173
+                }
+              ]
+            },
+            {
+              "num": "5.4.",
+              "title": "ГЕОГРАФСКЕ КАРАКТЕРИСТИКЕ СРЕДЊЕ АМЕРИКЕ",
+              "page": 178
+            },
+            {
+              "title": "НАУЧИЛИ СМО",
+              "page": 184
+            },
+            {
+              "title": "ТЕСТ – ПРОВЕРИ СВОЈЕ ЗНАЊЕ",
+              "page": 185
+            }
+          ]
+        },
+        {
+          "num": "6.",
+          "title": "ЈУЖНА АМЕРИКА",
+          "page": null,
+          "children": [
+            {
+              "num": "6.1.",
+              "title": "ГЕОГРАФСКИ ПОЛОЖАЈ И ПРИРОДНЕ КАРАКТЕРИСТИКЕ ЈУЖНЕ АМЕРИКЕ",
+              "page": 189,
+              "children": [
+                {
+                  "num": "6.1.1.",
+                  "title": "Рељеф",
+                  "page": 189
+                },
+                {
+                  "num": "6.1.2.",
+                  "title": "Клима",
+                  "page": 190
+                },
+                {
+                  "num": "6.1.3.",
+                  "title": "Воде",
+                  "page": 191
+                },
+                {
+                  "num": "6.1.4.",
+                  "title": "Биљни и животињски свет",
+                  "page": 192
+                }
+              ]
+            },
+            {
+              "num": "6.2.",
+              "title": "ДРУШТВЕНО-ГЕОГРАФСКЕ КАРАКТЕРИСТИКЕ ЈУЖНЕ АМЕРИКЕ",
+              "page": 195,
+              "children": [
+                {
+                  "num": "6.2.1.",
+                  "title": "Становништво и насеља",
+                  "page": 195
+                },
+                {
+                  "num": "6.2.2.",
+                  "title": "Природно богатство и привреда",
+                  "page": 197
+                },
+                {
+                  "num": "6.2.3.",
+                  "title": "Политичка подела Јужне Америке",
+                  "page": 198
+                }
+              ]
+            },
+            {
+              "title": "НАУЧИЛИ СМО",
+              "page": 202
+            },
+            {
+              "title": "ТЕСТ – ПРОВЕРИ СВОЈЕ ЗНАЊЕ",
+              "page": 203
+            }
+          ]
+        },
+        {
+          "num": "7.",
+          "title": "АУСТРАЛИЈА И ОКЕАНИЈА",
+          "page": null,
+          "children": [
+            {
+              "num": "7.1.",
+              "title": "ГЕОГРАФСКИ ПОЛОЖАЈ, ГРАНИЦЕ И ВЕЛИЧИНА АУСТРАЛИЈЕ И ОКЕАНИЈЕ",
+              "page": 205
+            },
+            {
+              "num": "7.2.",
+              "title": "ГЕОГРАФСКЕ КАРАКТЕРИСТИКЕ АУСТРАЛИЈЕ",
+              "page": 207,
+              "children": [
+                {
+                  "num": "7.2.1.",
+                  "title": "Рељеф",
+                  "page": 207
+                },
+                {
+                  "num": "7.2.2.",
+                  "title": "Клима",
+                  "page": 208
+                },
+                {
+                  "num": "7.2.3.",
+                  "title": "Воде",
+                  "page": 209
+                },
+                {
+                  "num": "7.2.4.",
+                  "title": "Биљни и животињски свет",
+                  "page": 209
+                },
+                {
+                  "num": "7.2.5.",
+                  "title": "Предколонијални период, досељавање и савремени демографски процеси",
+                  "page": 210
+                },
+                {
+                  "num": "7.2.6.",
+                  "title": "Природно богатство и привреда",
+                  "page": 212
+                }
+              ]
+            },
+            {
+              "num": "7.3.",
+              "title": "ГЕОГРАФСКЕ КАРАКТЕРИСТИКЕ ОКЕАНИЈЕ",
+              "page": 215
+            },
+            {
+              "title": "НАУЧИЛИ СМО",
+              "page": 218
+            },
+            {
+              "title": "ТЕСТ – ПРОВЕРИ СВОЈЕ ЗНАЊЕ",
+              "page": 219
+            }
+          ]
+        },
+        {
+          "num": "8.",
+          "title": "ПОЛАРНЕ ОБЛАСТИ",
+          "page": null,
+          "children": [
+            {
+              "num": "8.1.",
+              "title": "ОСНОВНЕ ГЕОГРАФСКЕ КАРАКТЕРИСТИКЕ АРКТИКА",
+              "page": 221,
+              "children": [
+                {
+                  "num": "8.1.1.",
+                  "title": "Откриће и научна истраживања",
+                  "page": 221
+                },
+                {
+                  "num": "8.1.2.",
+                  "title": "Географски положај, границе и величина",
+                  "page": 221
+                },
+                {
+                  "num": "8.1.3.",
+                  "title": "Природне карактеристике",
+                  "page": 221
+                },
+                {
+                  "num": "8.1.4.",
+                  "title": "Становништво, природно богатство и привреда",
+                  "page": 223
+                }
+              ]
+            },
+            {
+              "num": "8.2.",
+              "title": "ОСНОВНЕ ГЕОГРАФСКЕ КАРАКТЕРИСТИКЕ АНТАРКТИКА",
+              "page": 224,
+              "children": [
+                {
+                  "num": "8.2.1.",
+                  "title": "Откриће и научна истраживања",
+                  "page": 224
+                },
+                {
+                  "num": "8.2.2.",
+                  "title": "Географски положај, границе и величина",
+                  "page": 224
+                },
+                {
+                  "num": "8.2.3.",
+                  "title": "Природне карактеристике",
+                  "page": 225
+                },
+                {
+                  "num": "8.2.4.",
+                  "title": "Становништво, природно богатство и привреда",
+                  "page": 226
+                }
+              ]
+            },
+            {
+              "title": "НАУЧИЛИ СМО",
+              "page": 227
+            },
+            {
+              "title": "ТЕСТ – ПРОВЕРИ СВОЈЕ ЗНАЊЕ",
+              "page": 228
+            }
+          ]
+        },
+        {
+          "title": "РЕЧНИК ПОЈМОВА",
+          "page": 229
+        },
+        {
+          "title": "РЕШЕЊА ТЕСТОВА",
+          "page": 234
+        },
+        {
+          "title": "ЛИТЕРАТУРА",
+          "page": 239
+        }
+      ]
+    },
+    {
+      "id": "biologija-7",
+      "subject_sr": "Биологија",
+      "subject_ru": "Биология",
+      "language": "sr-Cyrl",
+      "source_images": [
+        "photo_2026-09-04_19-58-48.jpg"
+      ],
+      "toc": [
+        {
+          "title": "Водич кроз уџбеник",
+          "page": 4
+        },
+        {
+          "title": "НАСЛЕЂИВАЊЕ И ЕВОЛУЦИЈА",
+          "page": null,
+          "children": [
+            {
+              "title": "Грађа ћелије",
+              "page": 6
+            },
+            {
+              "title": "Једро, ДНК и гени",
+              "page": 14
+            },
+            {
+              "title": "Деоба ћелије",
+              "page": 22
+            },
+            {
+              "title": "Правила наслеђивања",
+              "page": 30
+            },
+            {
+              "title": "Школски пројекат: Правила наслеђивања",
+              "page": 36
+            },
+            {
+              "title": "Наслеђивање пола и наследне болести",
+              "page": 38
+            },
+            {
+              "title": "Тест за проверу знања – Тест 1",
+              "page": 46
+            }
+          ]
+        },
+        {
+          "title": "ЈЕДИНСТВО ГРАЂЕ И ФУНКЦИЈЕ КАО ОСНОВА ЖИВОТА",
+          "page": null,
+          "children": [
+            {
+              "title": "Нивои организације и грађа тела",
+              "page": 48
+            },
+            {
+              "title": "Школски пројекат: Симетрија у живом свету",
+              "page": 56
+            },
+            {
+              "title": "Једноћелијске еукарије",
+              "page": 58
+            },
+            {
+              "title": "Гљиве и лишајеви",
+              "page": 60
+            },
+            {
+              "title": "Животни процеси код биљака",
+              "page": 74
+            },
+            {
+              "title": "Размножавање биљака и циклуси развића",
+              "page": 82
+            },
+            {
+              "title": "Школски пројекат: Цветови биљака",
+              "page": 88
+            },
+            {
+              "title": "Раст и покрети биљака",
+              "page": 90
+            }
+          ]
+        },
+        {
+          "title": "ПОРЕКЛО И РАЗНОВРСНОСТ ЖИВОГ СВЕТА",
+          "page": null,
+          "children": [
+            {
+              "title": "Основни принципи систематике",
+              "page": 96
+            },
+            {
+              "title": "Школски пројекат: Израда дихотомог кључа",
+              "page": 103
+            },
+            {
+              "title": "Разноврсност у царству животиња",
+              "page": 104
+            }
+          ]
+        },
+        {
+          "title": "ЈЕДИНСТВО ГРАЂЕ И ФУНКЦИЈЕ КАО ОСНОВА ЖИВОТА (наставак)",
+          "page": null,
+          "children": [
+            {
+              "title": "Заштита тела",
+              "page": 112
+            },
+            {
+              "title": "Потпора и покретљивост",
+              "page": 122
+            },
+            {
+              "title": "Будите и ви истраживачи: Сличности и разлике у грађи скелета кичмењака",
+              "page": 132
+            },
+            {
+              "title": "Пријем и реаговање на дражи – чула",
+              "page": 134
+            },
+            {
+              "title": "Нервни систем",
+              "page": 142
+            },
+            {
+              "title": "Школски пројекат: Пријем и реаговање на дражи",
+              "page": 148
+            },
+            {
+              "title": "Обезбеђивање енергије",
+              "page": 150
+            },
+            {
+              "title": "Транспорт супстанци кроз тело",
+              "page": 158
+            },
+            {
+              "title": "Школски пројекат: АБ0 систем крвних група",
+              "page": 167
+            },
+            {
+              "title": "Излучивање код животиња",
+              "page": 168
+            },
+            {
+              "title": "Размножавање животиња и животни циклуси",
+              "page": 174
+            },
+            {
+              "title": "Тест за проверу знања – Тест 2",
+              "page": 182
+            }
+          ]
+        },
+        {
+          "title": "ПОРЕКЛО И РАЗНОВРСНОСТ ЖИВОГ СВЕТА (наставак)",
+          "page": null,
+          "children": [
+            {
+              "title": "Тумачење филогенетских низова",
+              "page": 184
+            },
+            {
+              "title": "Школски пројекат: Разврставање животиња на дрвету живота",
+              "page": 190
+            },
+            {
+              "title": "Докази еволуције",
+              "page": 192
+            },
+            {
+              "title": "Тест за проверу знања – Тест 3",
+              "page": 198
+            }
+          ]
+        },
+        {
+          "title": "ЖИВОТ У ЕКОСИСТЕМУ",
+          "page": null,
+          "children": [
+            {
+              "title": "Биоми",
+              "page": 200
+            },
+            {
+              "title": "Популације и односи исхране међу њима",
+              "page": 208
+            },
+            {
+              "title": "Еколошки фактори",
+              "page": 214
+            },
+            {
+              "title": "Будите и ви истраживачи: Утицај еколошких фактора на развој биљака",
+              "page": 220
+            },
+            {
+              "title": "Биодиверзитет",
+              "page": 222
+            },
+            {
+              "title": "Школски пројекат: Сајам туризма",
+              "page": 229
+            },
+            {
+              "title": "Тест за проверу знања – Тест 4",
+              "page": 230
+            }
+          ]
+        },
+        {
+          "title": "ЧОВЕК И ЗДРАВЉЕ",
+          "page": null,
+          "children": [
+            {
+              "title": "Вируси, вирусне болести, имунитет и вакцине",
+              "page": 232
+            },
+            {
+              "title": "Здрави стилови живота",
+              "page": 240
+            },
+            {
+              "title": "Будите и ви истраживачи: Живим здраво и тиме се дичим",
+              "page": 246
+            },
+            {
+              "title": "Проблеми одрастања",
+              "page": 248
+            },
+            {
+              "title": "Тест за проверу знања – Тест 5",
+              "page": 254
+            }
+          ]
+        },
+        {
+          "title": "Појмовник",
+          "page": 256
+        },
+        {
+          "title": "Решења тестова",
+          "page": 258
+        }
+      ]
+    },
+    {
+      "id": "fizika-7",
+      "subject_sr": "Физика",
+      "subject_ru": "Физика",
+      "language": "sr-Cyrl",
+      "source_images": [
+        "photo_2026-09-04_19-58-38.jpg"
+      ],
+      "toc": [
+        {
+          "num": "1.",
+          "title": "СИЛА И КРЕТАЊЕ",
+          "page": null,
+          "children": [
+            {
+              "num": "1.1.",
+              "title": "Кретање",
+              "page": 7
+            },
+            {
+              "num": "1.2.",
+              "title": "Убрзање",
+              "page": 11
+            },
+            {
+              "num": "1.3.",
+              "title": "Убрзање и сила",
+              "page": 15
+            },
+            {
+              "num": "1.4.",
+              "title": "Други Њутнов закон",
+              "page": 17
+            },
+            {
+              "num": "1.5.",
+              "title": "Трећи Њутнов закон",
+              "page": 20
+            },
+            {
+              "num": "1.6.",
+              "title": "Равномерно променљиво праволинијско кретање",
+              "page": 26
+            }
+          ]
+        },
+        {
+          "num": "2.",
+          "title": "КРЕТАЊЕ ПОД ДЕЈСТВОМ СИЛЕ ТЕЖЕ. СИЛЕ ТРЕЊА",
+          "page": null,
+          "children": [
+            {
+              "num": "2.1.",
+              "title": "Убрзање при кретању тела под дејством силе теже",
+              "page": 49
+            },
+            {
+              "num": "2.2.",
+              "title": "Слободан пад тела и бестежинско стање",
+              "page": 52
+            },
+            {
+              "num": "2.3.",
+              "title": "Хитац навише и хитац наниже",
+              "page": 61
+            },
+            {
+              "num": "2.4.",
+              "title": "Утицај силе отпора средине на кретање тела",
+              "page": 67
+            },
+            {
+              "num": "2.5.",
+              "title": "Утицај силе трења на кретање тела",
+              "page": 70
+            },
+            {
+              "num": "2.6.",
+              "title": "Додатни садржај: Трење на косој подлози",
+              "page": 78
+            },
+            {
+              "num": "2.7.",
+              "title": "Додатни садржај: Анализа кретања падобранца при скоку",
+              "page": 79
+            }
+          ]
+        },
+        {
+          "num": "3.",
+          "title": "РАВНОТЕЖА ТЕЛА",
+          "page": null,
+          "children": [
+            {
+              "num": "3.1.",
+              "title": "Слагање сила",
+              "page": 85
+            },
+            {
+              "num": "3.2.",
+              "title": "Разлагање сила",
+              "page": 91
+            },
+            {
+              "num": "3.3.",
+              "title": "Равнотежа тела",
+              "page": 94
+            },
+            {
+              "num": "3.4.",
+              "title": "Момент силе",
+              "page": 99
+            },
+            {
+              "num": "3.5.",
+              "title": "Полуга",
+              "page": 101
+            },
+            {
+              "num": "3.6.",
+              "title": "Сила потиска у флуидима",
+              "page": 106
+            },
+            {
+              "num": "3.7.",
+              "title": "Додатни садржај: Равнотежа на стрмој равни",
+              "page": 119
+            }
+          ]
+        },
+        {
+          "num": "4.",
+          "title": "МЕХАНИЧКИ РАД, ЕНЕРГИЈА И СНАГА",
+          "page": null,
+          "children": [
+            {
+              "num": "4.1.",
+              "title": "Механички рад",
+              "page": 127
+            },
+            {
+              "num": "4.2.",
+              "title": "Рад силе теже и силе трења",
+              "page": 132
+            },
+            {
+              "num": "4.3.",
+              "title": "Снага и коефицијент корисног дејства",
+              "page": 136
+            },
+            {
+              "num": "4.4.",
+              "title": "Механичка енергија тела",
+              "page": 141
+            },
+            {
+              "num": "4.5.",
+              "title": "Веза између промене механичке енергије тела и извршеног рада",
+              "page": 149
+            },
+            {
+              "num": "4.6.",
+              "title": "Просте машине",
+              "page": 156
+            },
+            {
+              "num": "4.7.",
+              "title": "Додатни садржаји: Принцип рада простих машина",
+              "page": 157
+            }
+          ]
+        },
+        {
+          "num": "5.",
+          "title": "ТОПЛОТНЕ ПОЈАВЕ",
+          "page": null,
+          "children": [
+            {
+              "num": "5.1.",
+              "title": "Честични састав супстанције",
+              "page": 167
+            },
+            {
+              "num": "5.2.",
+              "title": "Топлотно кретање честица",
+              "page": 169
+            },
+            {
+              "num": "5.3.",
+              "title": "Топлотно ширење",
+              "page": 173
+            },
+            {
+              "num": "5.4.",
+              "title": "Температура и унутрашња енергија",
+              "page": 177
+            },
+            {
+              "num": "5.5.",
+              "title": "Количина топлоте",
+              "page": 185
+            },
+            {
+              "num": "5.6.",
+              "title": "Агрегатна стања супстанције",
+              "page": 197
+            }
+          ]
+        },
+        {
+          "title": "Појмовник",
+          "page": 205
+        },
+        {
+          "title": "Литература",
+          "page": 208
+        }
+      ]
+    },
+    {
+      "id": "hemija-7",
+      "subject_sr": "Хемија",
+      "subject_ru": "Химия",
+      "language": "sr-Cyrl",
+      "publisher": "Фреска",
+      "source_images": [
+        "photo_2026-09-04_19-59-11.jpg",
+        "photo_2026-09-04_19-59-10.jpg"
+      ],
+      "toc": [
+        {
+          "num": "I",
+          "title": "ХЕМИЈА КАО ЕКСПЕРИМЕНТАЛНА НАУКА И ХЕМИЈА У СВЕТУ ОКО НАС",
+          "page": 9,
+          "children": [
+            {
+              "title": "Предмет изучавања хемије",
+              "page": 10
+            },
+            {
+              "title": "Супстанца",
+              "page": 14
+            },
+            {
+              "title": "Врсте супстанци",
+              "page": 15
+            },
+            {
+              "title": "Тест – Хемија као експериментална наука и хемија у свету око нас",
+              "page": 20
+            }
+          ]
+        },
+        {
+          "num": "II",
+          "title": "ХЕМИЈСКА ЛАБОРАТОРИЈА",
+          "page": 23,
+          "children": [
+            {
+              "title": "Хемијска лабораторија и експеримент",
+              "page": 24
+            },
+            {
+              "title": "Лабораторијско посуђе и прибор",
+              "page": 25
+            },
+            {
+              "title": "Физичка и хемијска својства супстанци",
+              "page": 29
+            },
+            {
+              "title": "Физичке и хемијске промене супстанци",
+              "page": 31
+            },
+            {
+              "title": "Тест – Хемијска лабораторија",
+              "page": 38
+            }
+          ]
+        },
+        {
+          "num": "III",
+          "title": "АТОМИ И ХЕМИЈСКИ ЕЛЕМЕНТИ",
+          "page": 41,
+          "children": [
+            {
+              "title": "Честична природа супстанце",
+              "page": 42
+            },
+            {
+              "title": "Атоми хемијских елемената",
+              "page": 43
+            },
+            {
+              "title": "Хемијски симболи",
+              "page": 45
+            },
+            {
+              "title": "Грађа атома",
+              "page": 49
+            },
+            {
+              "title": "Изотопи",
+              "page": 52
+            },
+            {
+              "title": "Електронски омотач",
+              "page": 55
+            },
+            {
+              "title": "Периодни систем хемијских елемената",
+              "page": 60
+            },
+            {
+              "title": "Племенити гасови – својства и примена",
+              "page": 63
+            },
+            {
+              "title": "Тест – Атоми и хемијски елементи",
+              "page": 66
+            }
+          ]
+        },
+        {
+          "num": "IV",
+          "title": "МОЛЕКУЛИ ЕЛЕМЕНАТА И ЈЕДИЊЕЊА, ЈОНИ И ЈОНСКА ЈЕДИЊЕЊА",
+          "page": 69,
+          "children": [
+            {
+              "title": "Хемијска веза",
+              "page": 70
+            },
+            {
+              "title": "Ковалентна веза",
+              "page": 72
+            },
+            {
+              "title": "Јонска веза",
+              "page": 83
+            },
+            {
+              "title": "Валенца хемијских елемената у једињењима с ковалентном и јонском везом",
+              "page": 89
+            },
+            {
+              "title": "Тест – Молекули елемената и једињења, јони и јонска једињења",
+              "page": 96
+            }
+          ]
+        },
+        {
+          "num": "V",
+          "title": "ХОМОГЕНЕ И ХЕТЕРОГЕНЕ СМЕШЕ",
+          "page": 99,
+          "children": [
+            {
+              "title": "Хомогене и хетерогене смеше",
+              "page": 100
+            },
+            {
+              "title": "Раствори – хомогене смеше",
+              "page": 102
+            },
+            {
+              "title": "Растварање и растворљивост",
+              "page": 104
+            },
+            {
+              "title": "Вода и ваздух – хомогене смеше у природи",
+              "page": 111
+            },
+            {
+              "title": "Масени процентни састав смеше",
+              "page": 115
+            },
+            {
+              "title": "Поступци за раздвајање састојака смеше",
+              "page": 118
+            },
+            {
+              "title": "Тест – Хомогене и хетерогене смеше",
+              "page": 124
+            }
+          ]
+        },
+        {
+          "num": "VI",
+          "title": "ХЕМИЈСКЕ РЕАКЦИЈЕ И ХЕМИЈСКЕ ЈЕДНАЧИНЕ",
+          "page": 127,
+          "children": [
+            {
+              "title": "Хемијске реакције",
+              "page": 128
+            },
+            {
+              "title": "Закон одржања масе",
+              "page": 132
+            },
+            {
+              "title": "Хемијске једначине",
+              "page": 137
+            },
+            {
+              "title": "Тест – Хемијске реакције и хемијске једначине",
+              "page": 142
+            }
+          ]
+        },
+        {
+          "num": "VII",
+          "title": "ИЗРАЧУНАВАЊА У ХЕМИЈИ",
+          "page": 145,
+          "children": [
+            {
+              "title": "Релативна атомска маса",
+              "page": 146
+            },
+            {
+              "title": "Релативна молекулска маса",
+              "page": 149
+            },
+            {
+              "title": "Количина супстанце. Мол. Моларна маса",
+              "page": 151
+            },
+            {
+              "title": "Закон сталних односа маса",
+              "page": 155
+            },
+            {
+              "title": "Масени процентни састав једињења",
+              "page": 157
+            },
+            {
+              "title": "Израчунавања у хемији",
+              "page": 159
+            },
+            {
+              "title": "Тест – Израчунавања у хемији",
+              "page": 162
+            }
+          ]
+        },
+        {
+          "num": "VIII",
+          "title": "ВОДОНИК И КИСЕОНИК И ЊИХОВА ЈЕДИЊЕЊА. СОЛИ",
+          "page": 165,
+          "children": [
+            {
+              "title": "Водоник (H)",
+              "page": 166
+            },
+            {
+              "title": "Кисеоник (O)",
+              "page": 170
+            },
+            {
+              "title": "Оксидација, сагоревање и корозија",
+              "page": 173
+            },
+            {
+              "title": "Хемијске формуле, називи и основна својства оксида",
+              "page": 175
+            },
+            {
+              "title": "Киселине",
+              "page": 178
+            },
+            {
+              "title": "Базе (хидроксиди)",
+              "page": 181
+            },
+            {
+              "title": "pH скала",
+              "page": 184
+            },
+            {
+              "title": "Неутрализација. Соли",
+              "page": 186
+            },
+            {
+              "title": "Тест – Водоник и кисеоник и њихова једињења. Соли",
+              "page": 192
+            }
+          ]
+        },
+        {
+          "title": "Предлози за пројектну наставу",
+          "page": 194
+        },
+        {
+          "title": "Решења задатака",
+          "page": 195
+        },
+        {
+          "title": "Решења тестова",
+          "page": 198
+        },
+        {
+          "title": "Речник основних хемијских појмова",
+          "page": 201
+        },
+        {
+          "title": "Литература",
+          "page": 205
+        }
+      ]
+    },
+    {
+      "id": "informatika-i-racunarstvo-7",
+      "subject_sr": "Информатика и рачунарство",
+      "subject_ru": "Информатика и вычислительная техника",
+      "language": "sr-Cyrl",
+      "source_images": [
+        "photo_2026-09-04_19-58-53.jpg",
+        "photo_2026-09-04_19-58-51.jpg"
+      ],
+      "toc": [
+        {
+          "title": "Како да користиш овај уџбеник",
+          "page": 6,
+          "children": [
+            {
+              "title": "Уређаји потребни за учење и израду задатака",
+              "page": 6
+            },
+            {
+              "title": "QR кодови",
+              "page": 7
+            },
+            {
+              "title": "Како да користиш QR кодове",
+              "page": 7
+            }
+          ]
+        },
+        {
+          "title": "ИНФОРМАЦИОНО-КОМУНИКАЦИОНА ТЕХНОЛОГИЈА",
+          "page": 8,
+          "children": [
+            {
+              "title": "Рад са текстом – преглед садржаја текстуалног документа",
+              "page": 9
+            },
+            {
+              "title": "Рачунарска графика",
+              "page": 14,
+              "children": [
+                {
+                  "title": "RGB модел приказа боја",
+                  "page": 16
+                },
+                {
+                  "title": "CMYK модел приказа боја",
+                  "page": 18
+                }
+              ]
+            },
+            {
+              "title": "Растерска и векторска графика",
+              "page": 20,
+              "children": [
+                {
+                  "title": "Растерска графика",
+                  "page": 21
+                },
+                {
+                  "title": "Векторска графика",
+                  "page": 22
+                },
+                {
+                  "title": "Типови графичких датотека",
+                  "page": 23
+                },
+                {
+                  "title": "Претрага по величини слике",
+                  "page": 25
+                }
+              ]
+            },
+            {
+              "title": "Рад са сликама – слојеви",
+              "page": 28,
+              "children": [
+                {
+                  "title": "Слојеви",
+                  "page": 28
+                },
+                {
+                  "title": "Додавање и брисање слојева",
+                  "page": 30
+                },
+                {
+                  "title": "Приказивање и сакривање слоја",
+                  "page": 31
+                },
+                {
+                  "title": "Подешавање непровидности, закључавање и стапање слојева",
+                  "page": 31
+                },
+                {
+                  "title": "Растеризација слоја",
+                  "page": 33
+                }
+              ]
+            },
+            {
+              "title": "Рад са сликама – обрада дигиталних слика",
+              "page": 36,
+              "children": [
+                {
+                  "title": "Алатке за одабирање дела слике",
+                  "page": 36
+                },
+                {
+                  "title": "Промена нивоа обојености, осветљености и контраста",
+                  "page": 39
+                },
+                {
+                  "title": "Филтери",
+                  "page": 40
+                },
+                {
+                  "title": "Основне геометријске трансформације слике",
+                  "page": 42
+                },
+                {
+                  "title": "Ротација",
+                  "page": 43
+                },
+                {
+                  "title": "Искошавање",
+                  "page": 44
+                },
+                {
+                  "title": "Преокретање",
+                  "page": 44
+                },
+                {
+                  "title": "Аутоматска обрада већег броја дигиталних слика",
+                  "page": 45
+                }
+              ]
+            },
+            {
+              "title": "Креирање векторске графике",
+              "page": 47,
+              "children": [
+                {
+                  "title": "Цртање правоугаоних и овалних облика",
+                  "page": 50
+                },
+                {
+                  "title": "Цртање правилних многоуглова, звезда и спирала",
+                  "page": 51
+                },
+                {
+                  "title": "Цртање линија",
+                  "page": 51
+                },
+                {
+                  "title": "Уметност лепог писања",
+                  "page": 52
+                },
+                {
+                  "title": "Креирање текста",
+                  "page": 52
+                }
+              ]
+            },
+            {
+              "title": "Обрада векторске графике",
+              "page": 54,
+              "children": [
+                {
+                  "title": "Операције над објектима",
+                  "page": 54
+                }
+              ]
+            },
+            {
+              "title": "Анимиране слике",
+              "page": 65,
+              "children": [
+                {
+                  "title": "Креирање анимиране слике",
+                  "page": 67
+                },
+                {
+                  "title": "Покретање и чување анимације",
+                  "page": 69
+                },
+                {
+                  "title": "Уграђивање анимације у мултимедијалну презентацију",
+                  "page": 70
+                }
+              ]
+            },
+            {
+              "title": "Снимање видео-записа",
+              "page": 72,
+              "children": [
+                {
+                  "title": "Подешавање параметара видео-записа",
+                  "page": 73
+                },
+                {
+                  "title": "Покретање и заустављање снимања",
+                  "page": 74
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "ДИГИТАЛНА ПИСМЕНОСТ",
+          "page": 76,
+          "children": [
+            {
+              "title": "Интернет",
+              "page": 77,
+              "children": [
+                {
+                  "title": "Интернет адреса и домен",
+                  "page": 77
+                },
+                {
+                  "title": "DNS сервис и сервер",
+                  "page": 78
+                },
+                {
+                  "title": "Хипервеза и хипертекст",
+                  "page": 79
+                }
+              ]
+            },
+            {
+              "title": "Електронска пошта",
+              "page": 84,
+              "children": [
+                {
+                  "title": "Креирање налога електронске поште",
+                  "page": 84
+                }
+              ]
+            },
+            {
+              "title": "Слање и пријем електронске поште",
+              "page": 89,
+              "children": [
+                {
+                  "title": "Пријем електронске поште, писање одговора и прослеђивање порука",
+                  "page": 91
+                },
+                {
+                  "title": "Организација поштанског сандучета",
+                  "page": 91
+                },
+                {
+                  "title": "Правила електронске комуникације",
+                  "page": 94
+                }
+              ]
+            },
+            {
+              "title": "Рад на дељеним документима",
+              "page": 96,
+              "children": [
+                {
+                  "title": "Рад са дељеним диском",
+                  "page": 97
+                },
+                {
+                  "title": "Рад са текстуалним документима и презентацијама",
+                  "page": 98
+                },
+                {
+                  "title": "Дељење документа са другим корисницима",
+                  "page": 100
+                }
+              ]
+            },
+            {
+              "title": "ИСТРАЖИВАЧКИ ПРОЈЕКАТ 1",
+              "page": 102
+            }
+          ]
+        },
+        {
+          "title": "РАЧУНАРСТВО",
+          "page": 106,
+          "children": [
+            {
+              "title": "Програмски језик Пајтон",
+              "page": 107
+            },
+            {
+              "title": "Променљиве",
+              "page": 112,
+              "children": [
+                {
+                  "title": "Додела вредности променљивој",
+                  "page": 113
+                },
+                {
+                  "title": "Приказивање вредности променљиве",
+                  "page": 115
+                }
+              ]
+            },
+            {
+              "title": "Гранање",
+              "page": 118
+            },
+            {
+              "title": "Корњача-графика и понављање",
+              "page": 121
+            },
+            {
+              "title": "Дефинисање функције",
+              "page": 126
+            },
+            {
+              "title": "Вежбаоница 1",
+              "page": 130
+            },
+            {
+              "title": "Библиотека Пајгејм",
+              "page": 135
+            },
+            {
+              "title": "Исцртавање дужи",
+              "page": 140
+            },
+            {
+              "title": "Исцртавање правоугаоника и круга",
+              "page": 146
+            },
+            {
+              "title": "Исцртавање многоугла и исписивање текста",
+              "page": 153
+            },
+            {
+              "title": "Учитавање слике и звука",
+              "page": 160
+            },
+            {
+              "title": "Анимација",
+              "page": 170
+            },
+            {
+              "title": "Вежбаоница 2",
+              "page": 176
+            },
+            {
+              "title": "ИСТРАЖИВАЧКИ ПРОЈЕКАТ 2",
+              "page": 179
+            }
+          ]
+        },
+        {
+          "title": "Додатак: Микробит и Мју едитор",
+          "page": 184,
+          "children": [
+            {
+              "title": "Инсталација Mu (мју) едитора",
+              "page": 186
+            },
+            {
+              "title": "Мју едитор – окружење",
+              "page": 187
+            },
+            {
+              "title": "Основне функције",
+              "page": 188
+            },
+            {
+              "title": "Управљање екраном",
+              "page": 189
+            },
+            {
+              "title": "Тастери",
+              "page": 190
+            },
+            {
+              "title": "Звук",
+              "page": 191
+            },
+            {
+              "title": "Генерисање насумичних бројева",
+              "page": 192
+            },
+            {
+              "title": "Радио",
+              "page": 192
+            },
+            {
+              "title": "Покрет",
+              "page": 193
+            },
+            {
+              "title": "Компас",
+              "page": 193
+            },
+            {
+              "title": "Управљање пиновима",
+              "page": 194
+            },
+            {
+              "title": "Температура",
+              "page": 194
+            },
+            {
+              "title": "Приказ података у реалном времену",
+              "page": 195
+            }
+          ]
+        },
+        {
+          "title": "Речник појмова, мање познатих речи и страних израза",
+          "page": 196
+        }
+      ]
+    },
+    {
+      "id": "tehnika-i-tehnologija-7",
+      "subject_sr": "Техника и технологија",
+      "subject_ru": "Техника и технология",
+      "language": "sr-Cyrl",
+      "source_images": [
+        "photo_2026-09-04_19-59-18.jpg"
+      ],
+      "toc": [
+        {
+          "num": "1.",
+          "title": "ЖИВОТНО И РАДНО ОКРУЖЕЊЕ",
+          "page": null,
+          "children": [
+            {
+              "title": "Појам, улога и развој машина и механизама",
+              "page": 6
+            },
+            {
+              "title": "Потрошња енергије у домаћинству и могућности уштеде",
+              "page": 11
+            },
+            {
+              "title": "Утицај дизајна и правилне употребе техничких средстава на људско здравље",
+              "page": 15
+            },
+            {
+              "title": "Зависност очувања животне средине од технологије",
+              "page": 21
+            },
+            {
+              "title": "Занимања у области производних техника и технологија",
+              "page": 26
+            },
+            {
+              "title": "Тестирај своје знање",
+              "page": 28
+            }
+          ]
+        },
+        {
+          "num": "2.",
+          "title": "САОБРАЋАЈ",
+          "page": null,
+          "children": [
+            {
+              "title": "Машине спољашњег и унутрашњег транспорта",
+              "page": 32
+            },
+            {
+              "title": "Подсистеми код возила друмског саобраћаја",
+              "page": 47
+            },
+            {
+              "title": "Исправан бицикл/мопед за безбедно учешће у саобраћају",
+              "page": 55
+            },
+            {
+              "title": "Тестирај своје знање",
+              "page": 62
+            }
+          ]
+        },
+        {
+          "num": "3.",
+          "title": "ТЕХНИЧКА И ДИГИТАЛНА ПИСМЕНОСТ",
+          "page": null,
+          "children": [
+            {
+              "title": "Специфичности техничких цртежа у машинству",
+              "page": 66
+            },
+            {
+              "title": "Ортогонално и просторно приказивање предмета",
+              "page": 72
+            },
+            {
+              "title": "Коришћење функција и алатки CAD програма",
+              "page": 86
+            },
+            {
+              "title": "Употреба 3D штампе у изради тродимензионалних модела и макета",
+              "page": 96
+            },
+            {
+              "title": "Основне компоненте ИКТ уређаја",
+              "page": 100
+            },
+            {
+              "title": "Управљање и контрола коришћењем рачунарске технике и интерфејса",
+              "page": 110
+            },
+            {
+              "title": "Вештачка интелигенција",
+              "page": 116
+            },
+            {
+              "title": "Тестирај своје знање",
+              "page": 120
+            }
+          ]
+        },
+        {
+          "num": "4.",
+          "title": "РЕСУРСИ И ПРОИЗВОДЊА",
+          "page": null,
+          "children": [
+            {
+              "title": "Рационално коришћење ресурса на Земљи. Очување и заштита животне средине",
+              "page": 126
+            },
+            {
+              "title": "Материјали у машинству",
+              "page": 131
+            },
+            {
+              "title": "Мерење и контрола – појам и примена мерних средстава (мерила)",
+              "page": 142
+            },
+            {
+              "title": "Технологија обраде материјала у машинству",
+              "page": 150
+            },
+            {
+              "title": "Елементи машина и механизама",
+              "page": 164
+            },
+            {
+              "title": "Производне машине: врсте, принцип рада, појединачна и серијска производња",
+              "page": 176
+            },
+            {
+              "title": "Појам, врсте, намена и конструкције робота",
+              "page": 181
+            },
+            {
+              "title": "Погонске машине – мотори",
+              "page": 185
+            },
+            {
+              "title": "Израда модела мини-робота",
+              "page": 196
+            },
+            {
+              "title": "Тестирај своје знање",
+              "page": 200
+            }
+          ]
+        },
+        {
+          "num": "5.",
+          "title": "КОНСТРУКТОРСКО МОДЕЛОВАЊЕ",
+          "page": null,
+          "children": [
+            {
+              "title": "Конструкторско моделовање. Израда пројекта",
+              "page": 204
+            }
+          ]
+        },
+        {
+          "title": "Речник појмова",
+          "page": 212
+        },
+        {
+          "title": "Литература",
+          "page": 221
+        }
+      ]
+    },
+    {
+      "id": "likovna-kultura-7",
+      "subject_sr": "Ликовна култура",
+      "subject_ru": "Изобразительное искусство",
+      "language": "sr-Cyrl",
+      "source_images": [
+        "photo_2026-09-04_19-58-55.jpg",
+        "photo_2026-09-04_19-58-54.jpg"
+      ],
+      "toc": [
+        {
+          "title": "ПРОСТОР И КОМПОЗИЦИЈА",
+          "page": 9,
+          "children": [
+            {
+              "title": "КОМПОНОВАЊЕ",
+              "page": 10
+            },
+            {
+              "title": "РАВНОТЕЖА",
+              "page": 12
+            },
+            {
+              "title": "КОНТРАСТ",
+              "page": 14
+            },
+            {
+              "title": "ПОНАВЉАЊЕ И СТЕПЕНОВАЊЕ",
+              "page": 16
+            },
+            {
+              "title": "КОМПОНОВАЊЕ ЛИНИЈА",
+              "page": 18
+            },
+            {
+              "title": "КОМПОНОВАЊЕ БОЈА И ОБЛИКА",
+              "page": 20
+            },
+            {
+              "title": "БОЈЕ И ОСЕЋАЊА",
+              "page": 22,
+              "children": [
+                {
+                  "title": "КОЈА ЈЕ ТВОЈА БОЈА?",
+                  "page": 23
+                },
+                {
+                  "title": "БОЈЕ ОКО НАС",
+                  "page": 24
+                }
+              ]
+            },
+            {
+              "title": "СТИЛИЗАЦИЈА",
+              "page": 26
+            },
+            {
+              "title": "ОРНАМЕНТ",
+              "page": 28,
+              "children": [
+                {
+                  "title": "АРАБЕСКА",
+                  "page": 30
+                },
+                {
+                  "title": "МОТИВИ",
+                  "page": 31
+                },
+                {
+                  "title": "УТИЦАЈ АРАБЕСКЕ НА УМЕТНОСТ У ЕВРОПИ",
+                  "page": 32
+                },
+                {
+                  "title": "ВЕЖБЕ",
+                  "page": 33
+                }
+              ]
+            },
+            {
+              "title": "ПРОПОРЦИЈА",
+              "page": 34,
+              "children": [
+                {
+                  "title": "ПРОПОРЦИЈЕ ЉУДСКОГ ТЕЛА",
+                  "page": 36
+                },
+                {
+                  "title": "ПРОПОРЦИЈЕ ЉУДСКЕ ГЛАВЕ",
+                  "page": 38
+                },
+                {
+                  "title": "ПРАКТИЧНА ПРИМЕНА ПРОПОРЦИЈЕ",
+                  "page": 39
+                },
+                {
+                  "title": "ПОСМАТРАЈ, ВЕЖБАЈ",
+                  "page": 41
+                }
+              ]
+            },
+            {
+              "title": "ПРОСТОР",
+              "page": 42,
+              "children": [
+                {
+                  "title": "ИЛУЗИЈА ДУБИНЕ ПРОСТОРА",
+                  "page": 43
+                },
+                {
+                  "title": "ОДНОС ВЕЛИЧИНА У ПРОСТОРУ",
+                  "page": 44
+                },
+                {
+                  "title": "ПРОМЕНА ВЕЛИЧИНЕ",
+                  "page": 44
+                },
+                {
+                  "title": "РАЗМЕШТАЈ ОБЛИКА НА СЛИЦИ",
+                  "page": 45
+                },
+                {
+                  "title": "ПЕРСПЕКТИВА",
+                  "page": 46
+                },
+                {
+                  "title": "ЛИНЕАРНА ПЕРСПЕКТИВА",
+                  "page": 47
+                },
+                {
+                  "title": "ВАЗДУШНА ПЕРСПЕКТИВА",
+                  "page": 48
+                },
+                {
+                  "title": "БОЈЕ И ПРОСТОР",
+                  "page": 49
+                },
+                {
+                  "title": "ОБЛА ТЕЛА У ПРОСТОРУ",
+                  "page": 50
+                },
+                {
+                  "title": "НОВИ ПОГЛЕДИ",
+                  "page": 52
+                },
+                {
+                  "title": "АНАЛИЗА",
+                  "page": 54
+                }
+              ]
+            },
+            {
+              "title": "ДА ПОНОВИМО",
+              "page": 56
+            }
+          ]
+        },
+        {
+          "title": "КОМУНИКАЦИЈА",
+          "page": 57,
+          "children": [
+            {
+              "title": "ФОТОГРАФИЈА",
+              "page": 58,
+              "children": [
+                {
+                  "title": "СТВАР ТРЕНУТКА",
+                  "page": 59
+                },
+                {
+                  "title": "ПОСТУПАК ИЗРАДЕ ФОТОГРАФИЈЕ",
+                  "page": 60
+                },
+                {
+                  "title": "ПОСМАТРАЈ, ВЕЖБАЈ",
+                  "page": 63
+                }
+              ]
+            },
+            {
+              "title": "АНИМАЦИЈА",
+              "page": 64,
+              "children": [
+                {
+                  "title": "ПРОЦЕС НАСТАНКА АНИМАЦИЈЕ",
+                  "page": 66
+                },
+                {
+                  "title": "КАДАР",
+                  "page": 68
+                }
+              ]
+            },
+            {
+              "title": "ПРЕЗЕНТАЦИЈА",
+              "page": 69
+            },
+            {
+              "title": "СЦЕНА",
+              "page": 70
+            },
+            {
+              "title": "ОРИГИНАЛ",
+              "page": 72,
+              "children": [
+                {
+                  "title": "КОПИЈА И ПЛАГИЈАТ",
+                  "page": 74
+                }
+              ]
+            },
+            {
+              "title": "ЛИКОВНЕ ТЕМЕ",
+              "page": 76
+            },
+            {
+              "title": "ДА ПОНОВИМО",
+              "page": 82
+            }
+          ]
+        },
+        {
+          "title": "УМЕТНОСТ ОКО НАС",
+          "page": 83,
+          "children": [
+            {
+              "title": "УМЕТНОСТ И ТЕХНОЛОГИЈА",
+              "page": 84
+            },
+            {
+              "title": "УМЕТНОСТ ОКО НАС",
+              "page": 86
+            },
+            {
+              "title": "НАСЛЕЂЕ",
+              "page": 88,
+              "children": [
+                {
+                  "title": "УМЕТНИЧКЕ ШКОЛЕ",
+                  "page": 92
+                },
+                {
+                  "title": "ВЕЖБЕ",
+                  "page": 93
+                }
+              ]
+            },
+            {
+              "title": "ДА ПОНОВИМО",
+              "page": 94
+            }
+          ]
+        },
+        {
+          "title": "РЕЧНИК И ИНДЕКС АУТОРА",
+          "page": 95
+        },
+        {
+          "title": "ЛИТЕРАТУРА",
+          "page": 102
+        }
+      ]
+    },
+    {
+      "id": "muzicka-kultura-7",
+      "subject_sr": "Музичка култура",
+      "subject_ru": "Музыка",
+      "language": "sr-Cyrl",
+      "publisher": "Вулкан знање",
+      "source_images": [
+        "photo_2026-09-04_19-58-56.jpg"
+      ],
+      "toc": [
+        {
+          "title": "Водич кроз уџбеник",
+          "page": 4
+        },
+        {
+          "num": "1.",
+          "title": "МУЗИЧКА РАДИОНИЦА",
+          "page": null,
+          "children": [
+            {
+              "title": "Како је диван свет!",
+              "page": 8
+            },
+            {
+              "title": "Кроз нашу историју",
+              "page": 14
+            },
+            {
+              "title": "Староградске песме",
+              "page": 18
+            },
+            {
+              "title": "Српска духовна музика",
+              "page": 22
+            }
+          ]
+        },
+        {
+          "num": "2.",
+          "title": "ПУТОВАЊЕ КРОЗ ИСТОРИЈУ",
+          "page": null,
+          "children": [
+            {
+              "title": "Барок",
+              "page": 32
+            },
+            {
+              "title": "Опера",
+              "page": 36
+            },
+            {
+              "title": "Инструментална музика у бароку",
+              "page": 43
+            },
+            {
+              "title": "Вокално-инструментална музика у бароку",
+              "page": 49
+            },
+            {
+              "title": "Барокна песмарица",
+              "page": 56
+            },
+            {
+              "title": "Класицизам",
+              "page": 60
+            },
+            {
+              "title": "„Добри тата Хајдн“",
+              "page": 68
+            },
+            {
+              "title": "Моцарт – чудо од детета",
+              "page": 71
+            },
+            {
+              "title": "Бетовен је само један",
+              "page": 75
+            },
+            {
+              "title": "Класична песмарица",
+              "page": 82
+            },
+            {
+              "title": "Музички квиз",
+              "page": 87
+            }
+          ]
+        },
+        {
+          "num": "3.",
+          "title": "ЖИЧАНИ ИНСТРУМЕНТИ",
+          "page": null,
+          "children": [
+            {
+              "title": "Гудачки инструменти",
+              "page": 90
+            },
+            {
+              "title": "Виолина",
+              "page": 92
+            },
+            {
+              "title": "Виола",
+              "page": 95
+            },
+            {
+              "title": "Виолончело",
+              "page": 96
+            },
+            {
+              "title": "Контрабас",
+              "page": 97
+            },
+            {
+              "title": "Трзалачки инструменти",
+              "page": 99
+            },
+            {
+              "title": "Харфа",
+              "page": 100
+            },
+            {
+              "title": "Лаута",
+              "page": 102
+            },
+            {
+              "title": "Мандолина",
+              "page": 104
+            },
+            {
+              "title": "Гитара",
+              "page": 105
+            },
+            {
+              "title": "Тамбура",
+              "page": 111
+            },
+            {
+              "title": "Балалајка",
+              "page": 112
+            },
+            {
+              "title": "Цитра",
+              "page": 113
+            }
+          ]
+        },
+        {
+          "num": "4.",
+          "title": "ФОЛКЛОРНА ТРАДИЦИЈА СРБИЈЕ",
+          "page": null,
+          "children": [
+            {
+              "title": "Богатство српске народне традиције",
+              "page": 116
+            },
+            {
+              "title": "Западна Србија",
+              "page": 124
+            },
+            {
+              "title": "Централна Србија",
+              "page": 126
+            },
+            {
+              "title": "Североисточна Србија",
+              "page": 128
+            },
+            {
+              "title": "Југоисточна Србија",
+              "page": 130
+            },
+            {
+              "title": "Војводина",
+              "page": 133
+            },
+            {
+              "title": "Косово и Метохија",
+              "page": 136
+            },
+            {
+              "title": "У духу изворних песама",
+              "page": 139
+            },
+            {
+              "title": "Чија је ово песма?",
+              "page": 141
+            },
+            {
+              "title": "Како се игра, пева и свира у Ансамблу Коло",
+              "page": 142
+            }
+          ]
+        },
+        {
+          "title": "Идемо на концерт",
+          "page": 146
+        },
+        {
+          "title": "Речник појмова",
+          "page": 147
+        },
+        {
+          "title": "Нотни примери за певање и свирање",
+          "page": 148
+        },
+        {
+          "title": "Списак нумера на ЦД-у",
+          "page": 150
+        },
+        {
+          "title": "Решења",
+          "page": 152
+        }
+      ]
+    }
+  ]
+}
