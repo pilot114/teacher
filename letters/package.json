@@ -15,7 +15,7 @@
     "@electron-forge/maker-rpm": "^7.5",
     "@electron-forge/maker-squirrel": "^7.5",
     "@electron-forge/maker-zip": "^7.5",
-    "electron": "^33.0"
+    "electron": "^41.10"
   },
   "dependencies": {
     "electron-squirrel-startup": "^1.0"
