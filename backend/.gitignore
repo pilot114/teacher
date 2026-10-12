@@ -1,0 +1,6 @@
+teacher-api
+backend
+*.db
+*.db-wal
+*.db-shm
+tests/

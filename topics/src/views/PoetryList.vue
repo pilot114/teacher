@@ -1,32 +1,39 @@
 <template>
-  <div class="sidebar">
-    <h2>Оглавление</h2>
-    <ul>
-      <li
-          v-for="poem in poems"
-          :key="poem.name"
-          @click="showPoem(poem.name)"
-      >
-        {{ poem.name }}
-      </li>
-    </ul>
-  </div>
+  <button v-if="!started" type="button" class="start-btn" @click="start">
+    Начать
+  </button>
+  <template v-else>
+    <div class="sidebar">
+      <h2>Оглавление</h2>
+      <ul>
+        <li
+            v-for="poem in poems"
+            :key="poem.name"
+            @click="showPoem(poem.name)"
+        >
+          {{ poem.name }}
+        </li>
+      </ul>
+    </div>
 
-  <div class="content">
-    <div v-if="current">
-      <h3>{{ current.name }}</h3>
-      <div class="poetry">
-      {{ current.text }}
+    <div class="content">
+      <div v-if="current">
+        <h3>{{ current.name }}</h3>
+        <div class="poetry">
+        {{ current.text }}
+        </div>
       </div>
     </div>
-  </div>
+  </template>
 </template>
 
 <script>
 
 export default {
+  emits: ['start'],
   data() {
     return {
+      started: false,
       poems: [
         {
           name: 'У лукоморья',
@@ -75,6 +82,10 @@ export default {
     }
   },
   methods: {
+    start() {
+      this.started = true;
+      this.$emit('start');
+    },
     showPoem(name) {
       this.current = this.poems.filter((n) => n.name === name)[0];
     },
@@ -84,6 +95,21 @@ export default {
 </script>
 
 <style scoped>
+.start-btn {
+  background: linear-gradient(to bottom, #3498db, #2980b9);
+  border: none;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.start-btn:hover {
+  background: linear-gradient(to bottom, #2980b9, #3498db);
+}
+
 /* Общие стили */
 body {
   font-family: Arial, sans-serif;
@@ -133,5 +159,40 @@ body {
   background-color: #f4f4f4;
   padding: 20px;
   white-space: pre-wrap;
+}
+
+@media (max-width: 900px) {
+  .start-btn {
+    width: 100%;
+  }
+
+  /* оглавление и текст встают друг под друга */
+  .sidebar {
+    width: auto;
+    margin: -10px -12px 0;
+    padding: 14px;
+  }
+
+  .sidebar h2 {
+    margin: 0 0 8px;
+  }
+
+  .sidebar ul li {
+    margin-bottom: 0;
+    padding: 10px 0;
+    border-bottom: 1px solid #e2e2e2;
+    color: #1a63c4;
+  }
+
+  .content {
+    flex: none;
+    width: 100%;
+    padding: 16px 0;
+  }
+
+  .poetry {
+    padding: 14px;
+    font-size: 15px;
+  }
 }
 </style>

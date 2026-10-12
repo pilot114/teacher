@@ -15,6 +15,12 @@
             <span>{{ option.label }}</span>
           </label>
         </div>
+        <div class="pager">
+          <button type="button" class="pager-btn" aria-label="Неделей раньше" :disabled="!canPrev" @click="moveWeeks(-1)">&lsaquo;</button>
+          <span class="pager-range">{{ weeks[0].number }}–{{ weeks[weeks.length - 1].number }} неделя</span>
+          <button type="button" class="pager-btn" aria-label="Неделей позже" :disabled="!canNext" @click="moveWeeks(1)">&rsaquo;</button>
+          <button type="button" class="pager-today" v-if="firstWeek !== baseWeek" @click="shift = 0">К текущей</button>
+        </div>
         <ul class="legend">
           <li v-for="(label, status) in statusLabels" :key="status">
             <span class="sample" :class="'status-' + status"></span>{{ label }}
@@ -28,8 +34,8 @@
         <div class="grid" v-if="mode === 'subjects'">
           <div class="row head-row">
             <div></div>
-            <div class="week-head" v-for="(week, index) in weeks" :key="index">
-              <div class="week-name">{{ index + 1 }} неделя</div>
+            <div class="week-head" :class="{current: week.current}" v-for="(week, index) in weeks" :key="index">
+              <div class="week-name">{{ week.number }} неделя</div>
               <div class="week-dates">{{ formatDate(week.from) }} — {{ formatDate(week.to) }}</div>
               <div class="week-shift">{{ week.schedule.label }}</div>
             </div>
@@ -41,7 +47,7 @@
               <div class="subject-sr">{{ row.subject.name.sr }}</div>
               <div class="subject-ru" v-if="secondName(row.subject)">{{ row.subject.name.ru }}</div>
             </div>
-            <div class="week" v-for="(items, index) in row.weeks" :key="index">
+            <div class="week" :class="{current: weeks[index].current}" v-for="(items, index) in row.weeks" :key="index">
               <button
                   v-for="item in items"
                   :key="item.number"
@@ -63,15 +69,15 @@
         </div>
 
         <div class="days" v-else>
-          <div class="day-week" v-for="(block, index) in dayWeeks" :key="index">
+          <div class="day-week" :class="{current: block.week.current}" v-for="(block, index) in dayWeeks" :key="index">
             <div class="day-week-title">
-              {{ index + 1 }} неделя
+              {{ block.week.number }} неделя
               <span class="day-week-dates">{{ formatDate(block.week.from) }} — {{ formatDate(block.week.to) }}</span>
               <span class="day-week-shift">{{ block.week.schedule.label }}</span>
             </div>
             <div
                 class="timetable"
-                :style="{gridTemplateColumns: `78px repeat(${block.days.length}, minmax(0, 1fr))`}"
+                :style="{gridTemplateColumns: timetableColumns(block)}"
             >
               <div class="tt-corner"></div>
               <div class="tt-day" v-for="day in block.days" :key="day.dayIndex">
@@ -124,18 +130,17 @@
           <p class="panel-empty" v-else>Долгов нет</p>
         </section>
 
-        <section class="panel-block read">
-          <h2><span class="dot"></span>Прочитать<b>{{ toRead.length }}</b></h2>
-          <p class="panel-note" v-if="nextDay">{{ readTitle }}</p>
-          <ul v-if="toRead.length">
-            <li v-for="theme in toRead" :key="theme.key">
+        <section class="panel-block failed" v-if="failedThemes.length">
+          <h2><span class="dot"></span>Тест не сдан<b>{{ failedThemes.length }}</b></h2>
+          <p class="panel-note">Все попытки потрачены</p>
+          <ul>
+            <li v-for="theme in failedThemes" :key="theme.key">
               <button type="button" class="link" @click="$emit('open-theory', theme.theory)">
                 <span class="link-subject">{{ theme.subject.name.sr }}</span>
                 <span class="link-title">{{ theme.theory.topic }}</span>
               </button>
             </li>
           </ul>
-          <p class="panel-empty" v-else>Готовиться не к чему</p>
         </section>
 
         <section class="panel-block done">
@@ -145,14 +150,16 @@
       </aside>
     </div>
 
+    <div class="sheet-backdrop" v-if="selected && isMobile" @click="close"></div>
+
     <div
         class="popover"
         v-if="selected"
         ref="popover"
-        :class="'placement-' + placement"
+        :class="isMobile ? 'sheet' : 'placement-' + placement"
         :style="[popoverStyle, {visibility: positioned ? 'visible' : 'hidden'}]"
     >
-      <span class="arrow" :style="{left: arrowOffset + 'px'}"></span>
+      <span class="arrow" v-if="!isMobile" :style="{left: arrowOffset + 'px'}"></span>
       <button class="close" type="button" aria-label="Закрыть" @click="close">&times;</button>
 
       <template v-if="selected.item.topic">
@@ -192,8 +199,9 @@
 
 <script>
 import program from '@/../data/seven/progress.json';
-import {loadPassedKeys, testKey} from '@/tests.js';
+import {loadFailedKeys, loadPassedKeys, testKey} from '@/tests.js';
 import {readStorage, writeStorage} from '@/storage.js';
+import {isMobile} from '@/viewport.js';
 import {
   DAY_KEYS,
   DAY_NAMES,
@@ -215,6 +223,7 @@ import {
 
 const statusLabels = {
   done: 'Пройдено',
+  failed: 'Тест не сдан',
   overdue: 'Нужно пройти',
   planned: 'Ещё не пройдено',
   none: 'Программы нет',
@@ -226,6 +235,7 @@ const modes = [
 ];
 
 const WEEKS = 4;
+const WEEKS_BEFORE = 2;
 
 // одна тема — подряд идущие уроки с общим конспектом (обрада, утврђивање, вежбање)
 function themeNumbers(topics) {
@@ -245,10 +255,6 @@ function themeNumbers(topics) {
   return numbers;
 }
 
-function sameDay(a, b) {
-  return Boolean(a) && Boolean(b) && a.getTime() === b.getTime();
-}
-
 function restoreMode() {
   const value = readStorage('progressView');
   return modes.some((option) => option.value === value) ? value : 'subjects';
@@ -261,10 +267,13 @@ export default {
     return {
       program: program,
       passedKeys: new Set(),
+      failedKeys: new Set(),
       statusLabels: statusLabels,
       modes: modes,
       dayNames: DAY_NAMES,
       mode: restoreMode(),
+      // сдвиг окна недель стрелками относительно текущей
+      shift: 0,
       selected: null,
       placement: 'bottom',
       popoverStyle: {},
@@ -273,20 +282,52 @@ export default {
     };
   },
   computed: {
+    isMobile() {
+      return isMobile.value;
+    },
     startDate() {
       return parseDate(this.program.startDate);
     },
-    // темы с уроками до этой даты должны быть пройдены
-    dueUntil() {
-      return this.program.dueUntil ? parseDate(this.program.dueUntil) : null;
+    // смена текущей недели: от неё зависит, прошли ли сегодняшние уроки
+    todayShift() {
+      return scheduleForWeek(this.program.schedules, weekIndexOf(startOfDay(new Date()), this.startDate));
     },
-    // недели нумеруем от начала учебного года; первую подрезаем, если год начался не с понедельника
+    // уроки по этот день включительно уже прошли; во вторую смену сегодняшние ещё впереди
+    dueUntil() {
+      const today = startOfDay(new Date());
+      const last = isAfternoon(this.todayShift) ? addDays(today, -1) : today;
+      return last < this.startDate ? null : last;
+    },
+    // окно: две прошедшие недели, текущая и следующая; в начале года — просто первые недели
+    baseWeek() {
+      return Math.max(0, weekIndexOf(startOfDay(new Date()), this.startDate) - WEEKS_BEFORE);
+    },
+    // дальше последнего урока по программе листать незачем
+    lastFirstWeek() {
+      const last = this.program.subjects.reduce((max, subject) => {
+        const lessons = lessonsFor(this.program.schedules, subject.scheduleName, this.startDate, subject.topics.length);
+        return lessons.length ? Math.max(max, weekIndexOf(lessons[lessons.length - 1].date, this.startDate)) : max;
+      }, 0);
+      return Math.max(this.baseWeek, last - WEEKS + 1);
+    },
+    firstWeek() {
+      return Math.min(Math.max(0, this.baseWeek + this.shift), this.lastFirstWeek);
+    },
+    canPrev() {
+      return this.firstWeek > 0;
+    },
+    canNext() {
+      return this.firstWeek < this.lastFirstWeek;
+    },
+    // первую неделю года подрезаем, если год начался не с понедельника
     weeks() {
-      return weeksAhead(this.startDate, WEEKS).map((week, index) => ({
+      return weeksAhead(addDays(this.startDate, this.firstWeek * 7), WEEKS).map((week, index) => ({
+        number: this.firstWeek + index + 1,
         start: week.from,
         from: week.from < this.startDate ? this.startDate : week.from,
         to: week.to,
-        schedule: scheduleForWeek(this.program.schedules, index),
+        schedule: scheduleForWeek(this.program.schedules, this.firstWeek + index),
+        current: this.firstWeek + index === weekIndexOf(startOfDay(new Date()), this.startDate),
       }));
     },
     rows() {
@@ -295,7 +336,8 @@ export default {
         const hours = weeklyHours(this.program.schedules, subject.scheduleName);
         const total = subject.topics.length;
         // без программы всё равно показываем уроки по расписанию
-        const count = total || this.weeks.reduce((sum, week, index) => sum + hours[index % hours.length], 0);
+        const shown = this.firstWeek + this.weeks.length;
+        const count = total || Array.from({length: shown}, (item, index) => hours[index % hours.length]).reduce((sum, value) => sum + value, 0);
         const lessons = lessonsFor(this.program.schedules, subject.scheduleName, this.startDate, count);
         const themes = themeNumbers(subject.topics);
 
@@ -343,6 +385,7 @@ export default {
             theory: theory,
             subject: row.subject,
             done: this.isDone(item.topic),
+            failed: this.isFailed(item.topic),
             // долг — только когда прошли все уроки темы, а не первый из них
             overdue: true,
             date: item.lesson.date,
@@ -362,58 +405,17 @@ export default {
     // оранжевое: тема пройдена целиком, а не закрыта
     toPass() {
       return this.themes
-          .filter((theme) => theme.overdue && !theme.done)
+          .filter((theme) => theme.overdue && !theme.done && !theme.failed)
+          .sort((a, b) => a.date - b.date);
+    },
+    // красное: все попытки теста потрачены впустую
+    failedThemes() {
+      return this.themes
+          .filter((theme) => theme.failed)
           .sort((a, b) => a.date - b.date);
     },
     doneThemes() {
       return this.themes.filter((theme) => theme.done);
-    },
-    // готовимся к ближайшему учебному дню; во вторую смену успеваем и к сегодняшним урокам
-    nextDay() {
-      const today = startOfDay(new Date());
-      const shift = scheduleForWeek(this.program.schedules, weekIndexOf(today, this.startDate));
-
-      for (let step = isAfternoon(shift) ? 0 : 1; step <= 7; step += 1) {
-        const date = addDays(today, step);
-        if ((date.getDay() + 6) % 7 < 5) {
-          return date;
-        }
-      }
-
-      return null;
-    },
-    readTitle() {
-      if (!this.nextDay) {
-        return '';
-      }
-
-      const day = this.dayNames[(this.nextDay.getDay() + 6) % 7].toLowerCase();
-      const today = sameDay(this.nextDay, startOfDay(new Date()));
-      return `${today ? 'К сегодняшним урокам' : `К урокам на ${day}`}, ${formatDate(this.nextDay)}`;
-    },
-    // синее: по одной теме на каждый урок ближайшего дня
-    toRead() {
-      const seen = new Set();
-      const list = [];
-
-      for (const row of this.rows) {
-        for (const item of row.items) {
-          const theory = item.topic ? item.topic.theory : null;
-          if (!theory || !item.lesson || !sameDay(item.lesson.date, this.nextDay)) {
-            continue;
-          }
-
-          const key = testKey(theory.subject, theory.topic);
-          if (seen.has(key) || this.isDone(item.topic)) {
-            continue;
-          }
-
-          seen.add(key);
-          list.push({key: key, theory: theory, subject: row.subject, period: item.lesson.period});
-        }
-      }
-
-      return list.sort((a, b) => a.period - b.period);
     },
     // урок по дате и номеру -> предмет и тема
     lessonMap() {
@@ -461,25 +463,34 @@ export default {
       this.close();
       writeStorage('progressView', value);
     },
+    isMobile() {
+      this.close();
+    },
+    firstWeek() {
+      this.close();
+    },
   },
   async created() {
-    this.passedKeys = await loadPassedKeys('seven');
+    [this.passedKeys, this.failedKeys] = await Promise.all([loadPassedKeys('seven'), loadFailedKeys('seven')]);
   },
   mounted() {
     window.addEventListener('keydown', this.handleKeydown);
     document.addEventListener('click', this.handleDocumentClick);
     window.addEventListener('resize', this.close);
-    window.addEventListener('scroll', this.close, true);
+    window.addEventListener('scroll', this.handleScroll, true);
   },
   beforeUnmount() {
     window.removeEventListener('keydown', this.handleKeydown);
     document.removeEventListener('click', this.handleDocumentClick);
     window.removeEventListener('resize', this.close);
-    window.removeEventListener('scroll', this.close, true);
+    window.removeEventListener('scroll', this.handleScroll, true);
   },
   methods: {
     formatDate,
     formatLesson,
+    moveWeeks(step) {
+      this.shift = this.firstWeek - this.baseWeek + step;
+    },
     secondName(subject) {
       return subject.name.ru && subject.name.ru !== subject.name.sr;
     },
@@ -491,9 +502,17 @@ export default {
       const theory = topic.theory;
       return topic.done || (Boolean(theory) && this.passedKeys.has(testKey(theory.subject, theory.topic)));
     },
+    isFailed(topic) {
+      const theory = topic.theory;
+      return !this.isDone(topic) && Boolean(theory) && this.failedKeys.has(testKey(theory.subject, theory.topic));
+    },
     statusOf(topic, lesson) {
       if (this.isDone(topic)) {
         return 'done';
+      }
+
+      if (this.isFailed(topic)) {
+        return 'failed';
       }
 
       if (!lesson || !this.dueUntil) {
@@ -516,7 +535,18 @@ export default {
       this.positioned = false;
       this.$nextTick(this.position);
     },
+    timetableColumns(block) {
+      const day = this.isMobile ? 'minmax(104px, 1fr)' : 'minmax(0, 1fr)';
+      return `${this.isMobile ? 52 : 78}px repeat(${block.days.length}, ${day})`;
+    },
     position() {
+      // шторка прибита к низу экрана — считать нечего
+      if (this.isMobile) {
+        this.popoverStyle = {};
+        this.positioned = true;
+        return;
+      }
+
       const popover = this.$refs.popover;
       if (!popover || !this.anchor) {
         return;
@@ -557,6 +587,11 @@ export default {
 
       this.close();
       this.$emit('open-theory', theory);
+    },
+    handleScroll() {
+      if (!this.isMobile) {
+        this.close();
+      }
     },
     handleKeydown(event) {
       if (event.key === 'Escape') {
@@ -638,6 +673,57 @@ h1 {
   outline-offset: 3px;
 }
 
+.pager {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pager-btn {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  font-size: 20px;
+  line-height: 1;
+  color: #333;
+  background-color: #ffffff;
+  border: 1px solid #c4c4c4;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.pager-btn:hover:not(:disabled) {
+  background-color: #eef2f8;
+}
+
+.pager-btn:disabled {
+  color: #bbb;
+  cursor: default;
+}
+
+.pager-range {
+  min-width: 110px;
+  text-align: center;
+  font-size: 14px;
+  color: #333;
+  white-space: nowrap;
+}
+
+.pager-today {
+  padding: 6px 10px;
+  font-size: 13px;
+  color: #1a63c4;
+  background: none;
+  border: 1px solid #1a63c4;
+  border-radius: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.pager-today:hover {
+  background-color: #eef2f8;
+}
+
 .legend {
   display: flex;
   flex-wrap: wrap;
@@ -659,6 +745,12 @@ h1 {
   --bg: #2e7d32;
   --fg: #ffffff;
   --br: #256428;
+}
+
+.status-failed {
+  --bg: #c62828;
+  --fg: #ffffff;
+  --br: #a32020;
 }
 
 .status-overdue {
@@ -740,8 +832,8 @@ h1 {
   --dot: #f2b705;
 }
 
-.panel-block.read {
-  --dot: #1a63c4;
+.panel-block.failed {
+  --dot: #c62828;
 }
 
 .panel-block.done {
@@ -866,6 +958,25 @@ h1 {
 
 .week-empty {
   color: #c4c4c4;
+}
+
+/* текущая неделя — светло-голубой столбец */
+.week-head.current,
+.week.current,
+.day-week.current {
+  background-color: #eaf4fd;
+}
+
+.week-head.current {
+  padding-top: 6px;
+  border-radius: 6px 6px 0 0;
+}
+
+.day-week.current {
+  margin-left: -10px;
+  margin-right: -10px;
+  padding: 8px 10px;
+  border-radius: 8px;
 }
 
 .cell {
@@ -1136,16 +1247,169 @@ h1 {
 }
 
 @media (max-width: 900px) {
-  .grid {
-    width: auto;
+  .progress-board {
+    flex: none;
+    width: 100%;
+    min-width: 0;
+    padding: 4px 0 24px;
+  }
+
+  .subtitle {
+    margin: 4px 0 10px;
+    font-size: 14px;
+  }
+
+  .controls {
+    gap: 10px 16px;
+    margin-bottom: 14px;
+  }
+
+  .legend {
+    gap: 6px 14px;
+  }
+
+  .legend li {
+    font-size: 13px;
+  }
+
+  .board-body {
+    gap: 16px;
+  }
+
+  .panel {
+    max-width: none;
+  }
+
+  /* сетка шире экрана: катаем её вбок, а колонку с предметом прибиваем к краю */
+  .board-main {
+    width: 100%;
+    overscroll-behavior-x: contain;
   }
 
   .row {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 104px repeat(4, 132px) 56px;
   }
 
-  .week, .week-head {
-    border-left: none;
+  .row > :first-child {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    background-color: #ffffff;
+  }
+
+  .subject {
+    padding: 6px 8px 6px 0;
+  }
+
+  .subject-sr {
+    font-size: 14px;
+  }
+
+  .subject-ru {
+    font-size: 12px;
+  }
+
+  .week-head {
+    padding: 0 8px 6px;
+  }
+
+  .week-name, .week-dates, .week-shift {
+    font-size: 11px;
+  }
+
+  .week {
+    grid-template-columns: repeat(4, 26px);
+    gap: 4px;
+    min-height: 46px;
+    padding: 8px;
+  }
+
+  .cell {
+    width: 26px;
+    height: 26px;
+    font-size: 12px;
+  }
+
+  .counter {
+    font-size: 11px;
+    line-height: 1.3;
+  }
+
+  .day-week {
+    margin-bottom: 18px;
+  }
+
+  .tt-period {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    padding: 6px 2px;
+    font-size: 12px;
+  }
+
+  .tt-corner {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+  }
+
+  .tt-day {
+    padding: 6px;
+    font-size: 12px;
+  }
+
+  .tt-date {
+    display: block;
+    margin-left: 0;
+    font-size: 11px;
+  }
+
+  .slot {
+    padding: 7px 6px;
+  }
+
+  .slot-name {
+    font-size: 12px;
+  }
+
+  /* карточка урока на телефоне — шторка снизу, поповеру не к чему прижиматься */
+  .sheet-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 35;
+    background-color: rgba(0, 0, 0, 0.35);
+  }
+
+  .popover.sheet {
+    position: fixed;
+    top: auto;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 40;
+    width: auto;
+    max-height: 80vh;
+    overflow-y: auto;
+    padding: 16px 16px calc(16px + env(safe-area-inset-bottom));
+    border-width: 1px 0 0;
+    border-radius: 14px 14px 0 0;
+    box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.25);
+  }
+
+  .popover.sheet .close {
+    top: 8px;
+    right: 10px;
+    padding: 4px 10px;
+    font-size: 26px;
+  }
+
+  .popover.sheet .actions {
+    margin-top: 16px;
+  }
+
+  .popover.sheet .btn {
+    flex: 1;
+    padding: 11px 16px;
   }
 }
 </style>

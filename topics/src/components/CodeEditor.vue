@@ -99,12 +99,27 @@ export default {
   border: 1px solid #ccc;
   border-radius: 4px;
   width: 400px;
+  max-width: 100%;
   min-height: 300px;
   padding: 10px;
   outline: none;
   white-space: pre;
   overflow: auto;
   background-color: #f5f5f5;
+}
+
+@media (max-width: 900px) {
+  .editor {
+    width: 100%;
+    min-height: 220px;
+    font-size: 14px;
+  }
+
+  /* shiki красит каждый токен отдельным span, а глобальное `* {font-size}`
+     перебивает наследование — поэтому кегль задаём всем потомкам */
+  .editor :deep(*) {
+    font-size: 14px;
+  }
 }
 
 </style>

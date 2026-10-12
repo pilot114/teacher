@@ -1,7 +1,10 @@
 <template>
   <div>
-    <div class="columns">
-      <div class="column">
+    <button v-if="!started" type="button" class="start-btn" @click="start">
+      Начать
+    </button>
+    <div v-else class="columns">
+      <div class="column column-langs">
         <div
             v-for="language in languages"
             :key="language.name"
@@ -17,7 +20,7 @@
         </div>
       </div>
 
-      <div class="column" style="width:100px;">
+      <div class="column column-names">
         <div
             v-for="(code, name) in sources[currentLanguage.name]"
             :key="name"
@@ -38,8 +41,8 @@
         />
       </div>
 
-      <div class="column">
-        <button @click="runCode">Выполнить</button>
+      <div class="column column-run">
+        <button class="run-btn" @click="runCode">Выполнить</button>
         <span class="loader" v-if="isLoading"></span>
       </div>
 
@@ -85,8 +88,10 @@ const languages = [
 export default {
   name: 'CodeExecutor',
   components: {ContentTab, ContentTabs, CodeEditor},
+  emits: ['start'],
   data() {
     return {
+      started: false,
       languages: languages,
       currentLanguage: languages[2],
       currentCode: '',
@@ -104,11 +109,6 @@ export default {
       isLoading: false,
     };
   },
-  mounted() {
-    this.initWrapper();
-    this.autoSelectCode();
-    this.selectCurrentCode('check_io');
-  },
   beforeUnmount() {
     if (this.wrapper) {
       this.wrapper.terminate();
@@ -116,6 +116,14 @@ export default {
   },
 
   methods: {
+    // интерпретатор поднимаем только по «Начать»: до этого на экране одна кнопка
+    start() {
+      this.started = true;
+      this.initWrapper();
+      this.autoSelectCode();
+      this.selectCurrentCode('check_io');
+      this.$emit('start');
+    },
     selectCurrentCode(codeName) {
       this.currentCodeName = codeName;
       this.currentCode = this.sources[this.currentLanguage.name][codeName];
@@ -164,6 +172,21 @@ export default {
 </script>
 
 <style scoped>
+.start-btn {
+  background: linear-gradient(to bottom, #3498db, #2980b9);
+  border: none;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.start-btn:hover {
+  background: linear-gradient(to bottom, #2980b9, #3498db);
+}
+
 .columns {
   display: flex;
   justify-content: start;
@@ -172,11 +195,18 @@ export default {
 
 .column {
   flex: 1;
+  min-width: 0;
+}
+
+.column-names {
+  width: 100px;
+  flex: none;
 }
 
 pre {
   background-color: #f5f5f5;
   padding: 1em;
+  overflow-x: auto;
 }
 
 .loader {
@@ -202,6 +232,7 @@ textarea, input {
   border-radius: 4px;
   overflow: hidden;
   width: 400px;
+  max-width: 100%;
   padding: .5em;
   margin-bottom: 1em;
 
@@ -214,5 +245,67 @@ textarea, input {
   display: flex;
   align-items: center;
   gap: 5px;
+}
+
+@media (max-width: 900px) {
+  .start-btn {
+    width: 100%;
+  }
+
+  /* пять колонок в строку на телефон не помещаются — раскладываем сверху вниз */
+  .columns {
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .column, .column-names {
+    width: auto;
+    flex: none;
+  }
+
+  /* языки и примеры — строки «таблеток» с прокруткой вбок */
+  .column-langs, .column-names {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .column-langs::-webkit-scrollbar, .column-names::-webkit-scrollbar {
+    display: none;
+  }
+
+  .column-langs > div, .column-names > div {
+    flex: none;
+    padding: 7px 12px;
+    border: 1px solid #d5d5d5;
+    border-radius: 16px;
+    background-color: #f7f7f7;
+    white-space: nowrap;
+  }
+
+  .column-langs a, .column-names a {
+    color: #1a63c4;
+    text-decoration: none;
+  }
+
+  .run-btn {
+    width: 100%;
+    padding: 11px 20px;
+    border: 1px solid #1a63c4;
+    border-radius: 6px;
+    background-color: #1a63c4;
+    color: #ffffff;
+    cursor: pointer;
+  }
+
+  textarea, input {
+    width: 100%;
+  }
+
+  textarea {
+    white-space: pre-wrap;
+  }
 }
 </style>

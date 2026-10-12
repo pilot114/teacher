@@ -76,6 +76,7 @@ export default {
 <style scoped>
 .tabs-container {
   width: 400px;
+  max-width: 100%;
   margin: 0 auto;
 }
 
@@ -107,6 +108,30 @@ export default {
 
 .tabs-content {
   position: relative;
+}
+
+@media (max-width: 900px) {
+  .tabs-container {
+    width: 100%;
+  }
+
+  /* вкладок пять — пусть катаются вбок, а не ломают строку */
+  .tabs-header {
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .tabs-header::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tab-button {
+    flex: none;
+    padding: 10px 14px;
+    font-size: 14px;
+    white-space: nowrap;
+  }
 }
 
 </style>

@@ -12,7 +12,7 @@
         </div>
         <div class="practice" v-if="practice">
           <button type="button" class="practice-btn" @click="$emit('open-practice')">Практика</button>
-          <span class="practice-hint">Тест по теме, 2 попытки</span>
+          <span class="practice-hint">Тест по теме, {{ maxAttempts }} попытки</span>
         </div>
       </div>
       <div class="columns">
@@ -56,6 +56,7 @@
 
 <script>
 import ScatterText from './ScatterText.vue';
+import {MAX_ATTEMPTS} from '@/tests.js';
 
 export default {
   components: {
@@ -68,6 +69,7 @@ export default {
     return {
       inputSequence: '',
       viewAnswers: false,
+      maxAttempts: MAX_ATTEMPTS,
     };
   },
   mounted() {
@@ -163,12 +165,60 @@ export default {
   color: #999;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 900px) {
+  .content-area {
+    flex: none;
+    width: 100%;
+    min-width: 0;
+    padding: 4px 0 24px;
+  }
+
   .columns {
     flex-direction: column;
+    gap: 8px;
   }
+
   .description, .tasks {
     margin-right: 0;
+  }
+
+  .content-head {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .practice {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .practice-btn {
+    padding: 10px 20px;
+  }
+
+  .tasks ol {
+    padding-left: 18px;
+  }
+
+  /* в конспектах попадаются широкие таблицы и формулы — им отдельная прокрутка */
+  .content-area table {
+    display: block;
+    width: max-content;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .content-area pre {
+    overflow-x: auto;
+  }
+
+  .content-area img {
+    max-width: 100%;
+    height: auto;
   }
 }
 </style>

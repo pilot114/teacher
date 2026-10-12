@@ -13,12 +13,16 @@
         {{ task.question }}
       </p>
     </div>
-    <div>
+    <div class="answer-row">
       <input
           v-model="answer"
           type="text"
+          inputmode="decimal"
+          autocomplete="off"
           @keyup.enter="next"
       />
+      <!-- на числовой клавиатуре телефона нет Enter — нужна кнопка -->
+      <button type="button" @click="next">Ответить</button>
     </div>
   </div>
   <div v-if="mode==='END'">
@@ -36,6 +40,7 @@ import { generateTask } from '@/tasks';
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: 'Solver',
+  emits: ['start'],
   setup() {
     let task = ref(null)
     let answer = ref(null)
@@ -64,6 +69,7 @@ export default {
       this.points = 0;
       this.totalTaskCount = 0;
       this.successTaskCount = 0;
+      this.$emit('start');
 
       const id = setInterval(() => {
         this.timer--;
@@ -133,5 +139,34 @@ input[type="text"] {
 
 input[type="text"]:focus {
   border-color: #3498db;
+}
+
+.answer-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+@media (max-width: 900px) {
+  #status {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+  }
+
+  .answer-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  input[type="text"] {
+    width: 100%;
+    margin-right: 0;
+    font-size: 18px;
+  }
+
+  button {
+    width: 100%;
+  }
 }
 </style>

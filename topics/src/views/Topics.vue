@@ -29,6 +29,7 @@ import SidebarMenu from "@/components/SidebarMenu.vue";
 import ContentArea from "@/components/ContentArea.vue";
 import TopicTest from "@/views/TopicTest.vue";
 import {loadTestKeys, testKey} from "@/tests.js";
+import {trackTheory} from "@/history.js";
 import {
   defaultSubject,
   findSubject,
@@ -93,6 +94,11 @@ export default {
       this.loadTopics(subjectInGrade(grade, this.currentSubject.id));
     },
     selectTopic(content, title) {
+      // повторный клик по уже открытой теме в историю не пишем
+      if (title !== this.selectedTopic) {
+        trackTheory(this.selectedSubject, title);
+      }
+
       this.selectedContent = content;
       this.selectedTopic = title;
     },

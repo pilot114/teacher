@@ -1,0 +1,4 @@
+teacher.db
+teacher.db-wal
+teacher.db-shm
+*.db

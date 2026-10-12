@@ -1,5 +1,5 @@
 <template>
-  <button v-show="isStart" @click="isStart = false">
+  <button v-show="isStart" @click="start">
     Начать
   </button>
   <div v-show="!isStart" id="container">
@@ -15,6 +15,7 @@
     <div id="message">{{ message }}</div>
     <div id="stats">
       <h3>Статистика</h3>
+      <div class="stats-scroll">
       <table>
         <thead>
           <tr>
@@ -37,6 +38,7 @@
           </tr>
         </tbody>
       </table>
+      </div>
     </div>
   </div>
 </template>
@@ -44,6 +46,7 @@
 <script>
 export default {
   name: 'MultiplicationTrainer',
+  emits: ['start'],
   data() {
     return {
       a: null,
@@ -77,6 +80,10 @@ export default {
     },
   },
   methods: {
+    start() {
+      this.isStart = false;
+      this.$emit('start');
+    },
     generateQuestion() {
       const learnedExamples = Object.keys(this.stats).filter(
           key =>
@@ -242,5 +249,50 @@ th {
 
 .red {
   background-color: #ffc7ce;
+}
+
+@media (max-width: 900px) {
+  #container {
+    margin: 16px auto;
+  }
+
+  #question {
+    font-size: 28px;
+    margin-bottom: 16px;
+  }
+
+  /* поле и кнопка в одну строку не помещаются — ставим их столбиком */
+  #inputAnswer {
+    display: block;
+    width: 100%;
+    max-width: 240px;
+    margin: 0 auto;
+    font-size: 20px;
+  }
+
+  button {
+    margin: 12px 0 0;
+    width: 100%;
+    max-width: 240px;
+  }
+
+  #stats {
+    margin-top: 24px;
+  }
+
+  /* четыре колонки на 360px не влезают — таблице своя прокрутка */
+  .stats-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .stats-scroll table {
+    min-width: 340px;
+  }
+
+  th, td {
+    padding: 5px 6px;
+    font-size: 14px;
+  }
 }
 </style>
