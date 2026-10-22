@@ -30,12 +30,16 @@
 
 ## Команды
 
+Обслуживание — как в pretty-php: `npm run test`, `npm run check`, `npm run fix`.
+
+- `check` — eslint и prettier в math, topics, letters; gofmt и go vet в backend; ничего не меняет
+- `fix` — eslint --fix, prettier --write, gofmt -w
+- `test` — go test бэкенда
+
 Цели Makefile одинаковые во всех проектах `~/projects` (`make help` — список):
 
 - `make install` — зависимости всех частей
 - `make dev` — topics на :5173 (бэкенд: cd backend && DB_PATH=… go run .)
-- `make test` — go vet бэкенда
-- `make lint` — eslint в math и topics
 - `make build` — topics → docs/ (GitHub Pages), math, бэкенд
 - `make audit` — уязвимости
 - `make outdated` — устаревшие зависимости

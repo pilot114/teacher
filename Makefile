@@ -17,15 +17,6 @@ install: ## зависимости всех частей
 dev: ## topics на :5173 (бэкенд: cd backend && DB_PATH=… go run .)
 	cd topics && npm run dev
 
-.PHONY: test
-test: ## go vet бэкенда
-	cd backend && go vet ./...
-
-.PHONY: lint
-lint: ## eslint в math и topics
-	cd math && npm run lint
-	cd topics && npm run lint
-
 .PHONY: build
 build: ## topics → docs/ (GitHub Pages), math, бэкенд
 	cd topics && npm run build
