@@ -7,14 +7,14 @@ const media = window.matchMedia(MOBILE_QUERY);
 const isMobile = ref(media.matches);
 
 function update(event) {
-    isMobile.value = event.matches;
+  isMobile.value = event.matches;
 }
 
 // addEventListener у MediaQueryList появился только в Safari 14 — старым отдаём addListener
 if (media.addEventListener) {
-    media.addEventListener('change', update);
+  media.addEventListener('change', update);
 } else {
-    media.addListener(update);
+  media.addListener(update);
 }
 
 export { isMobile, MOBILE_QUERY };

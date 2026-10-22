@@ -2,30 +2,50 @@
   <div class="garden">
     <h1>Эффективность обучения</h1>
     <p class="lead">
-      Два ученика, 60 дней учёбы. Выберите каждому стратегию занятий и посмотрите, сколько знаний
-      у него останется и каких усилий это стоило. Таблица внизу объясняет, какие принципы обучения
-      сработали.
+      Два ученика, 60 дней учёбы. Выберите каждому стратегию занятий и посмотрите, сколько знаний у него останется и
+      каких усилий это стоило. Таблица внизу объясняет, какие принципы обучения сработали.
     </p>
 
     <details class="analogy">
       <summary>Почему знания нарисованы как растение на грядке</summary>
       <div class="analogy-body">
         <p>
-          Учёба очень похожа на полив. Растение — это знания ученика, вода — время занятий,
-          а влажность почвы — то, насколько материал свеж в памяти.
+          Учёба очень похожа на полив. Растение — это знания ученика, вода — время занятий, а влажность почвы — то,
+          насколько материал свеж в памяти.
         </p>
         <ul>
-          <li><b>Вода испаряется каждый день</b> — так же каждый день идёт забывание. Не поливать — растение засохнет, не повторять — знания потускнеют.</li>
-          <li><b>Почва впитывает воду не быстрее определённой скорости</b>, лишнее стекает по поверхности. За одно занятие тоже усваивается ограниченный объём, долгие марафоны проходят мимо.</li>
-          <li><b>Переливать вредно</b>: в заболоченной почве корни гниют. Перегрузка ведёт к выгоранию и губит даже выученное.</li>
-          <li><b>Корни растут вглубь, когда верхний слой подсох</b> — растение тянется за водой. Повторение, когда материал чуть подзабылся, укрепляет знания сильнее, чем когда всё свежо.</li>
-          <li><b>Глубокие корни держат больше воды и медленнее сохнут.</b> Прочные знания забываются медленнее, и повторять их можно всё реже.</li>
-          <li><b>Подвядшее растение быстро отходит после полива</b>, а погибшее не оживить. Подзабытое вспоминается легко, а брошенную учёбу приходится начинать заново.</li>
-          <li><b>Каждый поход к колодцу стоит сил</b>, даже ради стакана воды. Каждое занятие требует раскачки, поэтому слишком мелкие порции неэффективны.</li>
+          <li>
+            <b>Вода испаряется каждый день</b> — так же каждый день идёт забывание. Не поливать — растение засохнет, не
+            повторять — знания потускнеют.
+          </li>
+          <li>
+            <b>Почва впитывает воду не быстрее определённой скорости</b>, лишнее стекает по поверхности. За одно занятие
+            тоже усваивается ограниченный объём, долгие марафоны проходят мимо.
+          </li>
+          <li>
+            <b>Переливать вредно</b>: в заболоченной почве корни гниют. Перегрузка ведёт к выгоранию и губит даже
+            выученное.
+          </li>
+          <li>
+            <b>Корни растут вглубь, когда верхний слой подсох</b> — растение тянется за водой. Повторение, когда
+            материал чуть подзабылся, укрепляет знания сильнее, чем когда всё свежо.
+          </li>
+          <li>
+            <b>Глубокие корни держат больше воды и медленнее сохнут.</b> Прочные знания забываются медленнее, и
+            повторять их можно всё реже.
+          </li>
+          <li>
+            <b>Подвядшее растение быстро отходит после полива</b>, а погибшее не оживить. Подзабытое вспоминается легко,
+            а брошенную учёбу приходится начинать заново.
+          </li>
+          <li>
+            <b>Каждый поход к колодцу стоит сил</b>, даже ради стакана воды. Каждое занятие требует раскачки, поэтому
+            слишком мелкие порции неэффективны.
+          </li>
         </ul>
         <p>
-          Поэтому на рисунке растение и почва в разрезе: зелень — объём знаний, корни — их прочность,
-          цвет почвы — насколько материал свеж в памяти.
+          Поэтому на рисунке растение и почва в разрезе: зелень — объём знаний, корни — их прочность, цвет почвы —
+          насколько материал свеж в памяти.
         </p>
       </div>
     </details>
@@ -33,7 +53,7 @@
     <div class="bar">
       <button type="button" class="play" @click="toggle">{{ timer ? 'Пауза' : 'Запустить' }}</button>
       <span class="day">День {{ day }}</span>
-      <input type="range" min="0" :max="DAYS" :value="day" aria-label="День" @input="seek">
+      <input type="range" min="0" :max="DAYS" :value="day" aria-label="День" @input="seek" />
     </div>
 
     <div class="beds">
@@ -54,35 +74,64 @@
         <details>
           <summary>Настроить вручную</summary>
           <div class="grid">
-            <label>Когда заниматься
+            <label
+              >Когда заниматься
               <select :value="side.cfg.sched" @change="setField(i, 'sched', $event)">
                 <option value="interval">Каждые N дней</option>
                 <option value="weekends">По выходным</option>
                 <option value="threshold">Когда материал начал забываться</option>
               </select>
             </label>
-            <label v-if="side.cfg.sched === 'interval'">Каждые, дней
-              <input type="number" min="1" max="14" :value="side.cfg.every" @change="setField(i, 'every', $event)">
+            <label v-if="side.cfg.sched === 'interval'"
+              >Каждые, дней
+              <input type="number" min="1" max="14" :value="side.cfg.every" @change="setField(i, 'every', $event)" />
             </label>
-            <label v-if="side.cfg.sched === 'threshold'">Если в памяти меньше, %
-              <input type="number" min="10" max="90" step="5" :value="side.cfg.thr" @change="setField(i, 'thr', $event)">
+            <label v-if="side.cfg.sched === 'threshold'"
+              >Если в памяти меньше, %
+              <input
+                type="number"
+                min="10"
+                max="90"
+                step="5"
+                :value="side.cfg.thr"
+                @change="setField(i, 'thr', $event)"
+              />
             </label>
-            <label>Начать с дня
-              <input type="number" min="1" max="60" :value="side.cfg.start" @change="setField(i, 'start', $event)">
+            <label
+              >Начать с дня
+              <input type="number" min="1" max="60" :value="side.cfg.start" @change="setField(i, 'start', $event)" />
             </label>
-            <label>Сколько заниматься
+            <label
+              >Сколько заниматься
               <select :value="side.cfg.amount" @change="setField(i, 'amount', $event)">
                 <option value="fill">Пока не освежу материал</option>
                 <option value="fixed">Фиксированное время</option>
               </select>
             </label>
-            <label v-if="side.cfg.amount === 'fixed'">Минут
-              <input type="number" :min="UNIT_MINUTES" :max="200 * UNIT_MINUTES" :step="UNIT_MINUTES" :value="side.cfg.liters * UNIT_MINUTES" @change="setField(i, 'liters', $event, UNIT_MINUTES)">
+            <label v-if="side.cfg.amount === 'fixed'"
+              >Минут
+              <input
+                type="number"
+                :min="UNIT_MINUTES"
+                :max="200 * UNIT_MINUTES"
+                :step="UNIT_MINUTES"
+                :value="side.cfg.liters * UNIT_MINUTES"
+                @change="setField(i, 'liters', $event, UNIT_MINUTES)"
+              />
             </label>
-            <label v-if="side.cfg.amount === 'fill'">Освежить до, %
-              <input type="number" min="30" max="100" step="5" :value="side.cfg.target" @change="setField(i, 'target', $event)">
+            <label v-if="side.cfg.amount === 'fill'"
+              >Освежить до, %
+              <input
+                type="number"
+                min="30"
+                max="100"
+                step="5"
+                :value="side.cfg.target"
+                @change="setField(i, 'target', $event)"
+              />
             </label>
-            <label>Формат занятий
+            <label
+              >Формат занятий
               <select :value="side.cfg.tool" @change="setField(i, 'tool', $event)">
                 <option v-for="(t, key) in TOOLS" :key="key" :value="key">{{ t.name }}</option>
               </select>
@@ -109,7 +158,7 @@
           </li>
           <template v-else>
             <li v-for="([kind, text], k) in runs[i][day].ev" :key="k">
-              <span class="dot" :style="{background: dotColor[kind]}"></span>{{ text }}
+              <span class="dot" :style="{ background: dotColor[kind] }"></span>{{ text }}
             </li>
           </template>
         </ul>
@@ -119,7 +168,10 @@
     <section class="charts">
       <div class="chart" v-for="chart in charts" :key="chart.title">
         <h3>{{ chart.title }}</h3>
-        <div class="legend"><span class="la">{{ LETTERS[0] }}</span><span class="lb">{{ LETTERS[1] }}</span></div>
+        <div class="legend">
+          <span class="la">{{ LETTERS[0] }}</span
+          ><span class="lb">{{ LETTERS[1] }}</span>
+        </div>
         <div v-html="chart.svg"></div>
         <p>{{ chart.hint }}</p>
       </div>
@@ -128,21 +180,28 @@
     <section class="principles">
       <h3>Что происходит и как это связано с обучением</h3>
       <p class="hint">
-        Числа справа показывают, сколько дней принцип проявлялся у каждого ученика к текущему дню.
-        Строки, которые сработали сегодня, подсвечены.
+        Числа справа показывают, сколько дней принцип проявлялся у каждого ученика к текущему дню. Строки, которые
+        сработали сегодня, подсвечены.
       </p>
       <div class="table-scroll">
         <table>
           <thead>
-          <tr><th>Принцип</th><th>Что это значит</th><th>{{ LETTERS[0] }}</th><th>{{ LETTERS[1] }}</th></tr>
+            <tr>
+              <th>Принцип</th>
+              <th>Что это значит</th>
+              <th>{{ LETTERS[0] }}</th>
+              <th>{{ LETTERS[1] }}</th>
+            </tr>
           </thead>
           <tbody>
-          <tr v-for="p in principleRows" :key="p.id" :class="{now: p.today}">
-            <td><span class="pname"><span class="dot" :style="{background: p.color}"></span>{{ p.name }}</span></td>
-            <td>{{ p.learn }}</td>
-            <td class="n">{{ p.a }}</td>
-            <td class="n">{{ p.b }}</td>
-          </tr>
+            <tr v-for="p in principleRows" :key="p.id" :class="{ now: p.today }">
+              <td>
+                <span class="pname"><span class="dot" :style="{ background: p.color }"></span>{{ p.name }}</span>
+              </td>
+              <td>{{ p.learn }}</td>
+              <td class="n">{{ p.a }}</td>
+              <td class="n">{{ p.b }}</td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -151,8 +210,8 @@
 </template>
 
 <script>
-import {DAYS, PRESETS, PRINCIPLES, TOOLS, UNIT_MINUTES, fmt, fmtTime, simulate} from '@/garden.js';
-import {lineChart, makeBed, sceneSVG, stripSVG} from '@/gardenScene.js';
+import { DAYS, PRESETS, PRINCIPLES, TOOLS, UNIT_MINUTES, fmt, fmtTime, simulate } from '@/garden.js';
+import { lineChart, makeBed, sceneSVG, stripSVG } from '@/gardenScene.js';
 
 const COLORS = ['#1f8a7a', '#8e4a8c'];
 
@@ -171,10 +230,10 @@ export default {
       day: 0,
       timer: null,
       sides: [
-        {preset: 'gardener', cfg: {...PRESETS.gardener.cfg}},
-        {preset: 'barrel', cfg: {...PRESETS.barrel.cfg}},
+        { preset: 'gardener', cfg: { ...PRESETS.gardener.cfg } },
+        { preset: 'barrel', cfg: { ...PRESETS.barrel.cfg } },
       ],
-      dotColor: {...Object.fromEntries(PRINCIPLES.map((p) => [p.id, p.color])), water: '#2f7fbf'},
+      dotColor: { ...Object.fromEntries(PRINCIPLES.map((p) => [p.id, p.color])), water: '#2f7fbf' },
     };
   },
   computed: {
@@ -189,22 +248,43 @@ export default {
     },
     charts() {
       const [a, b] = this.runs;
-      const series = (pick) => [{v: a.map(pick), c: COLORS[0]}, {v: b.map(pick), c: COLORS[1]}];
+      const series = (pick) => [
+        { v: a.map(pick), c: COLORS[0] },
+        { v: b.map(pick), c: COLORS[1] },
+      ];
       const effortMax = Math.max(20, Math.ceil(Math.max(a[DAYS].cum.effort, b[DAYS].cum.effort) / 20) * 20);
       return [
         {
           title: 'Насколько материал свеж в памяти',
-          svg: lineChart(series((o) => o.m * 100), 100, [30, 88], this.day, '%'),
+          svg: lineChart(
+            series((o) => o.m * 100),
+            100,
+            [30, 88],
+            this.day,
+            '%',
+          ),
           hint: 'Зелёная полоса: материал в рабочем состоянии. Ниже — забывается, выше — перегрузка.',
         },
         {
           title: 'Прочность знаний',
-          svg: lineChart(series((o) => o.D), 60, null, this.day, ''),
+          svg: lineChart(
+            series((o) => o.D),
+            60,
+            null,
+            this.day,
+            '',
+          ),
           hint: 'Прочные знания вмещают больше и забываются медленнее.',
         },
         {
           title: 'Усилия нарастающим итогом',
-          svg: lineChart(series((o) => o.cum.effort), effortMax, null, this.day, ''),
+          svg: lineChart(
+            series((o) => o.cum.effort),
+            effortMax,
+            null,
+            this.day,
+            '',
+          ),
           hint: 'Каждое занятие стоит 1 — сесть и включиться, плюс само время, а долгие занятия утомляют сильнее.',
         },
       ];
@@ -214,7 +294,7 @@ export default {
       const d = this.day;
       const count = (run, id) => run.slice(1, d + 1).filter((o) => o.ev.some((e) => e[0] === id)).length;
       const today = new Set([...a[d].ev, ...b[d].ev].map((e) => e[0]));
-      return PRINCIPLES.map((p) => ({...p, a: count(a, p.id), b: count(b, p.id), today: today.has(p.id)}));
+      return PRINCIPLES.map((p) => ({ ...p, a: count(a, p.id), b: count(b, p.id), today: today.has(p.id) }));
     },
   },
   beforeUnmount() {
@@ -223,15 +303,16 @@ export default {
   methods: {
     stateOf(i) {
       const o = this.runs[i][this.day];
-      if (o.dead) return {text: 'бросил учёбу', tone: 'bad'};
-      if (o.rot >= 3) return {text: 'выгорает', tone: 'bad'};
-      if (o.H < 50) return {text: 'теряет интерес', tone: 'warn'};
-      if (o.m < 0.3) return {text: 'забывает', tone: 'warn'};
-      return {text: 'в порядке', tone: 'ok'};
+      if (o.dead) return { text: 'бросил учёбу', tone: 'bad' };
+      if (o.rot >= 3) return { text: 'выгорает', tone: 'bad' };
+      if (o.H < 50) return { text: 'теряет интерес', tone: 'warn' };
+      if (o.m < 0.3) return { text: 'забывает', tone: 'warn' };
+      return { text: 'в порядке', tone: 'ok' };
     },
     metricsOf(i) {
-      const o = this.runs[i][this.day], c = o.cum;
-      const eff = c.poured ? Math.round(100 * c.root / c.poured) : 0;
+      const o = this.runs[i][this.day],
+        c = o.cum;
+      const eff = c.poured ? Math.round((100 * c.root) / c.poured) : 0;
       return [
         ['Объём знаний', o.dead ? 'учёба брошена' : `${Math.round(o.B)} из 100`],
         ['Прочность', fmt(o.D)],
@@ -245,7 +326,7 @@ export default {
     applyPreset(i, key) {
       this.sides[i].preset = key;
       if (PRESETS[key].cfg) {
-        this.sides[i].cfg = {...PRESETS[key].cfg};
+        this.sides[i].cfg = { ...PRESETS[key].cfg };
       }
     },
     // scale — во сколько раз число в поле больше значения модели (минуты против её единиц)
@@ -333,7 +414,7 @@ h1 {
   font-weight: bold;
 }
 
-.bar input[type="range"] {
+.bar input[type='range'] {
   flex: 1 1 240px;
   accent-color: #1a63c4;
 }
@@ -408,7 +489,7 @@ h1 {
 }
 
 select,
-input[type="number"] {
+input[type='number'] {
   display: block;
   width: 100%;
   margin-top: 2px;
@@ -579,7 +660,7 @@ summary {
 }
 
 .legend span::before {
-  content: "";
+  content: '';
   display: inline-block;
   width: 14px;
   height: 3px;

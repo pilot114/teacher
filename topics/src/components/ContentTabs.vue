@@ -3,10 +3,10 @@
   <div class="tabs-container">
     <div class="tabs-header">
       <button
-          v-for="tab in tabs"
-          :key="tab.name"
-          :class="['tab-button', { active: activeTabName === tab.name }]"
-          @click="selectTab(tab.name)"
+        v-for="tab in tabs"
+        :key="tab.name"
+        :class="['tab-button', { active: activeTabName === tab.name }]"
+        @click="selectTab(tab.name)"
       >
         {{ tab.label }}
       </button>
@@ -52,13 +52,13 @@ export default {
 
     // Обновляем activeTabName при изменении пропса activeTab
     watch(
-        () => props.activeTab,
-        (newVal) => {
-          if (newVal && newVal !== activeTabName.value) {
-            activeTabName.value = newVal;
-            emit('tab-changed', newVal);
-          }
+      () => props.activeTab,
+      (newVal) => {
+        if (newVal && newVal !== activeTabName.value) {
+          activeTabName.value = newVal;
+          emit('tab-changed', newVal);
         }
+      },
     );
 
     provide('registerTab', registerTab);
@@ -133,5 +133,4 @@ export default {
     white-space: nowrap;
   }
 }
-
 </style>

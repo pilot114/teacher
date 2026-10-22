@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <LoginForm v-if="!user" @signed-in="signedIn"/>
+    <LoginForm v-if="!user" @signed-in="signedIn" />
     <template v-else>
       <header-menu
         :selected-section="selectedSection"
@@ -11,16 +11,16 @@
         @sign-out="signOut"
       ></header-menu>
       <div class="container" v-if="ready">
-        <Topics  v-if="selectedSection === 'Учебники'" :target="topicsTarget"/>
-        <ProgressView v-if="selectedSection === 'Прогресс'" @open-theory="openTheory"/>
+        <Topics v-if="selectedSection === 'Учебники'" :target="topicsTarget" />
+        <ProgressView v-if="selectedSection === 'Прогресс'" @open-theory="openTheory" />
         <template v-if="selectedSection === 'Практика'">
-          <MultiplicationTrainer v-if="selectedPractice === 'Таблица умножения'" @start="startPractice"/>
-          <Solver v-if="selectedPractice === 'Задачи'" @start="startPractice"/>
-          <CodeExecutor v-if="selectedPractice === 'Программирование'" @start="startPractice"/>
-          <PoetryList v-if="selectedPractice === 'Стихи'" @start="startPractice"/>
-          <GardenBeds v-if="selectedPractice === 'Эффективность обучения'"/>
+          <MultiplicationTrainer v-if="selectedPractice === 'Таблица умножения'" @start="startPractice" />
+          <Solver v-if="selectedPractice === 'Задачи'" @start="startPractice" />
+          <CodeExecutor v-if="selectedPractice === 'Программирование'" @start="startPractice" />
+          <PoetryList v-if="selectedPractice === 'Стихи'" @start="startPractice" />
+          <GardenBeds v-if="selectedPractice === 'Эффективность обучения'" />
         </template>
-        <StudentHistory v-if="selectedSection === 'История'" :user="user" @open-theory="openTheory"/>
+        <StudentHistory v-if="selectedSection === 'История'" :user="user" @open-theory="openTheory" />
       </div>
       <p class="boot" v-else-if="loading">Загружаю прогресс…</p>
       <div class="boot" v-else>
@@ -36,23 +36,18 @@ import 'modern-normalize';
 import HeaderMenu from './components/HeaderMenu.vue';
 import LoginForm from './components/LoginForm.vue';
 
-import Solver from "@/views/Solver.vue";
-import MultiplicationTrainer from "@/views/MultiplicationTrainer.vue";
-import Topics from "@/views/Topics.vue";
-import PoetryList from "@/views/PoetryList.vue";
-import CodeExecutor from "@/views/CodeExecutor.vue";
-import ProgressView from "@/views/Progress.vue";
-import StudentHistory from "@/views/StudentHistory.vue";
-import GardenBeds from "@/views/GardenBeds.vue";
-import {
-  rememberPractice,
-  rememberSection,
-  restorePractice,
-  restoreSection,
-} from "@/sections.js";
-import {currentUser, logout} from "@/auth.js";
-import {endSession, startSession} from "@/progress.js";
-import {trackPractice} from "@/history.js";
+import Solver from '@/views/Solver.vue';
+import MultiplicationTrainer from '@/views/MultiplicationTrainer.vue';
+import Topics from '@/views/Topics.vue';
+import PoetryList from '@/views/PoetryList.vue';
+import CodeExecutor from '@/views/CodeExecutor.vue';
+import ProgressView from '@/views/Progress.vue';
+import StudentHistory from '@/views/StudentHistory.vue';
+import GardenBeds from '@/views/GardenBeds.vue';
+import { rememberPractice, rememberSection, restorePractice, restoreSection } from '@/sections.js';
+import { currentUser, logout } from '@/auth.js';
+import { endSession, startSession } from '@/progress.js';
+import { trackPractice } from '@/history.js';
 
 export default {
   name: 'App',
@@ -145,7 +140,7 @@ export default {
     openTheory(target) {
       this.topicsTarget = target;
       this.selectedSection = 'Учебники';
-    }
+    },
   },
 };
 </script>
@@ -232,9 +227,9 @@ pre {
   /* пальцем в 30-пиксельную кнопку не попасть */
   button,
   select,
-  input[type="text"],
-  input[type="number"],
-  input[type="password"] {
+  input[type='text'],
+  input[type='number'],
+  input[type='password'] {
     min-height: 40px;
   }
 

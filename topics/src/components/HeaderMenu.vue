@@ -2,24 +2,24 @@
   <div class="header">
     <nav class="main-menu">
       <button
-          type="button"
-          class="burger"
-          :class="{open: menuOpen}"
-          :aria-expanded="String(menuOpen)"
-          aria-label="Меню разделов"
-          @click="menuOpen = !menuOpen"
+        type="button"
+        class="burger"
+        :class="{ open: menuOpen }"
+        :aria-expanded="String(menuOpen)"
+        aria-label="Меню разделов"
+        @click="menuOpen = !menuOpen"
       >
         <span></span><span></span><span></span>
       </button>
       <span class="current-section">{{ selectedSection }}</span>
 
-      <div class="menu-panel" :class="{open: menuOpen}">
+      <div class="menu-panel" :class="{ open: menuOpen }">
         <ul>
           <li
-              v-for="section in sections"
-              :key="section"
-              :class="{ active: selectedSection === section }"
-              @click="selectSection(section)"
+            v-for="section in sections"
+            :key="section"
+            :class="{ active: selectedSection === section }"
+            @click="selectSection(section)"
           >
             {{ section }}
           </li>
@@ -35,10 +35,10 @@
     <nav class="sub-menu" v-if="selectedSection === 'Практика'" ref="subMenu">
       <ul>
         <li
-            v-for="section in practiceSections"
-            :key="section"
-            :class="{ active: selectedPractice === section }"
-            @click="selectPractice(section)"
+          v-for="section in practiceSections"
+          :key="section"
+          :class="{ active: selectedPractice === section }"
+          @click="selectPractice(section)"
         >
           {{ section }}
         </li>
@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import {practiceSections, sections} from "@/sections.js";
+import { practiceSections, sections } from '@/sections.js';
 
 export default {
   name: 'HeaderMenu',
@@ -77,7 +77,7 @@ export default {
     revealPractice() {
       const active = this.$refs.subMenu?.querySelector('li.active');
       if (active) {
-        active.scrollIntoView({block: 'nearest', inline: 'center'});
+        active.scrollIntoView({ block: 'nearest', inline: 'center' });
       }
     },
     selectSection(section) {
@@ -87,7 +87,7 @@ export default {
     selectPractice(section) {
       this.$emit('update:selectedPractice', section);
     },
-  }
+  },
 };
 </script>
 
@@ -208,7 +208,9 @@ export default {
     height: 2px;
     border-radius: 2px;
     background-color: #ffffff;
-    transition: transform 0.2s, opacity 0.2s;
+    transition:
+      transform 0.2s,
+      opacity 0.2s;
   }
 
   .burger.open span:nth-child(1) {

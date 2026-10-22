@@ -1,8 +1,8 @@
 const sources = {
-    php: {
-        'hello_world': `<?php
+  php: {
+    hello_world: `<?php
 echo "hello world!";`,
-        'calculator': `<?php
+    calculator: `<?php
 function calculator($a, $b, $operation) {
     switch ($operation) {
         case '+': return $a + $b;
@@ -14,13 +14,13 @@ function calculator($a, $b, $operation) {
 }
 
 echo calculator(10, 5, '+');`,
-        'is_even': `<?php
+    is_even: `<?php
 function isEven($number) {
     return $number % 2 == 0 ? "Чётное" : "Нечётное";
 }
 
 echo isEven(7);`,
-        'password': `<?php
+    password: `<?php
 function generatePassword($length = 8) {
     $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%';
     $password = '';
@@ -31,7 +31,7 @@ function generatePassword($length = 8) {
 }
 
 echo generatePassword(12);`,
-        'countdown': `<?php
+    countdown: `<?php
 function daysUntil($date) {
     $target = strtotime($date);
     $today = strtotime(date('Y-m-d'));
@@ -39,10 +39,10 @@ function daysUntil($date) {
 }
 
 echo daysUntil('2024-12-31');`,
-    },
-    python: {
-        'hello_world': 'print("Hello, World!")',
-        'calculator': `def calculator(a, b, operation):
+  },
+  python: {
+    hello_world: 'print("Hello, World!")',
+    calculator: `def calculator(a, b, operation):
     if operation == '+':
         return a + b
     elif operation == '-':
@@ -55,11 +55,11 @@ echo daysUntil('2024-12-31');`,
         return 'Неизвестная операция'
 
 print(calculator(10, 5, '+'))`,
-        'is_even': `def is_even(number):
+    is_even: `def is_even(number):
     return "Чётное" if number % 2 == 0 else "Нечётное"
 
 print(is_even(7))`,
-        'password': `import random
+    password: `import random
 import string
 
 def generate_password(length=8):
@@ -67,7 +67,7 @@ def generate_password(length=8):
     return ''.join(random.choice(chars) for _ in range(length))
 
 print(generate_password(12))`,
-        'countdown': `from datetime import datetime
+    countdown: `from datetime import datetime
 
 def days_until(target_date):
     target = datetime.strptime(target_date, '%Y-%m-%d')
@@ -75,14 +75,14 @@ def days_until(target_date):
     return (target - today).days
 
 print(days_until('2024-12-31'))`,
-    },
-    go: {
-        'hello_world': `package main
+  },
+  go: {
+    hello_world: `package main
 import "fmt"
 func main() {
     fmt.Println("hello world")
 }`,
-        'calculator': `package main
+    calculator: `package main
 
 import (
 \t"fmt"
@@ -109,7 +109,7 @@ func calculator(a float64, b float64, operation string) string {
 func main() {
 \tfmt.Println(calculator(10, 5, "+")) // Пример: 10 + 5 = 15
 }`,
-        'is_even': `package main
+    is_even: `package main
 
 import (
 \t"fmt"
@@ -125,7 +125,7 @@ func isEven(number int) string {
 func main() {
 \tfmt.Println(isEven(7)) // Пример: "Нечётное"
 }`,
-        'password': `package main
+    password: `package main
 
 import (
 \t"crypto/rand"
@@ -146,7 +146,7 @@ func generatePassword(length int) string {
 func main() {
 \tfmt.Println(generatePassword(12)) // Пример: случайный пароль длиной 12 символов
 }`,
-        'countdown': `package main
+    countdown: `package main
 
 import (
 \t"fmt"
@@ -162,7 +162,7 @@ func daysUntil(targetDate string) int {
 func main() {
 \tfmt.Println(daysUntil("2024-12-31")) // Пример: количество дней до 31 декабря 2024
 }`,
-        'check_io': `package main
+    check_io: `package main
 
 import (
 \t"os"
@@ -196,7 +196,7 @@ func main() {
 }
 
 `,
-    },
-}
+  },
+};
 
 export { sources };

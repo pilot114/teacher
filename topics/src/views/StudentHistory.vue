@@ -3,12 +3,14 @@
     <div class="history-head">
       <h1>История</h1>
       <p class="subtitle">
-        Открытые темы, начатая практика и попытки тестов<template v-if="user"> · {{ user.name || user.login }}</template>
+        Открытые темы, начатая практика и попытки тестов<template v-if="user">
+          · {{ user.name || user.login }}</template
+        >
       </p>
 
       <div class="filters">
-        <label v-for="option in filters" :key="option.value" :class="{active: filter === option.value}">
-          <input type="radio" :value="option.value" v-model="filter">
+        <label v-for="option in filters" :key="option.value" :class="{ active: filter === option.value }">
+          <input type="radio" :value="option.value" v-model="filter" />
           <span>{{ option.label }}</span>
         </label>
       </div>
@@ -18,26 +20,28 @@
       <section class="day" v-for="day in days" :key="day.key">
         <h2 class="day-title">
           {{ day.title }}
-          <span class="day-work" title="От первого до последнего события; паузы дольше получаса — за 15 минут">{{ day.work }}</span>
+          <span class="day-work" title="От первого до последнего события; паузы дольше получаса — за 15 минут">{{
+            day.work
+          }}</span>
         </h2>
 
         <p class="day-empty" v-if="!day.entries.length">Ничего по этому фильтру</p>
         <ol class="feed" v-else>
           <li
-              v-for="entry in day.entries"
-              :key="entry.id"
-              class="entry"
-              :class="['kind-' + entry.kind, entry.status ? 'result-' + entry.status : '']"
+            v-for="entry in day.entries"
+            :key="entry.id"
+            class="entry"
+            :class="['kind-' + entry.kind, entry.status ? 'result-' + entry.status : '']"
           >
             <span class="time">{{ entry.time }}</span>
             <span class="mark"></span>
 
             <component
-                :is="entry.action ? 'button' : 'div'"
-                :type="entry.action ? 'button' : null"
-                class="entry-body"
-                :class="{clickable: entry.action}"
-                @click="entry.action && entry.action()"
+              :is="entry.action ? 'button' : 'div'"
+              :type="entry.action ? 'button' : null"
+              class="entry-body"
+              :class="{ clickable: entry.action }"
+              @click="entry.action && entry.action()"
             >
               <span class="entry-main">
                 <span class="entry-kind">
@@ -61,25 +65,23 @@
     <p class="state" v-else-if="loading">Загружаю историю…</p>
     <p class="state" v-else-if="!items.length">История пока пуста: откройте тему в «Учебниках» или начните практику.</p>
 
-    <button v-if="hasMore && !loading && !error" type="button" class="btn more" @click="loadMore">
-      Показать ещё
-    </button>
+    <button v-if="hasMore && !loading && !error" type="button" class="btn more" @click="loadMore">Показать ещё</button>
 
     <TestAttempts
-        v-if="review"
-        :target="review.target"
-        :initial="review.number"
-        :subject-label="subjectLabel(review.target.subject)"
-        @close="review = null"
-        @open-theory="openTheory"
+      v-if="review"
+      :target="review.target"
+      :initial="review.number"
+      :subject-label="subjectLabel(review.target.subject)"
+      @close="review = null"
+      @open-theory="openTheory"
     />
   </div>
 </template>
 
 <script>
 import TestAttempts from '@/views/TestAttempts.vue';
-import {testSummary} from '@/tests.js';
-import {findSubject} from '@/subjects.js';
+import { testSummary } from '@/tests.js';
+import { findSubject } from '@/subjects.js';
 import {
   attemptLabels,
   attemptStatus,
@@ -99,7 +101,7 @@ const DAYS_STEP = 3;
 
 export default {
   name: 'StudentHistory',
-  components: {TestAttempts},
+  components: { TestAttempts },
   props: ['user'],
   emits: ['open-theory'],
   data() {
@@ -133,10 +135,10 @@ export default {
         const key = dayKey(date);
 
         if (!days.length || days[days.length - 1].key !== key) {
-          days.push({key: key, date: date, items: []});
+          days.push({ key: key, date: date, items: [] });
         }
 
-        days[days.length - 1].items.push({item, date});
+        days[days.length - 1].items.push({ item, date });
       }
 
       return days;
@@ -150,8 +152,8 @@ export default {
         title: formatDay(day.date, today),
         work: formatWork(workSeconds(day.items.map((entry) => entry.date))),
         entries: day.items
-            .filter(({item}) => !this.filterTypes.length || this.filterTypes.includes(item.type))
-            .map(({item, date}) => this.describe(item, date)),
+          .filter(({ item }) => !this.filterTypes.length || this.filterTypes.includes(item.type))
+          .map(({ item, date }) => this.describe(item, date)),
       }));
     },
     // ещё есть дни: загруженные, но не показанные, или не загруженные вовсе
@@ -199,7 +201,7 @@ export default {
       }
     },
     async fetchPage(before, request) {
-      const payload = await loadHistory({before: before});
+      const payload = await loadHistory({ before: before });
       if (request !== this.request) {
         return;
       }
@@ -215,7 +217,7 @@ export default {
           continue;
         }
 
-        const {subject, topic} = splitTarget(item.target);
+        const { subject, topic } = splitTarget(item.target);
         this.tests[item.target] = null;
         this.tests[item.target] = await testSummary(subject, topic).catch(() => null);
       }
@@ -228,13 +230,13 @@ export default {
     },
     // строка ленты: что показать и что делать по клику
     describe(item, date) {
-      const entry = {id: item.id, kind: item.type, time: formatTime(date)};
+      const entry = { id: item.id, kind: item.type, time: formatTime(date) };
 
       if (item.type === 'practice') {
-        return {...entry, label: 'Практика', title: item.target};
+        return { ...entry, label: 'Практика', title: item.target };
       }
 
-      const {subject, topic} = splitTarget(item.target);
+      const { subject, topic } = splitTarget(item.target);
       const common = {
         ...entry,
         subject: this.subjectLabel(subject),
@@ -243,11 +245,11 @@ export default {
       };
 
       if (item.type === 'theory') {
-        return {...common, label: 'Теория', action: () => this.openTheory({subject, topic})};
+        return { ...common, label: 'Теория', action: () => this.openTheory({ subject, topic }) };
       }
 
       if (item.type === 'test') {
-        return {...common, label: 'Открыт тест', action: () => this.openTest(subject, topic)};
+        return { ...common, label: 'Открыт тест', action: () => this.openTest(subject, topic) };
       }
 
       const attempt = item.attempt ?? {};
@@ -266,7 +268,7 @@ export default {
       };
     },
     openTest(subject, topic, number = null) {
-      this.review = {target: {subject, topic}, number: number};
+      this.review = { target: { subject, topic }, number: number };
     },
     openTheory(target) {
       this.review = null;

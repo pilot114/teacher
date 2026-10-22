@@ -1,0 +1,10 @@
+{
+  "src/wasm/wasm_exec.js": {
+    "no-redeclare": {
+      "count": 1
+    },
+    "no-useless-assignment": {
+      "count": 1
+    }
+  }
+}

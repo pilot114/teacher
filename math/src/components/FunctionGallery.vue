@@ -39,12 +39,12 @@ export default {
   props: {
     isOpen: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   data() {
     return {
-      examples: functionExamples
+      examples: functionExamples,
     };
   },
   methods: {
@@ -54,8 +54,8 @@ export default {
     selectExample(example) {
       this.$emit('select', example);
       this.closeGallery();
-    }
-  }
+    },
+  },
 };
 </script>
 

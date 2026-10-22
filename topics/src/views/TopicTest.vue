@@ -1,76 +1,61 @@
 <template>
   <!-- оверлей выносим из #app: саму страницу под тестом размываем и отключаем целиком -->
   <Teleport to="body">
-  <div
+    <div
       class="test-overlay"
-      :class="{guarded: answering}"
+      :class="{ guarded: answering }"
       ref="overlay"
       @click.self="close"
       @copy="guardClipboard"
       @cut="guardClipboard"
       @contextmenu="guardClipboard"
       @dragstart="guardClipboard"
-  >
-    <div class="test-card" v-if="test" ref="card" tabindex="-1">
-      <button class="close" type="button" aria-label="Закрыть" @click="close">&times;</button>
+    >
+      <div class="test-card" v-if="test" ref="card" tabindex="-1">
+        <button class="close" type="button" aria-label="Закрыть" @click="close">&times;</button>
 
-      <p class="crumbs">{{ subjectLabel }} · практика</p>
-      <h1>{{ test.title }}</h1>
-      <p class="title-ru" v-if="test.titleRu">{{ test.titleRu }}</p>
+        <p class="crumbs">{{ subjectLabel }} · практика</p>
+        <h1>{{ test.title }}</h1>
+        <p class="title-ru" v-if="test.titleRu">{{ test.titleRu }}</p>
 
-      <p class="rules">
-        {{ test.count }} вопрос(ов) · для зачёта нужно {{ pass }} верных ·
-        <template v-if="stage === 'answering'">попытка {{ number }} из {{ maxAttempts }}</template>
-        <template v-else>использовано попыток: {{ record.attempts }} из {{ maxAttempts }}</template>
-        <span class="strict" v-if="answering || (stage === 'ready' && left)">
-          Тест идёт в полноэкранном режиме. До проверки нельзя выходить из него (в том числе клавишей Esc),
-          закрывать тест, переходить к теории, перезагружать страницу, переключаться на другую вкладку,
-          окно или программу, менять размер окна или масштаб, подключать второй монитор — всё это засчитывается
-          как проваленная попытка. Копировать вопросы и вставлять ответы нельзя.
-        </span>
-      </p>
+        <p class="rules">
+          {{ test.count }} вопрос(ов) · для зачёта нужно {{ pass }} верных ·
+          <template v-if="stage === 'answering'">попытка {{ number }} из {{ maxAttempts }}</template>
+          <template v-else>использовано попыток: {{ record.attempts }} из {{ maxAttempts }}</template>
+          <span class="strict" v-if="answering || (stage === 'ready' && left)">
+            Тест идёт в полноэкранном режиме. До проверки нельзя выходить из него (в том числе клавишей Esc), закрывать
+            тест, переходить к теории, перезагружать страницу, переключаться на другую вкладку, окно или программу,
+            менять размер окна или масштаб, подключать второй монитор — всё это засчитывается как проваленная попытка.
+            Копировать вопросы и вставлять ответы нельзя.
+          </span>
+        </p>
 
-      <div class="start" v-if="stage === 'ready' && left">
-        <p>Вопросы появятся после нажатия «Начать попытку» — с этого момента попытка засчитана.</p>
-        <p class="start-error" v-if="startError" role="alert">{{ startError }}</p>
-      </div>
+        <div class="start" v-if="stage === 'ready' && left">
+          <p>Вопросы появятся после нажатия «Начать попытку» — с этого момента попытка засчитана.</p>
+          <p class="start-error" v-if="startError" role="alert">{{ startError }}</p>
+        </div>
 
-      <ol class="questions" v-else>
-        <li
-            v-for="(question, index) in test.questions"
-            :key="index"
-            :class="stage === 'result' ? marks[index] : ''"
-        >
-          <div class="ask" v-html="question.text"></div>
+        <ol class="questions" v-else>
+          <li v-for="(question, index) in test.questions" :key="index" :class="stage === 'result' ? marks[index] : ''">
+            <div class="ask" v-html="question.text"></div>
 
-          <div class="answer" v-if="question.type === 'choice'">
-            <label v-for="(option, oi) in question.options" :key="oi">
+            <div class="answer" v-if="question.type === 'choice'">
+              <label v-for="(option, oi) in question.options" :key="oi">
+                <input type="radio" :name="'q' + index" :value="oi" :disabled="locked" v-model="answers[index]" />
+                <span v-html="option"></span>
+              </label>
+            </div>
+
+            <div class="answer" v-else-if="question.type === 'multi'">
+              <label v-for="(option, oi) in question.options" :key="oi">
+                <input type="checkbox" :value="oi" :disabled="locked" v-model="answers[index]" />
+                <span v-html="option"></span>
+              </label>
+              <p class="note">Верных ответов может быть несколько.</p>
+            </div>
+
+            <div class="answer" v-else>
               <input
-                  type="radio"
-                  :name="'q' + index"
-                  :value="oi"
-                  :disabled="locked"
-                  v-model="answers[index]"
-              >
-              <span v-html="option"></span>
-            </label>
-          </div>
-
-          <div class="answer" v-else-if="question.type === 'multi'">
-            <label v-for="(option, oi) in question.options" :key="oi">
-              <input
-                  type="checkbox"
-                  :value="oi"
-                  :disabled="locked"
-                  v-model="answers[index]"
-              >
-              <span v-html="option"></span>
-            </label>
-            <p class="note">Верных ответов может быть несколько.</p>
-          </div>
-
-          <div class="answer" v-else>
-            <input
                 class="field"
                 type="text"
                 inputmode="decimal"
@@ -81,115 +66,124 @@
                 @keydown.enter.prevent="submit"
                 @paste="guardClipboard"
                 @drop="guardClipboard"
+              />
+              <span class="unit" v-if="question.unit">{{ question.unit }}</span>
+            </div>
+
+            <!-- за сорванную попытку ответы не проверяем: разбор по вопросам покажем, только когда попытки кончились -->
+            <p class="verdict" v-if="stage === 'result' && checked && (!violation || showAnswers)">
+              <template v-if="review || violation">Правильный ответ: <b v-html="correctText(question)"></b></template>
+              <template v-else-if="marks[index] === 'right'">Верно</template>
+              <template v-else-if="showAnswers"
+                >Неверно. Правильный ответ: <b v-html="correctText(question)"></b
+              ></template>
+              <template v-else>Неверно — попробуйте ещё раз во второй попытке</template>
+            </p>
+            <!-- причину отказа арбитра показываем вместе с правильным ответом: до этого она могла бы подсказать -->
+            <p
+              class="judged"
+              v-if="stage === 'result' && checked && verdicts[index] && (verdicts[index].correct || showAnswers)"
             >
-            <span class="unit" v-if="question.unit">{{ question.unit }}</span>
-          </div>
+              <template v-if="verdicts[index].correct"
+                >Ответ не совпал с эталоном, но засчитан при дополнительной проверке:
+              </template>
+              <template v-else>Дополнительная проверка: </template>
+              {{ verdicts[index].reason }}
+            </p>
+            <p
+              class="hint"
+              v-if="stage === 'result' && checked && showAnswers && question.hint"
+              v-html="question.hint"
+            ></p>
+          </li>
+        </ol>
 
-          <!-- за сорванную попытку ответы не проверяем: разбор по вопросам покажем, только когда попытки кончились -->
-          <p class="verdict" v-if="stage === 'result' && checked && (!violation || showAnswers)">
-            <template v-if="review || violation">Правильный ответ: <b v-html="correctText(question)"></b></template>
-            <template v-else-if="marks[index] === 'right'">Верно</template>
-            <template v-else-if="showAnswers">Неверно. Правильный ответ: <b v-html="correctText(question)"></b></template>
-            <template v-else>Неверно — попробуйте ещё раз во второй попытке</template>
+        <div class="foot">
+          <p class="score" v-if="stage === 'result' && checked" :class="{ ok: passed, bad: !passed }">
+            <template v-if="review && record.passed"
+              >Тест сдан: {{ record.best }} из {{ record.total }}. Ниже — разбор.</template
+            >
+            <template v-else-if="review"
+              >Попытки закончились. Лучший результат: {{ record.best }} из {{ record.total }}. Ниже — разбор.</template
+            >
+            <template v-else-if="violation && left">Попытка провалена: {{ violation }}. {{ leftText }}.</template>
+            <template v-else-if="violation"
+              >Попытка провалена: {{ violation }}. Попытки закончились — посмотрите разбор и вернитесь к
+              теории.</template
+            >
+            <template v-else-if="passed">Тест сдан: {{ score }} из {{ test.count }}</template>
+            <template v-else-if="left"
+              >Верно {{ score }} из {{ test.count }} — не хватает до {{ pass }}. {{ leftText }}.</template
+            >
+            <template v-else
+              >Верно {{ score }} из {{ test.count }}. Попытки закончились — посмотрите разбор и вернитесь к
+              теории.</template
+            >
           </p>
-          <!-- причину отказа арбитра показываем вместе с правильным ответом: до этого она могла бы подсказать -->
-          <p class="judged" v-if="stage === 'result' && checked && verdicts[index] && (verdicts[index].correct || showAnswers)">
-            <template v-if="verdicts[index].correct">Ответ не совпал с эталоном, но засчитан при дополнительной проверке: </template>
-            <template v-else>Дополнительная проверка: </template>
-            {{ verdicts[index].reason }}
+          <p class="checking" v-else-if="stage === 'checking'" role="status">
+            <span class="spinner" aria-hidden="true"></span>
+            Проверяю ответы. Если какие-то не совпали с эталоном, их посмотрит дополнительная проверка — это займёт
+            несколько секунд.
           </p>
-          <p class="hint" v-if="stage === 'result' && checked && showAnswers && question.hint" v-html="question.hint"></p>
-        </li>
-      </ol>
+          <p class="score bad" v-else-if="stage !== 'result' && !left">
+            Попытки по этому тесту закончились. Лучший результат: {{ record.best }} из {{ record.total }}.
+          </p>
 
-      <div class="foot">
-        <p class="score" v-if="stage === 'result' && checked" :class="{ok: passed, bad: !passed}">
-          <template v-if="review && record.passed">Тест сдан: {{ record.best }} из {{ record.total }}. Ниже — разбор.</template>
-          <template v-else-if="review">Попытки закончились. Лучший результат: {{ record.best }} из {{ record.total }}. Ниже — разбор.</template>
-          <template v-else-if="violation && left">Попытка провалена: {{ violation }}. {{ leftText }}.</template>
-          <template v-else-if="violation">Попытка провалена: {{ violation }}. Попытки закончились — посмотрите разбор и вернитесь к теории.</template>
-          <template v-else-if="passed">Тест сдан: {{ score }} из {{ test.count }}</template>
-          <template v-else-if="left">Верно {{ score }} из {{ test.count }} — не хватает до {{ pass }}. {{ leftText }}.</template>
-          <template v-else>Верно {{ score }} из {{ test.count }}. Попытки закончились — посмотрите разбор и вернитесь к теории.</template>
-        </p>
-        <p class="checking" v-else-if="stage === 'checking'" role="status">
-          <span class="spinner" aria-hidden="true"></span>
-          Проверяю ответы. Если какие-то не совпали с эталоном, их посмотрит дополнительная проверка — это займёт несколько секунд.
-        </p>
-        <p class="score bad" v-else-if="stage !== 'result' && !left">
-          Попытки по этому тесту закончились. Лучший результат: {{ record.best }} из {{ record.total }}.
-        </p>
+          <p class="save-error" v-if="saveError">
+            {{ saveError }}
+            <button type="button" class="again" @click="save">Сохранить ещё раз</button>
+          </p>
 
-        <p class="save-error" v-if="saveError">
-          {{ saveError }}
-          <button type="button" class="again" @click="save">Сохранить ещё раз</button>
-        </p>
-
-        <div class="actions">
-          <button
+          <div class="actions">
+            <button
               v-if="stage === 'ready'"
               type="button"
               class="btn primary"
               :disabled="!left || starting"
               @click="start"
-          >
-            {{ starting ? 'Начинаю…' : 'Начать попытку' }}
-          </button>
-          <button
-              v-else-if="stage === 'answering'"
-              type="button"
-              class="btn primary"
-              @click="submit"
-          >
-            Проверить
-          </button>
-          <button v-else-if="stage === 'checking'" type="button" class="btn primary" disabled>
-            Проверяю…
-          </button>
-          <button
-              v-else-if="left && !passed"
-              type="button"
-              class="btn primary"
-              @click="retry"
-          >
-            Ещё попытка
-          </button>
-          <button type="button" class="btn" @click="openTheory">К теории</button>
-          <button type="button" class="btn" @click="close">Закрыть</button>
+            >
+              {{ starting ? 'Начинаю…' : 'Начать попытку' }}
+            </button>
+            <button v-else-if="stage === 'answering'" type="button" class="btn primary" @click="submit">
+              Проверить
+            </button>
+            <button v-else-if="stage === 'checking'" type="button" class="btn primary" disabled>Проверяю…</button>
+            <button v-else-if="left && !passed" type="button" class="btn primary" @click="retry">Ещё попытка</button>
+            <button type="button" class="btn" @click="openTheory">К теории</button>
+            <button type="button" class="btn" @click="close">Закрыть</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="test-card" v-else-if="failed">
+        <button class="close" type="button" aria-label="Закрыть" @click="close">&times;</button>
+        <p v-if="loadError">Не удалось открыть тест: {{ loadError }}</p>
+        <p v-else>Тест по этой теме пока не составлен.</p>
+      </div>
+
+      <div
+        class="leave"
+        v-if="leaving"
+        role="alertdialog"
+        aria-modal="true"
+        aria-labelledby="leave-text"
+        @click.self="stay"
+      >
+        <div class="leave-box">
+          <p id="leave-text">Ответы ещё не проверены. Если выйти сейчас, попытка будет засчитана как проваленная.</p>
+          <div class="actions">
+            <button type="button" class="btn danger" @click="confirmLeave">Выйти и провалить попытку</button>
+            <button type="button" class="btn primary" ref="stay" @click="stay">Вернуться к тесту</button>
+          </div>
         </div>
       </div>
     </div>
-
-    <div class="test-card" v-else-if="failed">
-      <button class="close" type="button" aria-label="Закрыть" @click="close">&times;</button>
-      <p v-if="loadError">Не удалось открыть тест: {{ loadError }}</p>
-      <p v-else>Тест по этой теме пока не составлен.</p>
-    </div>
-
-    <div class="leave" v-if="leaving" role="alertdialog" aria-modal="true" aria-labelledby="leave-text" @click.self="stay">
-      <div class="leave-box">
-        <p id="leave-text">Ответы ещё не проверены. Если выйти сейчас, попытка будет засчитана как проваленная.</p>
-        <div class="actions">
-          <button type="button" class="btn danger" @click="confirmLeave">Выйти и провалить попытку</button>
-          <button type="button" class="btn primary" ref="stay" @click="stay">Вернуться к тесту</button>
-        </div>
-      </div>
-    </div>
-  </div>
   </Teleport>
 </template>
 
 <script>
-import {
-  MAX_ATTEMPTS,
-  answerText,
-  attemptsLeft,
-  loadTest,
-  readRecord,
-  startAttempt,
-  submitAttempt,
-} from '@/tests.js';
-import {trackTest} from '@/history.js';
+import { MAX_ATTEMPTS, answerText, attemptsLeft, loadTest, readRecord, startAttempt, submitAttempt } from '@/tests.js';
+import { trackTest } from '@/history.js';
 // окно с тестом сузилось больше чем на столько — значит, рядом открыли что-то ещё
 const SHRINK_LIMIT = 0.9;
 
@@ -206,7 +200,7 @@ async function enterFullscreen() {
   const root = document.documentElement;
 
   if (root.requestFullscreen) {
-    await root.requestFullscreen({navigationUI: 'hide'});
+    await root.requestFullscreen({ navigationUI: 'hide' });
   } else {
     root.webkitRequestFullscreen();
   }
@@ -235,7 +229,7 @@ function windowWidth() {
 
 // без полноэкранного режима (iPhone) проверяем хотя бы, что окно занимает весь экран по ширине
 function fillsScreen() {
-  const {width, height} = window.screen;
+  const { width, height } = window.screen;
   const screenWidth = orientation().startsWith('landscape') ? Math.max(width, height) : Math.min(width, height);
   return window.innerWidth >= screenWidth * SHRINK_LIMIT;
 }
@@ -252,7 +246,7 @@ export default {
       // тест не загрузился (нет связи) — в отличие от «теста нет»
       loadError: '',
       maxAttempts: MAX_ATTEMPTS,
-      record: {attempts: 0, best: 0, total: 0, passed: false},
+      record: { attempts: 0, best: 0, total: 0, passed: false },
       // тест открыли, когда он уже был сдан или попытки кончились: ответов этой попытки нет
       review: false,
       // ответы не дошли до сервера — покажем это и дадим отправить ещё раз
@@ -328,7 +322,7 @@ export default {
     trackTest(this.target.subject, this.target.topic);
 
     // фокус остался на кнопке «Практика» под оверлеем — забираем его в тест
-    this.$nextTick(() => this.$refs.card?.focus({preventScroll: true}));
+    this.$nextTick(() => this.$refs.card?.focus({ preventScroll: true }));
 
     // тест уже сдан или попытки кончились — сразу показываем итог и разбор: вопросы с ответами пришли от сервера
     if (!this.left) {
@@ -361,8 +355,9 @@ export default {
       this.startError = '';
 
       if (window.screen.isExtended) {
-        this.startError = 'К компьютеру подключён второй монитор. Отключите его или включите в системе режим '
-            + '«Только один экран» и начните попытку снова.';
+        this.startError =
+          'К компьютеру подключён второй монитор. Отключите его или включите в системе режим ' +
+          '«Только один экран» и начните попытку снова.';
         return;
       }
 
@@ -395,12 +390,12 @@ export default {
 
       this.record = readRecord(this.target.subject, this.target.topic);
       this.number = payload.number;
-      this.test = {...this.test, questions: payload.questions};
+      this.test = { ...this.test, questions: payload.questions };
       this.answers = payload.questions.map((question) => (question.type === 'multi' ? [] : null));
       this.marks = payload.questions.map(() => '');
-      this.size = {width: windowWidth(), orientation: orientation()};
+      this.size = { width: windowWidth(), orientation: orientation() };
       this.stage = 'answering';
-      this.$nextTick(() => this.$refs.card?.focus({preventScroll: true}));
+      this.$nextTick(() => this.$refs.card?.focus({ preventScroll: true }));
 
       // пока сервер отвечал, из полноэкранного режима уже вышли — вопросы получены, попытка сгорает
       if (wantsFullscreen && !fullscreenElement()) {
@@ -468,11 +463,11 @@ export default {
 
       this.test = {
         ...this.test,
-        questions: this.test.questions.map((question, index) => (
-            questions[index] && 'answer' in questions[index]
-                ? {...question, answer: questions[index].answer, hint: questions[index].hint}
-                : question
-        )),
+        questions: this.test.questions.map((question, index) =>
+          questions[index] && 'answer' in questions[index]
+            ? { ...question, answer: questions[index].answer, hint: questions[index].hint }
+            : question,
+        ),
       };
     },
     retry() {
@@ -505,7 +500,7 @@ export default {
     },
     stay() {
       this.leaving = null;
-      this.$nextTick(() => this.$refs.card?.focus({preventScroll: true}));
+      this.$nextTick(() => this.$refs.card?.focus({ preventScroll: true }));
     },
     async confirmLeave() {
       const action = this.leaving;
@@ -569,7 +564,7 @@ export default {
 
       const width = windowWidth();
       if (this.size.orientation !== orientation()) {
-        this.size = {width, orientation: orientation()};
+        this.size = { width, orientation: orientation() };
       } else if (width < this.size.width * SHRINK_LIMIT) {
         this.forfeit('во время теста окно с ним уменьшили');
       } else {
@@ -977,8 +972,8 @@ h1 {
     padding: 7px 2px;
   }
 
-  .answer input[type="radio"],
-  .answer input[type="checkbox"] {
+  .answer input[type='radio'],
+  .answer input[type='checkbox'] {
     flex: none;
     width: 20px;
     height: 20px;

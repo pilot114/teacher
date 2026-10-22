@@ -1,43 +1,31 @@
 <template>
-  <button v-show="isStart" @click="start">
-    Начать
-  </button>
+  <button v-show="isStart" @click="start">Начать</button>
   <div v-show="!isStart" id="container">
     <div id="question">{{ questionText }}</div>
-    <input
-        type="number"
-        id="inputAnswer"
-        v-model.number="userAnswer"
-        @keypress.enter="checkAnswer"
-        ref="inputAnswer"
-    />
+    <input type="number" id="inputAnswer" v-model.number="userAnswer" @keypress.enter="checkAnswer" ref="inputAnswer" />
     <button @click="checkAnswer" :disabled="isDisabled">Проверить</button>
     <div id="message">{{ message }}</div>
     <div id="stats">
       <h3>Статистика</h3>
       <div class="stats-scroll">
-      <table>
-        <thead>
-          <tr>
-            <th>Пример</th>
-            <th>Правильных</th>
-            <th>Попыток</th>
-            <th>Среднее время (сек)</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr
-              v-for="(stat, key) in sortedStats"
-              :key="key"
-              :class="getClassForStat(stat)"
-          >
-            <td>{{ formatKey(key) }}</td>
-            <td>{{ stat.correct }}</td>
-            <td>{{ stat.attempts }}</td>
-            <td>{{ (stat.averageTime / 1000).toFixed(2) }}</td>
-          </tr>
-        </tbody>
-      </table>
+        <table>
+          <thead>
+            <tr>
+              <th>Пример</th>
+              <th>Правильных</th>
+              <th>Попыток</th>
+              <th>Среднее время (сек)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(stat, key) in sortedStats" :key="key" :class="getClassForStat(stat)">
+              <td>{{ formatKey(key) }}</td>
+              <td>{{ stat.correct }}</td>
+              <td>{{ stat.attempts }}</td>
+              <td>{{ (stat.averageTime / 1000).toFixed(2) }}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
@@ -62,21 +50,19 @@ export default {
   },
   computed: {
     questionText() {
-      return this.isDisabled
-          ? 'Поздравляем! Вы выучили всю таблицу умножения.'
-          : `${this.a} × ${this.b} = `;
+      return this.isDisabled ? 'Поздравляем! Вы выучили всю таблицу умножения.' : `${this.a} × ${this.b} = `;
     },
     sortedStats() {
       return Object.keys(this.stats)
-          .sort((a, b) => {
-            const [a1, a2] = a.split('x').map(Number);
-            const [b1, b2] = b.split('x').map(Number);
-            return a1 - b1 || a2 - b2;
-          })
-          .reduce((acc, key) => {
-            acc[key] = this.stats[key];
-            return acc;
-          }, {});
+        .sort((a, b) => {
+          const [a1, a2] = a.split('x').map(Number);
+          const [b1, b2] = b.split('x').map(Number);
+          return a1 - b1 || a2 - b2;
+        })
+        .reduce((acc, key) => {
+          acc[key] = this.stats[key];
+          return acc;
+        }, {});
     },
   },
   methods: {
@@ -86,9 +72,7 @@ export default {
     },
     generateQuestion() {
       const learnedExamples = Object.keys(this.stats).filter(
-          key =>
-              this.stats[key].averageTime < this.msOnAnswer &&
-              this.stats[key].correct >= 3
+        (key) => this.stats[key].averageTime < this.msOnAnswer && this.stats[key].correct >= 3,
       );
       const totalExamples = 64;
 
@@ -103,10 +87,10 @@ export default {
         this.a = this.getRandomInt(2, 9);
         this.b = this.getRandomInt(2, 9);
       } while (
-          this.stats[`${this.a}x${this.b}`] &&
-          this.stats[`${this.a}x${this.b}`].averageTime < this.msOnAnswer &&
-          this.stats[`${this.a}x${this.b}`].correct >= 3
-          );
+        this.stats[`${this.a}x${this.b}`] &&
+        this.stats[`${this.a}x${this.b}`].averageTime < this.msOnAnswer &&
+        this.stats[`${this.a}x${this.b}`].correct >= 3
+      );
 
       this.userAnswer = '';
       this.message = '';
@@ -130,8 +114,7 @@ export default {
         this.stats[key].correct++;
         this.stats[key].attempts++;
         this.stats[key].totalTime += timeTaken;
-        this.stats[key].averageTime =
-            this.stats[key].totalTime / this.stats[key].correct;
+        this.stats[key].averageTime = this.stats[key].totalTime / this.stats[key].correct;
         this.generateQuestion();
       } else {
         if (!this.stats[key]) {
@@ -187,7 +170,9 @@ button {
   border-radius: 5px;
   font-size: 16px;
   cursor: pointer;
-  transition: background 0.3s, transform 0.2s;
+  transition:
+    background 0.3s,
+    transform 0.2s;
 }
 
 #container {
@@ -290,7 +275,8 @@ th {
     min-width: 340px;
   }
 
-  th, td {
+  th,
+  td {
     padding: 5px 6px;
     font-size: 14px;
   }

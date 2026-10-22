@@ -7,26 +7,20 @@
       <label>
         <span>Логин</span>
         <input
-            v-model="login"
-            type="text"
-            name="login"
-            autocomplete="username"
-            autocapitalize="off"
-            spellcheck="false"
-            ref="loginInput"
-            :disabled="busy"
-        >
+          v-model="login"
+          type="text"
+          name="login"
+          autocomplete="username"
+          autocapitalize="off"
+          spellcheck="false"
+          ref="loginInput"
+          :disabled="busy"
+        />
       </label>
 
       <label>
         <span>Пароль</span>
-        <input
-            v-model="password"
-            type="password"
-            name="password"
-            autocomplete="current-password"
-            :disabled="busy"
-        >
+        <input v-model="password" type="password" name="password" autocomplete="current-password" :disabled="busy" />
       </label>
 
       <p class="error" v-if="error">{{ error }}</p>

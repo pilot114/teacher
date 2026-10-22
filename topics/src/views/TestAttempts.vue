@@ -21,14 +21,14 @@
       <template v-else>
         <div class="tabs" role="tablist" aria-label="Попытки">
           <button
-              v-for="attempt in attempts"
-              :key="attempt.number"
-              type="button"
-              role="tab"
-              class="tab"
-              :class="['result-' + statusOf(attempt), {active: attempt.number === selected}]"
-              :aria-selected="String(attempt.number === selected)"
-              @click="selected = attempt.number"
+            v-for="attempt in attempts"
+            :key="attempt.number"
+            type="button"
+            role="tab"
+            class="tab"
+            :class="['result-' + statusOf(attempt), { active: attempt.number === selected }]"
+            :aria-selected="String(attempt.number === selected)"
+            @click="selected = attempt.number"
           >
             <span class="tab-name">Попытка {{ attempt.number }}</span>
             <span class="tab-score">{{ attempt.score }} из {{ attempt.total }} · {{ labels[statusOf(attempt)] }}</span>
@@ -47,7 +47,9 @@
               Попытка сорвана: {{ current.violation }}. Засчитано 0 верных — ответы этой попытки не проверялись.
             </template>
             <template v-else-if="current.passed">Сдано: верно {{ current.score }} из {{ current.total }}.</template>
-            <template v-else>Не сдано: верно {{ current.score }} из {{ current.total }}, не хватило до {{ current.pass }}.</template>
+            <template v-else
+              >Не сдано: верно {{ current.score }} из {{ current.total }}, не хватило до {{ current.pass }}.</template
+            >
           </p>
 
           <p class="locked" v-if="!closed">
@@ -56,19 +58,15 @@
 
           <ol class="questions">
             <li
-                v-for="(question, index) in current.questions"
-                :key="index"
-                :class="showMarks ? (question.right ? 'right' : 'wrong') : ''"
+              v-for="(question, index) in current.questions"
+              :key="index"
+              :class="showMarks ? (question.right ? 'right' : 'wrong') : ''"
             >
               <div class="ask" v-html="question.text"></div>
 
               <ul class="options" v-if="question.options">
-                <li
-                    v-for="(option, oi) in question.options"
-                    :key="oi"
-                    :class="optionClass(question, oi)"
-                >
-                  <span class="pick" :class="[question.type, {on: isChosen(question, oi)}]" aria-hidden="true"></span>
+                <li v-for="(option, oi) in question.options" :key="oi" :class="optionClass(question, oi)">
+                  <span class="pick" :class="[question.type, { on: isChosen(question, oi) }]" aria-hidden="true"></span>
                   <span class="option-text" v-html="option"></span>
                   <span class="option-note" v-if="isChosen(question, oi)">ответ ученика</span>
                   <span class="option-note correct" v-else-if="closed && isAnswer(question, oi)">верный вариант</span>
@@ -77,7 +75,9 @@
 
               <p class="given" v-else>
                 Ответ ученика:
-                <b v-if="hasGiven(question)">{{ question.given }}<template v-if="question.unit"> {{ question.unit }}</template></b>
+                <b v-if="hasGiven(question)"
+                  >{{ question.given }}<template v-if="question.unit"> {{ question.unit }}</template></b
+                >
                 <i v-else>нет ответа</i>
               </p>
 
@@ -90,7 +90,9 @@
               </p>
               <!-- причина отказа может подсказать ответ — до закрытия теста показываем только засчитанные -->
               <p class="judged" v-if="question.verdict && (question.verdict.correct || closed)">
-                <template v-if="question.verdict.correct">Ответ не совпал с эталоном, но засчитан при дополнительной проверке: </template>
+                <template v-if="question.verdict.correct"
+                  >Ответ не совпал с эталоном, но засчитан при дополнительной проверке:
+                </template>
                 <template v-else>Дополнительная проверка: </template>
                 {{ question.verdict.reason }}
               </p>
@@ -111,8 +113,8 @@
 </template>
 
 <script>
-import {MAX_ATTEMPTS, answerText, attemptsLeft, readRecord, testSummary} from '@/tests.js';
-import {attemptLabels, attemptStatus, formatDateTime, formatDuration, loadAttempts} from '@/history.js';
+import { MAX_ATTEMPTS, answerText, attemptsLeft, readRecord, testSummary } from '@/tests.js';
+import { attemptLabels, attemptStatus, formatDateTime, formatDuration, loadAttempts } from '@/history.js';
 
 export default {
   name: 'TestAttempts',
@@ -170,17 +172,19 @@ export default {
     },
   },
   async created() {
-    testSummary(this.target.subject, this.target.topic).then((test) => {
-      this.test = test;
-    }).catch(() => {
-      // без русского названия разбор всё равно показываем
-    });
+    testSummary(this.target.subject, this.target.topic)
+      .then((test) => {
+        this.test = test;
+      })
+      .catch(() => {
+        // без русского названия разбор всё равно показываем
+      });
 
     await this.load();
   },
   mounted() {
     window.addEventListener('keydown', this.handleKeydown);
-    this.$nextTick(() => this.$refs.card?.focus({preventScroll: true}));
+    this.$nextTick(() => this.$refs.card?.focus({ preventScroll: true }));
   },
   beforeUnmount() {
     window.removeEventListener('keydown', this.handleKeydown);
@@ -223,7 +227,7 @@ export default {
     // варианты подсвечиваем по существу только в закрытом тесте, иначе — лишь отмечаем выбор ученика
     optionClass(question, index) {
       if (!this.closed) {
-        return {chosen: this.isChosen(question, index)};
+        return { chosen: this.isChosen(question, index) };
       }
 
       return {

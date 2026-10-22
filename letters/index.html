@@ -1,164 +1,148 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>teacher</title>
     <script type="text/javascript" src="./static/js/vue_3.5.44.js"></script>
     <script type="text/javascript" src="./static/js/tailwind_3.4.17.js"></script>
     <script>
-        const { createApp } = Vue
+      const { createApp } = Vue
 
-        function getRandomLetter() {
-            let letters = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя';
-            return function () {
-                let randomLetter = letters.charAt(Math.floor(Math.random() * letters.length));
-                letters = letters.replace(randomLetter, '');
-                return randomLetter;
-            }
+      function getRandomLetter() {
+        let letters = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя"
+        return function () {
+          let randomLetter = letters.charAt(Math.floor(Math.random() * letters.length))
+          letters = letters.replace(randomLetter, "")
+          return randomLetter
         }
-        function getRandomSyllable() {
-            let consonants = 'бвгджзклмнпрстфхцчшщ'; // 20
-            let vowels = 'аеёиоуыэюя'; // 10
-            return function () {
-                let randomConsonant = consonants.charAt(Math.floor(Math.random() * consonants.length));
-                consonants = consonants.replace(randomConsonant, '');
-                let randomVovel = vowels.charAt(Math.floor(Math.random() * vowels.length));
-                vowels = vowels.replace(randomVovel, '');
-                return randomConsonant + randomVovel;
-            }
+      }
+      function getRandomSyllable() {
+        let consonants = "бвгджзклмнпрстфхцчшщ" // 20
+        let vowels = "аеёиоуыэюя" // 10
+        return function () {
+          let randomConsonant = consonants.charAt(Math.floor(Math.random() * consonants.length))
+          consonants = consonants.replace(randomConsonant, "")
+          let randomVovel = vowels.charAt(Math.floor(Math.random() * vowels.length))
+          vowels = vowels.replace(randomVovel, "")
+          return randomConsonant + randomVovel
         }
-        function getRandomMultiple() {
-            let a = '123';
-            let b = '123456789';
-            return function () {
-                let randA = a.charAt(Math.floor(Math.random() * a.length));
-                a = a.replace(randA, '');
-                let randB = b.charAt(Math.floor(Math.random() * b.length));
-                b = b.replace(randB, '');
+      }
+      function getRandomMultiple() {
+        let a = "123"
+        let b = "123456789"
+        return function () {
+          let randA = a.charAt(Math.floor(Math.random() * a.length))
+          a = a.replace(randA, "")
+          let randB = b.charAt(Math.floor(Math.random() * b.length))
+          b = b.replace(randB, "")
 
-                if (Math.random() <= 0.5) {
-                    return [randB, randA];
+          if (Math.random() <= 0.5) {
+            return [randB, randA]
+          }
+          return [randA, randB]
+        }
+      }
+
+      let audio = new Audio()
+
+      window.onload = function () {
+        createApp({
+          data() {
+            return {
+              type: "letters",
+              answer: "",
+              variants: [],
+              counterWin: 0,
+              counterLose: 0,
+              endWin: false,
+              endLose: false,
+            }
+          },
+          methods: {
+            createQuestion() {
+              let genRand = () => ""
+              if (this.type === "letters") {
+                genRand = getRandomLetter()
+              }
+              if (this.type === "syllable") {
+                genRand = getRandomSyllable()
+              }
+              if (this.type === "multiple") {
+                genRand = getRandomMultiple()
+              }
+
+              const randomVariant = Math.floor(Math.random() * (4 - 1))
+              this.answer = genRand()
+              this.variants = [genRand(), genRand(), genRand(), genRand()]
+              this.variants[randomVariant] = this.answer
+              audio.src = "./static/sound/" + this.type + "/" + this.answer + ".mp3"
+            },
+            select(variant) {
+              if (variant === this.answer) {
+                this.counterWin++
+                if (this.counterWin === 15) {
+                  this.endWin = true
                 }
-                return [randA, randB];
-            }
-        }
-
-        let audio = new Audio();
-
-        window.onload = function () {
-            createApp({
-                data() {
-                    return {
-                        type: 'letters',
-                        answer: '',
-                        variants: [],
-                        counterWin: 0,
-                        counterLose: 0,
-                        endWin: false,
-                        endLose: false,
-                    }
-                },
-                methods: {
-                    createQuestion() {
-                        let genRand = () => '';
-                        if (this.type === 'letters') {
-                            genRand = getRandomLetter();
-                        }
-                        if (this.type === 'syllable') {
-                            genRand = getRandomSyllable();
-                        }
-                        if (this.type === 'multiple') {
-                            genRand = getRandomMultiple();
-                        }
-
-                        const randomVariant = Math.floor(Math.random() * (4 - 1));
-                        this.answer = genRand();
-                        this.variants = [
-                            genRand(),
-                            genRand(),
-                            genRand(),
-                            genRand(),
-                        ];
-                        this.variants[randomVariant] = this.answer;
-                        audio.src = './static/sound/' + this.type + '/' + this.answer + '.mp3';
-                    },
-                    select(variant) {
-                        if (variant === this.answer) {
-                            this.counterWin++;
-                            if (this.counterWin === 15) {
-                                this.endWin = true;
-                            }
-                        } else {
-                            this.counterLose++;
-                            this.counterWin = 0;
-                            if (this.counterLose === 3) {
-                                this.endLose = true;
-                            }
-                        }
-                        this.createQuestion();
-                    },
-                    playSound() {
-                        audio.play();
-                    },
-                    reset() {
-                        this.endWin = false;
-                        this.endLose = false;
-                        this.counterWin = 0;
-                        this.counterLose = 0;
-                    },
-                },
-                created() {
-                    this.createQuestion();
-                },
-            }).mount('#app')
-        };
-
+              } else {
+                this.counterLose++
+                this.counterWin = 0
+                if (this.counterLose === 3) {
+                  this.endLose = true
+                }
+              }
+              this.createQuestion()
+            },
+            playSound() {
+              audio.play()
+            },
+            reset() {
+              this.endWin = false
+              this.endLose = false
+              this.counterWin = 0
+              this.counterLose = 0
+            },
+          },
+          created() {
+            this.createQuestion()
+          },
+        }).mount("#app")
+      }
     </script>
     <style>
-        [v-cloak] {
-            display: none;
-        }
+      [v-cloak] {
+        display: none;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div id="app" v-cloak>
-        <div
-                v-if="endWin || endLose"
-                class="grid mx-auto max-w-4xl gap-4 p-10"
-        >
-            <img v-if="endWin" src="./static/win.png" width="300" class="mx-auto max-w-4xl">
-            <img v-if="endLose" src="./static/lose.png" width="300" class="mx-auto max-w-4xl">
-            <button
-                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold p-4 rounded"
-                    @click="reset"
-            >
-                Ещё раз?
-            </button>
+      <div v-if="endWin || endLose" class="grid mx-auto max-w-4xl gap-4 p-10">
+        <img v-if="endWin" src="./static/win.png" width="300" class="mx-auto max-w-4xl" />
+        <img v-if="endLose" src="./static/lose.png" width="300" class="mx-auto max-w-4xl" />
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold p-4 rounded" @click="reset">Ещё раз?</button>
+      </div>
+      <div v-else class="grid mx-auto max-w-4xl grid-cols-12 gap-4 p-10">
+        <div class="col-span-4 flex-1 flex items-center justify-center shadow-lg rounded-lg bg-green-700 text-9xl">
+          {{ counterWin }}
         </div>
         <div
-                v-else
-                class="grid mx-auto max-w-4xl grid-cols-12 gap-4 p-10"
+          class="col-span-4 rounded-lg border border-gray-500 h-48 text-9xl flex items-center justify-center"
+          @click="playSound"
         >
-            <div class="col-span-4 flex-1 flex items-center justify-center shadow-lg rounded-lg bg-green-700 text-9xl">
-                {{ counterWin }}
-            </div>
-            <div
-                    class="col-span-4 rounded-lg border border-gray-500 h-48 text-9xl flex items-center justify-center"
-                    @click="playSound"
-            >
-                🔊
-            </div>
-            <div class="col-span-4 flex-1 flex items-center justify-center shadow-lg rounded-lg bg-red-700 text-9xl">
-                {{ counterLose }}
-            </div>
+          🔊
+        </div>
+        <div class="col-span-4 flex-1 flex items-center justify-center shadow-lg rounded-lg bg-red-700 text-9xl">
+          {{ counterLose }}
+        </div>
 
-            <div
-                    v-for="variant in variants" @click="select(variant)"
-                    class="col-span-3 rounded-lg border border-gray-400 h-24 flex items-center justify-center text-3xl"
-            >
-                {{ variant }}
-            </div>
+        <div
+          v-for="variant in variants"
+          @click="select(variant)"
+          class="col-span-3 rounded-lg border border-gray-400 h-24 flex items-center justify-center text-3xl"
+        >
+          {{ variant }}
         </div>
+      </div>
     </div>
-</body>
+  </body>
 </html>

@@ -24,20 +24,10 @@
           <h2>Задания для самопроверки</h2>
           <ol>
             <template v-if="viewAnswers">
-              <li
-                  v-for="(task, index) in content.tasks"
-                  :key="index"
-                  v-html="task.question + task.answer"
-              >
-              </li>
+              <li v-for="(task, index) in content.tasks" :key="index" v-html="task.question + task.answer"></li>
             </template>
             <template v-else>
-              <li
-                  v-for="(task, index) in content.tasks"
-                  :key="index"
-                  v-html="task.question ?? task"
-              >
-              </li>
+              <li v-for="(task, index) in content.tasks" :key="index" v-html="task.question ?? task"></li>
             </template>
           </ol>
         </div>
@@ -45,18 +35,15 @@
     </div>
     <div v-else>
       <p>
-        <ScatterText>
-          Пожалуйста, выберите тему из меню.
-        </ScatterText>
+        <ScatterText> Пожалуйста, выберите тему из меню. </ScatterText>
       </p>
     </div>
   </div>
 </template>
 
-
 <script>
 import ScatterText from './ScatterText.vue';
-import {MAX_ATTEMPTS} from '@/tests.js';
+import { MAX_ATTEMPTS } from '@/tests.js';
 
 export default {
   components: {
@@ -89,8 +76,8 @@ export default {
       if (this.inputSequence.length > 5) {
         this.inputSequence = this.inputSequence.slice(-5);
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -178,7 +165,8 @@ export default {
     gap: 8px;
   }
 
-  .description, .tasks {
+  .description,
+  .tasks {
     margin-right: 0;
   }
 

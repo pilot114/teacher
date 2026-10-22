@@ -1,44 +1,26 @@
 <template>
   <div>
-    <button v-if="!started" type="button" class="start-btn" @click="start">
-      Начать
-    </button>
+    <button v-if="!started" type="button" class="start-btn" @click="start">Начать</button>
     <div v-else class="columns">
       <div class="column column-langs">
-        <div
-            v-for="language in languages"
-            :key="language.name"
-            class="language-container"
-        >
-          <img :src="language.logo" width="20" height="20">
-          <a
-              v-if="language.isSupported"
-              href="#" @click="selectLanguage(language)"
-          >
+        <div v-for="language in languages" :key="language.name" class="language-container">
+          <img :src="language.logo" width="20" height="20" />
+          <a v-if="language.isSupported" href="#" @click="selectLanguage(language)">
             {{ language.name }}
           </a>
         </div>
       </div>
 
       <div class="column column-names">
-        <div
-            v-for="(code, name) in sources[currentLanguage.name]"
-            :key="name"
-        >
-          <a
-              href="#" @click="selectCurrentCode(name)"
-          >
+        <div v-for="(code, name) in sources[currentLanguage.name]" :key="name">
+          <a href="#" @click="selectCurrentCode(name)">
             {{ name }}
           </a>
         </div>
       </div>
 
       <div class="column">
-        <CodeEditor
-            v-model="currentCode"
-            :language="currentLanguage.name"
-            :readonly="currentLanguage.isReadonly"
-        />
+        <CodeEditor v-model="currentCode" :language="currentLanguage.name" :readonly="currentLanguage.isReadonly" />
       </div>
 
       <div class="column column-run">
@@ -49,9 +31,9 @@
       <div class="column">
         <ContentTabs activeTab="stdout">
           <ContentTab name="args & envs" label="args & envs">
-            <input v-model="args" type="text">
-            <br>
-            <input v-model="envs" type="text">
+            <input v-model="args" type="text" />
+            <br />
+            <input v-model="envs" type="text" />
           </ContentTab>
           <ContentTab name="stdin" label="stdin">
             <textarea v-model="stdin" type="text" rows="10"></textarea>
@@ -72,22 +54,37 @@
 </template>
 
 <script>
-import ContentTabs from "@/components/ContentTabs.vue";
-import ContentTab from "@/components/ContentTab.vue";
-import CodeEditor from "@/components/CodeEditor.vue";
-import {sources} from "@/sources.js";
+import ContentTabs from '@/components/ContentTabs.vue';
+import ContentTab from '@/components/ContentTab.vue';
+import CodeEditor from '@/components/CodeEditor.vue';
+import { sources } from '@/sources.js';
 
-import {WasmProcessManager, Langs} from "@/executor/WasmProcessManager.js";
+import { WasmProcessManager, Langs } from '@/executor/WasmProcessManager.js';
 
 const languages = [
-  {name: Langs.PYTHON, logo: 'https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg', isSupported: true, isReadonly: false},
-  {name: Langs.PHP, logo: 'https://upload.wikimedia.org/wikipedia/commons/2/27/PHP-logo.svg', isSupported: true, isReadonly: false},
-  {name: Langs.GO, logo: 'https://upload.wikimedia.org/wikipedia/commons/0/05/Go_Logo_Blue.svg', isSupported: true, isReadonly: true},
+  {
+    name: Langs.PYTHON,
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg',
+    isSupported: true,
+    isReadonly: false,
+  },
+  {
+    name: Langs.PHP,
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/2/27/PHP-logo.svg',
+    isSupported: true,
+    isReadonly: false,
+  },
+  {
+    name: Langs.GO,
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/0/05/Go_Logo_Blue.svg',
+    isSupported: true,
+    isReadonly: true,
+  },
 ];
 
 export default {
   name: 'CodeExecutor',
-  components: {ContentTab, ContentTabs, CodeEditor},
+  components: { ContentTab, ContentTabs, CodeEditor },
   emits: ['start'],
   data() {
     return {
@@ -159,12 +156,7 @@ export default {
       this.stderr = '';
       if (this.wrapper) {
         this.isLoading = true;
-        this.wrapper.sendCode(
-            this.currentCode,
-            this.currentCodeName,
-            JSON.parse(this.envs),
-            this.args.split(' '),
-        );
+        this.wrapper.sendCode(this.currentCode, this.currentCodeName, JSON.parse(this.envs), this.args.split(' '));
       }
     },
   },
@@ -180,7 +172,9 @@ export default {
   border-radius: 5px;
   font-size: 16px;
   cursor: pointer;
-  transition: background 0.3s, transform 0.2s;
+  transition:
+    background 0.3s,
+    transform 0.2s;
 }
 
 .start-btn:hover {
@@ -227,13 +221,14 @@ pre {
   }
 }
 
-textarea, input {
+textarea,
+input {
   border: 1px solid #ccc;
   border-radius: 4px;
   overflow: hidden;
   width: 400px;
   max-width: 100%;
-  padding: .5em;
+  padding: 0.5em;
   margin-bottom: 1em;
 
   outline: none;
@@ -258,13 +253,15 @@ textarea, input {
     gap: 14px;
   }
 
-  .column, .column-names {
+  .column,
+  .column-names {
     width: auto;
     flex: none;
   }
 
   /* языки и примеры — строки «таблеток» с прокруткой вбок */
-  .column-langs, .column-names {
+  .column-langs,
+  .column-names {
     display: flex;
     gap: 8px;
     overflow-x: auto;
@@ -272,11 +269,13 @@ textarea, input {
     -webkit-overflow-scrolling: touch;
   }
 
-  .column-langs::-webkit-scrollbar, .column-names::-webkit-scrollbar {
+  .column-langs::-webkit-scrollbar,
+  .column-names::-webkit-scrollbar {
     display: none;
   }
 
-  .column-langs > div, .column-names > div {
+  .column-langs > div,
+  .column-names > div {
     flex: none;
     padding: 7px 12px;
     border: 1px solid #d5d5d5;
@@ -285,7 +284,8 @@ textarea, input {
     white-space: nowrap;
   }
 
-  .column-langs a, .column-names a {
+  .column-langs a,
+  .column-names a {
     color: #1a63c4;
     text-decoration: none;
   }
@@ -300,7 +300,8 @@ textarea, input {
     cursor: pointer;
   }
 
-  textarea, input {
+  textarea,
+  input {
     width: 100%;
   }
 

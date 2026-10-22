@@ -1,25 +1,10 @@
 <template>
-  <div
-      class="scatter-text"
-      @mouseenter="scatterLetters"
-      @mouseleave="resetLetters"
-  >
+  <div class="scatter-text" @mouseenter="scatterLetters" @mouseleave="resetLetters">
     <template v-for="(char, index) in chars">
-      <span
-          v-if="char !== ' '"
-          :key="`letter-${index}`"
-          ref="letters"
-          class="letter"
-      >
+      <span v-if="char !== ' '" :key="`letter-${index}`" ref="letters" class="letter">
         {{ char }}
       </span>
-      <span
-          v-else
-          :key="`space-${index}`"
-          class="space"
-      >
-        &nbsp;
-      </span>
+      <span v-else :key="`space-${index}`" class="space"> &nbsp; </span>
     </template>
   </div>
 </template>

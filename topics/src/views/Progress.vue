@@ -6,19 +6,25 @@
 
       <div class="controls">
         <div class="modes">
-          <label
-              v-for="option in modes"
-              :key="option.value"
-              :class="{active: mode === option.value}"
-          >
-            <input type="radio" :value="option.value" v-model="mode">
+          <label v-for="option in modes" :key="option.value" :class="{ active: mode === option.value }">
+            <input type="radio" :value="option.value" v-model="mode" />
             <span>{{ option.label }}</span>
           </label>
         </div>
         <div class="pager">
-          <button type="button" class="pager-btn" aria-label="Неделей раньше" :disabled="!canPrev" @click="moveWeeks(-1)">&lsaquo;</button>
+          <button
+            type="button"
+            class="pager-btn"
+            aria-label="Неделей раньше"
+            :disabled="!canPrev"
+            @click="moveWeeks(-1)"
+          >
+            &lsaquo;
+          </button>
           <span class="pager-range">{{ weeks[0].number }}–{{ weeks[weeks.length - 1].number }} неделя</span>
-          <button type="button" class="pager-btn" aria-label="Неделей позже" :disabled="!canNext" @click="moveWeeks(1)">&rsaquo;</button>
+          <button type="button" class="pager-btn" aria-label="Неделей позже" :disabled="!canNext" @click="moveWeeks(1)">
+            &rsaquo;
+          </button>
           <button type="button" class="pager-today" v-if="firstWeek !== baseWeek" @click="shift = 0">К текущей</button>
         </div>
         <ul class="legend">
@@ -34,7 +40,7 @@
         <div class="grid" v-if="mode === 'subjects'">
           <div class="row head-row">
             <div></div>
-            <div class="week-head" :class="{current: week.current}" v-for="(week, index) in weeks" :key="index">
+            <div class="week-head" :class="{ current: week.current }" v-for="(week, index) in weeks" :key="index">
               <div class="week-name">{{ week.number }} неделя</div>
               <div class="week-dates">{{ formatDate(week.from) }} — {{ formatDate(week.to) }}</div>
               <div class="week-shift">{{ week.schedule.label }}</div>
@@ -47,15 +53,20 @@
               <div class="subject-sr">{{ row.subject.name.sr }}</div>
               <div class="subject-ru" v-if="secondName(row.subject)">{{ row.subject.name.ru }}</div>
             </div>
-            <div class="week" :class="{current: weeks[index].current}" v-for="(items, index) in row.weeks" :key="index">
+            <div
+              class="week"
+              :class="{ current: weeks[index].current }"
+              v-for="(items, index) in row.weeks"
+              :key="index"
+            >
               <button
-                  v-for="item in items"
-                  :key="item.number"
-                  type="button"
-                  class="cell"
-                  :class="['status-' + item.status, {open: isOpen(item)}]"
-                  :title="item.topic ? item.topic.title.sr : row.subject.name.sr"
-                  @click="openLesson(row.subject, item, $event)"
+                v-for="item in items"
+                :key="item.number"
+                type="button"
+                class="cell"
+                :class="['status-' + item.status, { open: isOpen(item) }]"
+                :title="item.topic ? item.topic.title.sr : row.subject.name.sr"
+                @click="openLesson(row.subject, item, $event)"
               >
                 {{ item.number }}
               </button>
@@ -69,16 +80,18 @@
         </div>
 
         <div class="days" v-else>
-          <div class="day-week" :class="{current: block.week.current}" v-for="(block, index) in dayWeeks" :key="index">
+          <div
+            class="day-week"
+            :class="{ current: block.week.current }"
+            v-for="(block, index) in dayWeeks"
+            :key="index"
+          >
             <div class="day-week-title">
               {{ block.week.number }} неделя
               <span class="day-week-dates">{{ formatDate(block.week.from) }} — {{ formatDate(block.week.to) }}</span>
               <span class="day-week-shift">{{ block.week.schedule.label }}</span>
             </div>
-            <div
-                class="timetable"
-                :style="{gridTemplateColumns: timetableColumns(block)}"
-            >
+            <div class="timetable" :style="{ gridTemplateColumns: timetableColumns(block) }">
               <div class="tt-corner"></div>
               <div class="tt-day" v-for="day in block.days" :key="day.dayIndex">
                 {{ dayNames[day.dayIndex] }}
@@ -92,18 +105,22 @@
                 </div>
                 <div class="tt-slot" v-for="day in block.days" :key="day.dayIndex">
                   <button
-                      v-if="day.lessons[period]"
-                      type="button"
-                      class="slot"
-                      :class="{open: isOpen(day.lessons[period].item)}"
-                      :title="day.lessons[period].item.topic ? day.lessons[period].item.topic.title.sr : day.lessons[period].subject.name.sr"
-                      @click="openLesson(day.lessons[period].subject, day.lessons[period].item, $event)"
+                    v-if="day.lessons[period]"
+                    type="button"
+                    class="slot"
+                    :class="{ open: isOpen(day.lessons[period].item) }"
+                    :title="
+                      day.lessons[period].item.topic
+                        ? day.lessons[period].item.topic.title.sr
+                        : day.lessons[period].subject.name.sr
+                    "
+                    @click="openLesson(day.lessons[period].subject, day.lessons[period].item, $event)"
                   >
                     <span class="slot-name">{{ day.lessons[period].subject.name.sr }}</span>
                     <span
-                        class="slot-topic"
-                        :class="'status-' + day.lessons[period].item.status"
-                        v-if="day.lessons[period].item.topic"
+                      class="slot-topic"
+                      :class="'status-' + day.lessons[period].item.status"
+                      v-if="day.lessons[period].item.topic"
                     >
                       {{ day.lessons[period].item.number }}
                     </span>
@@ -117,7 +134,9 @@
 
       <aside class="panel">
         <section class="panel-block need">
-          <h2><span class="dot"></span>Нужно сдать<b>{{ toPass.length }}</b></h2>
+          <h2>
+            <span class="dot"></span>Нужно сдать<b>{{ toPass.length }}</b>
+          </h2>
           <p class="panel-note">Все уроки темы прошли, тема не закрыта</p>
           <ul v-if="toPass.length">
             <li v-for="theme in toPass" :key="theme.key">
@@ -131,7 +150,9 @@
         </section>
 
         <section class="panel-block failed" v-if="failedThemes.length">
-          <h2><span class="dot"></span>Тест не сдан<b>{{ failedThemes.length }}</b></h2>
+          <h2>
+            <span class="dot"></span>Тест не сдан<b>{{ failedThemes.length }}</b>
+          </h2>
           <p class="panel-note">Все попытки потрачены</p>
           <ul>
             <li v-for="theme in failedThemes" :key="theme.key">
@@ -144,7 +165,9 @@
         </section>
 
         <section class="panel-block done">
-          <h2><span class="dot"></span>Пройдено<b>{{ doneThemes.length }}</b></h2>
+          <h2>
+            <span class="dot"></span>Пройдено<b>{{ doneThemes.length }}</b>
+          </h2>
           <p class="panel-note">из {{ themes.length }} тем за год</p>
         </section>
       </aside>
@@ -153,17 +176,19 @@
     <div class="sheet-backdrop" v-if="selected && isMobile" @click="close"></div>
 
     <div
-        class="popover"
-        v-if="selected"
-        ref="popover"
-        :class="isMobile ? 'sheet' : 'placement-' + placement"
-        :style="[popoverStyle, {visibility: positioned ? 'visible' : 'hidden'}]"
+      class="popover"
+      v-if="selected"
+      ref="popover"
+      :class="isMobile ? 'sheet' : 'placement-' + placement"
+      :style="[popoverStyle, { visibility: positioned ? 'visible' : 'hidden' }]"
     >
-      <span class="arrow" v-if="!isMobile" :style="{left: arrowOffset + 'px'}"></span>
+      <span class="arrow" v-if="!isMobile" :style="{ left: arrowOffset + 'px' }"></span>
       <button class="close" type="button" aria-label="Закрыть" @click="close">&times;</button>
 
       <template v-if="selected.item.topic">
-        <p class="crumbs">{{ selected.subject.name.sr }} · тема {{ selected.item.theme }}, урок {{ selected.item.number }}</p>
+        <p class="crumbs">
+          {{ selected.subject.name.sr }} · тема {{ selected.item.theme }}, урок {{ selected.item.number }}
+        </p>
         <h2 class="title-sr">{{ selected.item.topic.title.sr }}</h2>
         <p class="title-ru">{{ selected.item.topic.title.ru }}</p>
       </template>
@@ -181,27 +206,20 @@
       </p>
 
       <div class="actions">
-        <button
-            type="button"
-            class="btn primary"
-            :disabled="!theoryOf(selected.item)"
-            @click="openTheory"
-        >
+        <button type="button" class="btn primary" :disabled="!theoryOf(selected.item)" @click="openTheory">
           Теория
         </button>
       </div>
-      <p class="note" v-if="!selected.item.topic">
-        Программа по этому предмету пока не заведена.
-      </p>
+      <p class="note" v-if="!selected.item.topic">Программа по этому предмету пока не заведена.</p>
     </div>
   </div>
 </template>
 
 <script>
 import program from '@/../data/seven/progress.json';
-import {loadFailedKeys, loadPassedKeys, testKey} from '@/tests.js';
-import {readStorage, writeStorage} from '@/storage.js';
-import {isMobile} from '@/viewport.js';
+import { loadFailedKeys, loadPassedKeys, testKey } from '@/tests.js';
+import { readStorage, writeStorage } from '@/storage.js';
+import { isMobile } from '@/viewport.js';
 import {
   DAY_KEYS,
   DAY_NAMES,
@@ -230,8 +248,8 @@ const statusLabels = {
 };
 
 const modes = [
-  {value: 'subjects', label: 'По предметам'},
-  {value: 'days', label: 'По дням'},
+  { value: 'subjects', label: 'По предметам' },
+  { value: 'days', label: 'По дням' },
 ];
 
 const WEEKS = 4;
@@ -337,19 +355,24 @@ export default {
         const total = subject.topics.length;
         // без программы всё равно показываем уроки по расписанию
         const shown = this.firstWeek + this.weeks.length;
-        const count = total || Array.from({length: shown}, (item, index) => hours[index % hours.length]).reduce((sum, value) => sum + value, 0);
+        const count =
+          total ||
+          Array.from({ length: shown }, (item, index) => hours[index % hours.length]).reduce(
+            (sum, value) => sum + value,
+            0,
+          );
         const lessons = lessonsFor(this.program.schedules, subject.scheduleName, this.startDate, count);
         const themes = themeNumbers(subject.topics);
 
         const items = total
-            ? subject.topics.map((topic, index) => ({
+          ? subject.topics.map((topic, index) => ({
               topic: topic,
               number: index + 1,
               theme: themes[index],
               lesson: lessons[index],
               status: this.statusOf(topic, lessons[index]),
             }))
-            : lessons.map((lesson, index) => ({
+          : lessons.map((lesson, index) => ({
               topic: null,
               number: index + 1,
               theme: null,
@@ -405,14 +428,12 @@ export default {
     // оранжевое: тема пройдена целиком, а не закрыта
     toPass() {
       return this.themes
-          .filter((theme) => theme.overdue && !theme.done && !theme.failed)
-          .sort((a, b) => a.date - b.date);
+        .filter((theme) => theme.overdue && !theme.done && !theme.failed)
+        .sort((a, b) => a.date - b.date);
     },
     // красное: все попытки теста потрачены впустую
     failedThemes() {
-      return this.themes
-          .filter((theme) => theme.failed)
-          .sort((a, b) => a.date - b.date);
+      return this.themes.filter((theme) => theme.failed).sort((a, b) => a.date - b.date);
     },
     doneThemes() {
       return this.themes.filter((theme) => theme.done);
@@ -424,7 +445,7 @@ export default {
       for (const row of this.rows) {
         for (const item of row.items) {
           if (item.lesson) {
-            map[lessonKey(item.lesson.date, item.lesson.period)] = {subject: row.subject, item: item};
+            map[lessonKey(item.lesson.date, item.lesson.period)] = { subject: row.subject, item: item };
           }
         }
       }
@@ -439,21 +460,20 @@ export default {
           week: week,
           periods: periods,
           times: week.schedule.times ?? {},
-          days: DAY_KEYS
-              .map((key, dayIndex) => ({key, dayIndex, date: addDays(week.start, dayIndex)}))
-              .filter((day) => day.date >= this.startDate)
-              .map((day) => {
-                const lessons = {};
+          days: DAY_KEYS.map((key, dayIndex) => ({ key, dayIndex, date: addDays(week.start, dayIndex) }))
+            .filter((day) => day.date >= this.startDate)
+            .map((day) => {
+              const lessons = {};
 
-                for (const period of periods) {
-                  const entry = this.lessonMap[lessonKey(day.date, period)];
-                  if (entry) {
-                    lessons[period] = entry;
-                  }
+              for (const period of periods) {
+                const entry = this.lessonMap[lessonKey(day.date, period)];
+                if (entry) {
+                  lessons[period] = entry;
                 }
+              }
 
-                return {...day, lessons};
-              }),
+              return { ...day, lessons };
+            }),
         };
       });
     },
@@ -531,7 +551,7 @@ export default {
       }
 
       this.anchor = event.currentTarget;
-      this.selected = {subject, item};
+      this.selected = { subject, item };
       this.positioned = false;
       this.$nextTick(this.position);
     },
@@ -559,8 +579,8 @@ export default {
       const height = popover.offsetHeight;
 
       const left = Math.max(
-          margin,
-          Math.min(cell.left + cell.width / 2 - width / 2, window.innerWidth - width - margin)
+        margin,
+        Math.min(cell.left + cell.width / 2 - width / 2, window.innerWidth - width - margin),
       );
 
       let placement = 'bottom';
@@ -572,7 +592,7 @@ export default {
 
       this.placement = placement;
       this.arrowOffset = cell.left + cell.width / 2 - left;
-      this.popoverStyle = {left: `${left}px`, top: `${top}px`};
+      this.popoverStyle = { left: `${left}px`, top: `${top}px` };
       this.positioned = true;
     },
     close() {
@@ -998,11 +1018,15 @@ h1 {
   filter: brightness(1.1);
 }
 
-.cell.open, .slot.open {
-  box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #1a63c4;
+.cell.open,
+.slot.open {
+  box-shadow:
+    0 0 0 2px #ffffff,
+    0 0 0 4px #1a63c4;
 }
 
-.cell:focus-visible, .slot:focus-visible {
+.cell:focus-visible,
+.slot:focus-visible {
   outline: 2px solid #1a63c4;
   outline-offset: 2px;
 }
@@ -1044,7 +1068,10 @@ h1 {
   border: 1px solid #e6e6e6;
 }
 
-.tt-corner, .tt-day, .tt-period, .tt-slot {
+.tt-corner,
+.tt-day,
+.tt-period,
+.tt-slot {
   background-color: #ffffff;
 }
 
@@ -1313,7 +1340,9 @@ h1 {
     padding: 0 8px 6px;
   }
 
-  .week-name, .week-dates, .week-shift {
+  .week-name,
+  .week-dates,
+  .week-shift {
     font-size: 11px;
   }
 

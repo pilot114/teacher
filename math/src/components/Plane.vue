@@ -1,15 +1,15 @@
 <template>
-    <line-chart
-        ref="chart"
-        width="100%"
-        height="700px"
-        :data="data"
-        :library="chartOptions"
-        label="y"
-        :min="min"
-        :max="max"
-        :legend="true"
-    />
+  <line-chart
+    ref="chart"
+    width="100%"
+    height="700px"
+    :data="data"
+    :library="chartOptions"
+    label="y"
+    :min="min"
+    :max="max"
+    :legend="true"
+  />
 </template>
 
 <script>
@@ -21,8 +21,8 @@ export default {
     max: Number,
     logarithmic: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   computed: {
     chartOptions() {
@@ -38,8 +38,8 @@ export default {
             display: true,
             position: 'top',
             labels: {
-              color: getComputedStyle(document.documentElement).getPropertyValue('--text-color') || '#2c3e50'
-            }
+              color: getComputedStyle(document.documentElement).getPropertyValue('--text-color') || '#2c3e50',
+            },
           },
           tooltip: {
             enabled: true,
@@ -54,8 +54,8 @@ export default {
               },
               label: (context) => {
                 return `${context.dataset.label || 'y'}: ${context.parsed.y.toFixed(3)}`;
-              }
-            }
+              },
+            },
           },
           zoom: {
             zoom: {
@@ -63,7 +63,7 @@ export default {
                 enabled: true,
               },
               pinch: {
-                enabled: true
+                enabled: true,
               },
               mode: 'xy',
             },
@@ -72,10 +72,10 @@ export default {
               mode: 'xy',
             },
             limits: {
-              x: {min: -1000, max: 1000},
-              y: {min: -1000, max: 1000}
-            }
-          }
+              x: { min: -1000, max: 1000 },
+              y: { min: -1000, max: 1000 },
+            },
+          },
         },
         scales: {
           x: {
@@ -83,46 +83,45 @@ export default {
             title: {
               display: true,
               text: 'x',
-              color: getComputedStyle(document.documentElement).getPropertyValue('--text-color') || '#2c3e50'
+              color: getComputedStyle(document.documentElement).getPropertyValue('--text-color') || '#2c3e50',
             },
             ticks: {
-              color: getComputedStyle(document.documentElement).getPropertyValue('--text-secondary') || '#666'
+              color: getComputedStyle(document.documentElement).getPropertyValue('--text-secondary') || '#666',
             },
             grid: {
-              color: getComputedStyle(document.documentElement).getPropertyValue('--border-color') || '#ddd'
-            }
+              color: getComputedStyle(document.documentElement).getPropertyValue('--border-color') || '#ddd',
+            },
           },
           y: {
             type: this.logarithmic ? 'logarithmic' : 'linear',
             title: {
               display: true,
               text: 'y',
-              color: getComputedStyle(document.documentElement).getPropertyValue('--text-color') || '#2c3e50'
+              color: getComputedStyle(document.documentElement).getPropertyValue('--text-color') || '#2c3e50',
             },
             ticks: {
-              color: getComputedStyle(document.documentElement).getPropertyValue('--text-secondary') || '#666'
+              color: getComputedStyle(document.documentElement).getPropertyValue('--text-secondary') || '#666',
             },
             grid: {
-              color: getComputedStyle(document.documentElement).getPropertyValue('--border-color') || '#ddd'
-            }
-          }
+              color: getComputedStyle(document.documentElement).getPropertyValue('--border-color') || '#ddd',
+            },
+          },
         },
         elements: {
           point: {
             radius: 0,
             hitRadius: 5,
-            hoverRadius: 3
+            hoverRadius: 3,
           },
           line: {
             borderWidth: 2,
-            tension: 0.1
-          }
-        }
+            tension: 0.1,
+          },
+        },
       };
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

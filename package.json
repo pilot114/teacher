@@ -1,0 +1,10 @@
+{
+  "name": "teacher",
+  "private": true,
+  "description": "Команды обслуживания всего репозитория: фронтенды (math, topics, letters) и бэкенд на Go",
+  "scripts": {
+    "test": "cd backend && go test ./...",
+    "check": "npm --prefix math run check && npm --prefix topics run check && npm --prefix letters run check && test -z \"$(gofmt -l backend)\" && cd backend && go vet ./...",
+    "fix": "npm --prefix math run fix; npm --prefix topics run fix; npm --prefix letters run fix; gofmt -w backend"
+  }
+}

@@ -5,19 +5,17 @@
 <script>
 import { ref, onMounted, onBeforeUnmount, watch } from 'vue';
 import { CodeJar } from 'codejar';
-import { createHighlighter } from 'shiki'
+import { createHighlighter } from 'shiki';
 
 const highlighter = await createHighlighter({
-  themes: [
-    'one-dark-pro', 'light-plus', 'none',
-  ],
+  themes: ['one-dark-pro', 'light-plus', 'none'],
   langs: ['javascript', 'python', 'php', 'go'],
-})
+});
 
 // fix bg
 let theme = highlighter.getTheme('light-plus');
-theme.bg = '#f5f5f5'
-highlighter.setTheme(theme)
+theme.bg = '#f5f5f5';
+highlighter.setTheme(theme);
 
 export default {
   name: 'CodeEditor',
@@ -38,7 +36,7 @@ export default {
     const editorRef = ref(null);
     let jar = null;
 
-    const switchJar = function(isReadonly){
+    const switchJar = function (isReadonly) {
       jar = CodeJar(editorRef.value, highlightSyntax, {
         tab: '    ', // Четыре пробела вместо табуляции
       });
@@ -54,17 +52,17 @@ export default {
         }
         editorRef.value.removeAttribute('contenteditable');
       }
-    }
+    };
 
     const highlightSyntax = async (editor) => {
       editor.innerHTML = highlighter.codeToHtml(editor.textContent, {
         lang: props.language,
-        theme: 'light-plus'
-      })
+        theme: 'light-plus',
+      });
     };
 
     onMounted(async () => {
-      switchJar(props.readonly)
+      switchJar(props.readonly);
     });
 
     onBeforeUnmount(() => {
@@ -74,17 +72,17 @@ export default {
     });
 
     watch(
-        () => props.modelValue,
-        (newVal) => {
-          if (jar && newVal !== jar.toString()) {
-            jar.updateCode(newVal.trim());
-          }
+      () => props.modelValue,
+      (newVal) => {
+        if (jar && newVal !== jar.toString()) {
+          jar.updateCode(newVal.trim());
         }
+      },
     );
 
     watch(
-        () => props.readonly,
-        (newVal) => switchJar(newVal)
+      () => props.readonly,
+      (newVal) => switchJar(newVal),
     );
 
     return {
@@ -121,5 +119,4 @@ export default {
     font-size: 14px;
   }
 }
-
 </style>

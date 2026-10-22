@@ -69,7 +69,7 @@ export function findAllRoots(func, start, end, segments = 100) {
 
     if (root !== null) {
       // Проверяем, не нашли ли мы уже этот корень
-      const isDuplicate = roots.some(r => Math.abs(r - root) < 0.01);
+      const isDuplicate = roots.some((r) => Math.abs(r - root) < 0.01);
       if (!isDuplicate) {
         roots.push(root);
       }
@@ -106,7 +106,7 @@ export function findExtrema(func, start, end, segments = 100) {
           extrema.push({
             x,
             y,
-            type: secondDeriv < 0 ? 'max' : 'min'
+            type: secondDeriv < 0 ? 'max' : 'min',
           });
         }
       } catch {
@@ -155,7 +155,7 @@ export function getTangentLine(func, x0) {
     return {
       func: `${y0} + ${slope} * (x - ${x0})`,
       slope,
-      point: { x: x0, y: y0 }
+      point: { x: x0, y: y0 },
     };
   } catch (e) {
     console.error('Error computing tangent:', e);
@@ -175,7 +175,7 @@ export function getNormalLine(func, x0) {
     return {
       func: `${tangent.point.y} + ${normalSlope} * (x - ${x0})`,
       slope: normalSlope,
-      point: tangent.point
+      point: tangent.point,
     };
   } catch (e) {
     console.error('Error computing normal:', e);
@@ -188,7 +188,7 @@ export function findAsymptotes(func, start, end) {
   const asymptotes = {
     vertical: [],
     horizontal: null,
-    oblique: null
+    oblique: null,
   };
 
   try {
@@ -201,7 +201,7 @@ export function findAsymptotes(func, start, end) {
 
         if (Math.abs(y) > 1000 || Math.abs(yNext) > 1000) {
           if (Math.abs(y - yNext) > 100) {
-            const isDuplicate = asymptotes.vertical.some(a => Math.abs(a - x) < 0.5);
+            const isDuplicate = asymptotes.vertical.some((a) => Math.abs(a - x) < 0.5);
             if (!isDuplicate) {
               asymptotes.vertical.push(x);
             }
@@ -209,7 +209,7 @@ export function findAsymptotes(func, start, end) {
         }
       } catch {
         // Точка разрыва - возможная вертикальная асимптота
-        const isDuplicate = asymptotes.vertical.some(a => Math.abs(a - x) < 0.5);
+        const isDuplicate = asymptotes.vertical.some((a) => Math.abs(a - x) < 0.5);
         if (!isDuplicate) {
           asymptotes.vertical.push(x);
         }
@@ -237,7 +237,7 @@ export function findAsymptotes(func, start, end) {
 export function polarToCartesian(r, theta) {
   return {
     x: r * Math.cos(theta),
-    y: r * Math.sin(theta)
+    y: r * Math.sin(theta),
   };
 }
 

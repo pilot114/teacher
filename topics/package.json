@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "vite build && cp dist/index.html dist/404.html && cp -r data dist/data && rm -Rf ../docs && cp -r dist ../docs",
     "preview": "vite preview",
-    "lint": "eslint src"
+    "test": "echo 'тестов нет'",
+    "check": "eslint . && prettier --check .",
+    "fix": "eslint --fix . ; prettier --write ."
   },
   "dependencies": {
     "codejar": "^4.3.0",
@@ -21,8 +23,10 @@
     "@eslint/js": "^10.0.1",
     "@vitejs/plugin-vue": "^6.0.10",
     "eslint": "^10.13.0",
+    "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-vue": "^10.11.1",
     "globals": "^17.13.0",
+    "prettier": "^3.9.10",
     "vite": "^8.3.5"
   }
 }

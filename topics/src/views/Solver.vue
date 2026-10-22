@@ -1,8 +1,6 @@
 <template>
-  <button v-if="mode==='START'" @click="start">
-    Начать
-  </button>
-  <div v-if="mode==='TASK'">
+  <button v-if="mode === 'START'" @click="start">Начать</button>
+  <div v-if="mode === 'TASK'">
     <div id="status">
       {{ status }}
     </div>
@@ -14,41 +12,33 @@
       </p>
     </div>
     <div class="answer-row">
-      <input
-          v-model="answer"
-          type="text"
-          inputmode="decimal"
-          autocomplete="off"
-          @keyup.enter="next"
-      />
+      <input v-model="answer" type="text" inputmode="decimal" autocomplete="off" @keyup.enter="next" />
       <!-- на числовой клавиатуре телефона нет Enter — нужна кнопка -->
       <button type="button" @click="next">Ответить</button>
     </div>
   </div>
-  <div v-if="mode==='END'">
+  <div v-if="mode === 'END'">
     <h2>{{ progress }}</h2>
-    <button @click="start">
-      Ещё раз
-    </button>
+    <button @click="start">Ещё раз</button>
   </div>
 </template>
 
 <script>
-import {ref} from "vue";
+import { ref } from 'vue';
 import { generateTask } from '@/tasks.js';
 
 export default {
   name: 'Solver',
   emits: ['start'],
   setup() {
-    let task = ref(null)
-    let answer = ref(null)
-    let totalTaskCount = ref(0)
-    let successTaskCount = ref(0)
-    let points = ref(0)
-    let timer = ref(0)
+    let task = ref(null);
+    let answer = ref(null);
+    let totalTaskCount = ref(0);
+    let successTaskCount = ref(0);
+    let points = ref(0);
+    let timer = ref(0);
 
-    let mode = ref('START')
+    let mode = ref('START');
 
     return {
       task,
@@ -58,7 +48,7 @@ export default {
       points,
       timer,
       mode,
-    }
+    };
   },
   methods: {
     start() {
@@ -97,7 +87,7 @@ export default {
       const minutes = Math.floor(this.timer / 60);
       let seconds = String(this.timer - minutes * 60);
       if (seconds.length === 0) {
-        seconds = '0'+seconds;
+        seconds = '0' + seconds;
       }
       return `Баллов: ${this.points}, таймер: ${minutes}:${seconds}`;
     },
@@ -121,14 +111,16 @@ button {
   border-radius: 5px;
   font-size: 16px;
   cursor: pointer;
-  transition: background 0.3s, transform 0.2s;
+  transition:
+    background 0.3s,
+    transform 0.2s;
 }
 
 button:hover {
   background: linear-gradient(to bottom, #2980b9, #3498db);
 }
 
-input[type="text"] {
+input[type='text'] {
   padding: 8px;
   margin-right: 8px;
   border: 1px solid #ccc;
@@ -136,7 +128,7 @@ input[type="text"] {
   font-size: 16px;
 }
 
-input[type="text"]:focus {
+input[type='text']:focus {
   border-color: #3498db;
 }
 
@@ -158,7 +150,7 @@ input[type="text"]:focus {
     align-items: stretch;
   }
 
-  input[type="text"] {
+  input[type='text'] {
     width: 100%;
     margin-right: 0;
     font-size: 18px;

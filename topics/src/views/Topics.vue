@@ -1,35 +1,34 @@
 <template>
   <sidebar-menu
-      :topics="topics"
-      :selected-topic="selectedTopic"
-      :selected-subject="selectedSubject"
-      :selected-grade="selectedGrade"
-      @select-topic="selectTopic"
-      @select-grade="selectGrade"
-      @load-topics="loadTopics"
+    :topics="topics"
+    :selected-topic="selectedTopic"
+    :selected-subject="selectedSubject"
+    :selected-grade="selectedGrade"
+    @select-topic="selectTopic"
+    @select-grade="selectGrade"
+    @load-topics="loadTopics"
   ></sidebar-menu>
   <content-area
-      :content="selectedContent"
-      :practice="practiceTarget"
-      @open-practice="practice = practiceTarget"
+    :content="selectedContent"
+    :practice="practiceTarget"
+    @open-practice="practice = practiceTarget"
   ></content-area>
 
   <TopicTest
-      v-if="practice"
-      :target="practice"
-      :subject-label="currentSubject.label"
-      @close="practice = null"
-      @open-theory="practice = null"
+    v-if="practice"
+    :target="practice"
+    :subject-label="currentSubject.label"
+    @close="practice = null"
+    @open-theory="practice = null"
   />
 </template>
 
 <script>
-
-import SidebarMenu from "@/components/SidebarMenu.vue";
-import ContentArea from "@/components/ContentArea.vue";
-import TopicTest from "@/views/TopicTest.vue";
-import {loadTestKeys, testKey} from "@/tests.js";
-import {trackTheory} from "@/history.js";
+import SidebarMenu from '@/components/SidebarMenu.vue';
+import ContentArea from '@/components/ContentArea.vue';
+import TopicTest from '@/views/TopicTest.vue';
+import { loadTestKeys, testKey } from '@/tests.js';
+import { trackTheory } from '@/history.js';
 import {
   defaultSubject,
   findSubject,
@@ -37,7 +36,7 @@ import {
   rememberSubject,
   restoreSubject,
   subjectInGrade,
-} from "@/subjects.js";
+} from '@/subjects.js';
 
 export default {
   name: 'App',
@@ -72,7 +71,7 @@ export default {
         return null;
       }
 
-      const target = {subject: this.selectedSubject, topic: this.selectedTopic};
+      const target = { subject: this.selectedSubject, topic: this.selectedTopic };
       return this.testKeys.has(testKey(target.subject, target.topic)) ? target : null;
     },
   },
@@ -121,6 +120,6 @@ export default {
     } else {
       this.loadTopics();
     }
-  }
-}
+  },
+};
 </script>

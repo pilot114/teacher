@@ -1,21 +1,14 @@
 <template>
-  <div class="sidebar" :class="{collapsed: isMobile && !open}">
-    <button
-        type="button"
-        class="sidebar-toggle"
-        :aria-expanded="String(open)"
-        @click="open = !open"
-    >
+  <div class="sidebar" :class="{ collapsed: isMobile && !open }">
+    <button type="button" class="sidebar-toggle" :aria-expanded="String(open)" @click="open = !open">
       <span class="toggle-label">{{ selectedTopic || 'Оглавление' }}</span>
-      <span class="chevron" :class="{up: open}"></span>
+      <span class="chevron" :class="{ up: open }"></span>
     </button>
 
     <div class="sidebar-body">
       <div class="selectors">
         <select id="grade-select" :value="selectedGrade" @change="selectGrade(Number($event.target.value))">
-          <option v-for="grade in grades" :key="grade" :value="grade">
-            {{ grade }} класс
-          </option>
+          <option v-for="grade in grades" :key="grade" :value="grade">{{ grade }} класс</option>
         </select>
         <select id="subject-select" :value="selectedSubject" @change="load($event.target.value)">
           <option v-for="subject in gradeSubjects" :key="subject.value" :value="subject.value">
@@ -30,10 +23,10 @@
           </div>
           <ul v-if="topic.subtopics && topic.expanded">
             <li
-                v-for="subtopic in topic.subtopics"
-                :key="subtopic.title"
-                @click="select(subtopic, subtopic.title, $event)"
-                :class="{ active: isActive(subtopic.title) }"
+              v-for="subtopic in topic.subtopics"
+              :key="subtopic.title"
+              @click="select(subtopic, subtopic.title, $event)"
+              :class="{ active: isActive(subtopic.title) }"
             >
               {{ subtopic.title }}
             </li>
@@ -45,8 +38,8 @@
 </template>
 
 <script>
-import {grades, subjectsForGrade} from "@/subjects.js";
-import {isMobile} from "@/viewport.js";
+import { grades, subjectsForGrade } from '@/subjects.js';
+import { isMobile } from '@/viewport.js';
 
 export default {
   name: 'SidebarMenu',
@@ -80,9 +73,7 @@ export default {
   },
   methods: {
     subjectLabel(subject) {
-      return subject.label === subject.labelRu
-          ? subject.label
-          : `${subject.label} (${subject.labelRu})`;
+      return subject.label === subject.labelRu ? subject.label : `${subject.label} (${subject.labelRu})`;
     },
     selectGrade(grade) {
       this.$emit('select-grade', grade);
@@ -102,8 +93,8 @@ export default {
     },
     isActive(title) {
       return this.selectedTopic === title;
-    }
-  }
+    },
+  },
 };
 </script>
 
