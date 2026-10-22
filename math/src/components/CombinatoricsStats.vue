@@ -404,7 +404,6 @@ export default {
             if (!ctx) return;
 
             const n = this.combinatorics.n;
-            const k = this.combinatorics.k;
 
             // Generate data for different values of k
             const labels = [];

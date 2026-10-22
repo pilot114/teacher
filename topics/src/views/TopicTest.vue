@@ -370,7 +370,7 @@ export default {
       if (wantsFullscreen) {
         try {
           await enterFullscreen();
-        } catch (error) {
+        } catch {
           this.startError = 'Браузер не включил полноэкранный режим, а без него тест не начать. Попробуйте ещё раз.';
           return;
         }

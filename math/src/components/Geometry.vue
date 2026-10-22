@@ -496,7 +496,7 @@ export default {
             ctx.lineWidth = 3;
 
             switch (this.primitives.type) {
-                case 'point':
+                case 'point': {
                     // Несколько точек
                     const points = [
                         { x: cx, y: cy, label: 'A' },
@@ -510,6 +510,7 @@ export default {
                         ctx.fillText(p.label, p.x + 10, p.y - 10);
                     });
                     break;
+                }
 
                 case 'line':
                     // Прямая через две точки
@@ -531,7 +532,7 @@ export default {
                     ctx.fillText('Прямая AB', cx, cy - 120);
                     break;
 
-                case 'segment':
+                case 'segment': {
                     // Отрезок
                     const x1 = cx - 150, y1 = cy;
                     const x2 = cx + 150, y2 = cy;
@@ -555,8 +556,9 @@ export default {
                     ctx.fillText('B', x2 + 10, y2 - 10);
                     ctx.fillText('Отрезок AB', cx, cy - 30);
                     break;
+                }
 
-                case 'ray':
+                case 'ray': {
                     // Луч
                     const startX = cx - 100, startY = cy;
                     const dirX = 250, dirY = -100;
@@ -576,6 +578,7 @@ export default {
                     ctx.fillText('A', startX - 20, startY + 20);
                     ctx.fillText('Луч AB', cx, cy - 80);
                     break;
+                }
             }
         },
 
@@ -646,7 +649,7 @@ export default {
                 let p1, p2, p3;
 
                 switch (this.triangles.triangleType) {
-                    case 'equilateral':
+                    case 'equilateral': {
                         // Равносторонний
                         const side = 200;
                         const h = side * Math.sqrt(3) / 2;
@@ -654,6 +657,7 @@ export default {
                         p2 = { x: cx - side / 2, y: cy + h / 2 };
                         p3 = { x: cx + side / 2, y: cy + h / 2 };
                         break;
+                    }
 
                     case 'isosceles':
                         // Равнобедренный
@@ -705,7 +709,6 @@ export default {
                 const scale = 30;
                 const a = this.triangles.a * scale;
                 const b = this.triangles.b * scale;
-                const c = Math.sqrt(a * a + b * b);
 
                 const p1 = { x: cx - b / 2, y: cy + a / 2 };
                 const p2 = { x: cx - b / 2, y: cy - a / 2 };
@@ -793,7 +796,7 @@ export default {
             ctx.lineWidth = 3;
 
             switch (this.quadrilaterals.type) {
-                case 'square':
+                case 'square': {
                     const side = this.quadrilaterals.side;
                     ctx.fillRect(cx - side / 2, cy - side / 2, side, side);
                     ctx.strokeRect(cx - side / 2, cy - side / 2, side, side);
@@ -809,8 +812,9 @@ export default {
                     ctx.stroke();
                     ctx.setLineDash([]);
                     break;
+                }
 
-                case 'rectangle':
+                case 'rectangle': {
                     const w = this.quadrilaterals.width;
                     const h = this.quadrilaterals.height;
                     ctx.fillRect(cx - w / 2, cy - h / 2, w, h);
@@ -821,8 +825,9 @@ export default {
                     ctx.fillText(`w = ${w}`, cx, cy + h / 2 + 25);
                     ctx.fillText(`h = ${h}`, cx - w / 2 - 40, cy);
                     break;
+                }
 
-                case 'rhombus':
+                case 'rhombus': {
                     const d1 = 200, d2 = 120;
                     ctx.beginPath();
                     ctx.moveTo(cx, cy - d2 / 2);
@@ -833,8 +838,9 @@ export default {
                     ctx.fill();
                     ctx.stroke();
                     break;
+                }
 
-                case 'parallelogram':
+                case 'parallelogram': {
                     const base = 180, height = 100, skew = 40;
                     ctx.beginPath();
                     ctx.moveTo(cx - base / 2, cy + height / 2);
@@ -845,8 +851,9 @@ export default {
                     ctx.fill();
                     ctx.stroke();
                     break;
+                }
 
-                case 'trapezoid':
+                case 'trapezoid': {
                     const topWidth = 120, bottomWidth = 200, trapHeight = 100;
                     ctx.beginPath();
                     ctx.moveTo(cx - bottomWidth / 2, cy + trapHeight / 2);
@@ -867,6 +874,7 @@ export default {
                     ctx.stroke();
                     ctx.setLineDash([]);
                     break;
+                }
             }
         },
 
@@ -975,7 +983,6 @@ export default {
                 ctx.stroke();
 
                 // Дуга вписанного угла
-                const inscribedAngle = angleRad / 2;
                 ctx.strokeStyle = '#34A853';
                 ctx.lineWidth = 2;
                 ctx.beginPath();
@@ -1122,7 +1129,7 @@ export default {
                     ctx.fillText(`B(${b.x}, ${b.y})`, cx + b.x * scale + 15, cy - b.y * scale + 25);
                     break;
 
-                case 'addition':
+                case 'addition': {
                     drawVector(a.x, a.y, '#4285F4', 'A');
                     drawVector(b.x, b.y, '#EA4335', 'B');
 
@@ -1143,8 +1150,9 @@ export default {
                     ctx.stroke();
                     ctx.setLineDash([]);
                     break;
+                }
 
-                case 'scalar':
+                case 'scalar': {
                     drawVector(a.x, a.y, '#4285F4', 'A');
 
                     const k = this.vectors.scalar;
@@ -1156,8 +1164,9 @@ export default {
                     ctx.font = '14px Arial';
                     ctx.fillText(`k = ${k}`, 20, 30);
                     break;
+                }
 
-                case 'dot':
+                case 'dot': {
                     drawVector(a.x, a.y, '#4285F4', 'A');
                     drawVector(b.x, b.y, '#EA4335', 'B');
 
@@ -1182,6 +1191,7 @@ export default {
                     ctx.arc(cx, cy, 40, Math.min(angleA, angleB), Math.max(angleA, angleB));
                     ctx.stroke();
                     break;
+                }
             }
         },
 
@@ -1227,7 +1237,7 @@ export default {
                     }));
                     break;
 
-                case 'rotation':
+                case 'rotation': {
                     const angleRad = this.transformations.angle * Math.PI / 180;
                     const cosA = Math.cos(angleRad);
                     const sinA = Math.sin(angleRad);
@@ -1236,6 +1246,7 @@ export default {
                         y: p.x * sinA + p.y * cosA
                     }));
                     break;
+                }
 
                 case 'reflection':
                     // Осевая симметрия относительно оси Y
@@ -1269,7 +1280,7 @@ export default {
                     ctx.fillText('O', cx + 10, cy - 10);
                     break;
 
-                case 'homothety':
+                case 'homothety': {
                     const k = this.transformations.scale;
                     transformedPoints = originalPoints.map(p => ({
                         x: p.x * k,
@@ -1282,6 +1293,7 @@ export default {
                     ctx.arc(cx, cy, 6, 0, Math.PI * 2);
                     ctx.fill();
                     break;
+                }
             }
 
             // Рисуем преобразованную фигуру

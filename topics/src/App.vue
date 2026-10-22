@@ -12,7 +12,7 @@
       ></header-menu>
       <div class="container" v-if="ready">
         <Topics  v-if="selectedSection === 'Учебники'" :target="topicsTarget"/>
-        <Progress v-if="selectedSection === 'Прогресс'" @open-theory="openTheory"/>
+        <ProgressView v-if="selectedSection === 'Прогресс'" @open-theory="openTheory"/>
         <template v-if="selectedSection === 'Практика'">
           <MultiplicationTrainer v-if="selectedPractice === 'Таблица умножения'" @start="startPractice"/>
           <Solver v-if="selectedPractice === 'Задачи'" @start="startPractice"/>
@@ -41,7 +41,7 @@ import MultiplicationTrainer from "@/views/MultiplicationTrainer.vue";
 import Topics from "@/views/Topics.vue";
 import PoetryList from "@/views/PoetryList.vue";
 import CodeExecutor from "@/views/CodeExecutor.vue";
-import Progress from "@/views/Progress.vue";
+import ProgressView from "@/views/Progress.vue";
 import StudentHistory from "@/views/StudentHistory.vue";
 import GardenBeds from "@/views/GardenBeds.vue";
 import {
@@ -61,7 +61,7 @@ export default {
     GardenBeds,
     StudentHistory,
     LoginForm,
-    Progress,
+    ProgressView,
     Topics,
     Solver,
     HeaderMenu,

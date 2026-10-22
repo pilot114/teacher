@@ -52,7 +52,7 @@ export function findRoot(func, start, end, tolerance = 0.0001) {
     }
 
     return (a + b) / 2;
-  } catch (e) {
+  } catch {
     return null;
   }
 }
@@ -109,7 +109,7 @@ export function findExtrema(func, start, end, segments = 100) {
             type: secondDeriv < 0 ? 'max' : 'min'
           });
         }
-      } catch (e) {
+      } catch {
         // Игнорируем точки с ошибками
       }
     }
@@ -133,7 +133,7 @@ export function findInflectionPoints(func, start, end, segments = 100) {
       try {
         const y = evaluate(func, { x });
         inflectionPoints.push({ x, y });
-      } catch (e) {
+      } catch {
         // Игнорируем точки с ошибками
       }
     }
@@ -207,7 +207,7 @@ export function findAsymptotes(func, start, end) {
             }
           }
         }
-      } catch (e) {
+      } catch {
         // Точка разрыва - возможная вертикальная асимптота
         const isDuplicate = asymptotes.vertical.some(a => Math.abs(a - x) < 0.5);
         if (!isDuplicate) {
@@ -223,7 +223,7 @@ export function findAsymptotes(func, start, end) {
       if (Math.abs(yAtInf - yAtInf2) < 0.1 && Math.abs(yAtInf) < 1000) {
         asymptotes.horizontal = yAtInf;
       }
-    } catch (e) {
+    } catch {
       // Нет горизонтальной асимптоты
     }
   } catch (e) {

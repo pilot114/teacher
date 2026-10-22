@@ -36,7 +36,7 @@ async function request(path, {method = 'GET', body, token, keepalive = false} = 
             body: body === undefined ? undefined : JSON.stringify(body),
             keepalive,
         });
-    } catch (error) {
+    } catch {
         throw new ApiError('Сервер недоступен. Проверьте связь и попробуйте ещё раз.', 0);
     }
 

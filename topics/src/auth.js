@@ -25,7 +25,7 @@ function restore() {
         }
 
         return saved;
-    } catch (error) {
+    } catch {
         removeStorage(KEY);
         return null;
     }

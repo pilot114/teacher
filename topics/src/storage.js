@@ -3,7 +3,7 @@ const PREFIX = 'teacher.';
 function readStorage(key) {
     try {
         return window.localStorage.getItem(PREFIX + key);
-    } catch (error) {
+    } catch {
         // приватный режим или запрет на хранилище
         return null;
     }
@@ -12,7 +12,7 @@ function readStorage(key) {
 function writeStorage(key, value) {
     try {
         window.localStorage.setItem(PREFIX + key, value);
-    } catch (error) {
+    } catch {
         // выбор просто не переживёт перезагрузку
     }
 }
@@ -20,7 +20,7 @@ function writeStorage(key, value) {
 function removeStorage(key) {
     try {
         window.localStorage.removeItem(PREFIX + key);
-    } catch (error) {
+    } catch {
         // нечего удалять — хранилища и так нет
     }
 }
@@ -36,7 +36,7 @@ function storageKeys(prefix) {
                 keys.push(key.slice(PREFIX.length));
             }
         }
-    } catch (error) {
+    } catch {
         // хранилище недоступно — переносить нечего
     }
 
