@@ -4,46 +4,25 @@
   "private": true,
   "homepage": "https://pilot114.github.io/teacher/",
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "rm -Rf ../docs && vue-cli-service build && cp dist/index.html dist/404.html && cp -r data dist/data && cp -r dist ../docs",
-    "lint": "vue-cli-service lint"
+    "dev": "vite",
+    "build": "vite build && cp dist/index.html dist/404.html && cp -r data dist/data && rm -Rf ../docs && cp -r dist ../docs",
+    "preview": "vite preview",
+    "lint": "eslint src"
   },
   "dependencies": {
-    "core-js": "^3.8.3",
+    "codejar": "^4.3.0",
     "modern-normalize": "^3.0.1",
-    "codejar": "^4.2.0",
-    "php-wasm": "^0.0.8",
-    "vue": "^3.2.13",
-    "shiki": "^1.24.0"
+    "php-wasm": "^0.2.0",
+    "shiki": "^4.5.0",
+    "vue": "^3.5.44"
   },
+  "type": "module",
   "devDependencies": {
-    "@babel/core": "^7.12.16",
-    "@babel/eslint-parser": "^7.12.16",
-    "@vue/cli-plugin-babel": "^5.0.8",
-    "@vue/cli-plugin-eslint": "^5.0.8",
-    "@vue/cli-service": "~5.0.0",
-    "cache-loader": "^1.2.5",
-    "eslint": "^7.32.0",
-    "eslint-plugin-vue": "^8.0.3"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/vue3-essential",
-      "eslint:recommended"
-    ],
-    "parserOptions": {
-      "parser": "@babel/eslint-parser"
-    },
-    "rules": {}
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not dead",
-    "not ie 11"
-  ]
+    "@eslint/js": "^10.0.1",
+    "@vitejs/plugin-vue": "^6.0.10",
+    "eslint": "^10.13.0",
+    "eslint-plugin-vue": "^10.11.1",
+    "globals": "^17.13.0",
+    "vite": "^8.3.5"
+  }
 }

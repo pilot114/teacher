@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import { functionExamples } from '../utils/functionExamples';
+import { functionExamples } from '../utils/functionExamples.js';
 
 export default {
   name: 'FunctionGallery',

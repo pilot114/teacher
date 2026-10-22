@@ -24,10 +24,10 @@ cd ../backend && go build -o teacher-api . && ./teacher-api user add masha "Ма
 yarn build
 ```
 
-Адрес API берётся из `VUE_APP_API_URL`. Для боевой сборки положите его в `.env.production.local`:
+Адрес API берётся из `VITE_API_URL`. Для боевой сборки положите его в `.env.production.local`:
 
 ```
-VUE_APP_API_URL=https://api.example.org
+VITE_API_URL=https://api.example.org
 ```
 
 Если переменной нет, фронт ходит на тот же домен, откуда отдан, — годится, когда API проксируется

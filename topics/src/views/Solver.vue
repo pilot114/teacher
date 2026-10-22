@@ -35,7 +35,7 @@
 
 <script>
 import {ref} from "vue";
-import { generateTask } from '@/tasks';
+import { generateTask } from '@/tasks.js';
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names

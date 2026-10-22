@@ -1,8 +1,7 @@
-// pyodideWorker.js
-self.importScripts('https://cdn.jsdelivr.net/pyodide/v0.26.4/full/pyodide.js');
+// pyodideWorker.js — модульный воркер: importScripts в нём недоступен
+import { loadPyodide } from 'https://cdn.jsdelivr.net/pyodide/v314.0.7/full/pyodide.mjs';
 
 let pyodideReadyPromise = (async () => {
-    /* global loadPyodide */
     self.pyodide = await loadPyodide();
 
     self.pyodide.setStdout({

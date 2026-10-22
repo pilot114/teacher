@@ -72,13 +72,13 @@ npm install
 ### Запуск в режиме разработки
 
 ```bash
-npm run serve
+npm run dev
 ```
 
 ### Сборка для production
 
 ```bash
-NODE_OPTIONS=--openssl-legacy-provider npm run build
+npm run build
 ```
 
 ### Линтинг

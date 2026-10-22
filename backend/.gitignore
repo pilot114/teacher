@@ -4,3 +4,5 @@ backend
 *.db-wal
 *.db-shm
 tests/
+*.db.bak*
+*.log

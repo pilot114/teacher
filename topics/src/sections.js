@@ -15,7 +15,7 @@ const sectionPaths = {
 };
 
 // в сборке приложение живёт в подкаталоге (/teacher/), в разработке — в корне
-const BASE = process.env.BASE_URL;
+const BASE = import.meta.env.BASE_URL;
 
 function restore(key, allowed, fallback) {
     const value = readStorage(key);

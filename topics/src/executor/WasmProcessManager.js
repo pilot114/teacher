@@ -54,7 +54,7 @@ class GolangProcess {
         let outputBuf = '';
         let errorBuf = '';
 
-        global.fs.read = function(fd, buffer, offset, length, position, callback) {
+        globalThis.fs.read = function(fd, buffer, offset, length, position, callback) {
 
             if (fd !== 0) {
                 callback(null, 0);
@@ -74,7 +74,7 @@ class GolangProcess {
             }
         };
 
-        global.fs.writeSync = function(fd, buf) {
+        globalThis.fs.writeSync = function(fd, buf) {
             if (fd === 1) {
                 outputBuf += decoder.decode(buf);
                 self.onOutput(outputBuf);

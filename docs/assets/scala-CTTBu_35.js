@@ -1,0 +1,1 @@
+export{t as default}from"./scala-o2NiCLJc.js";

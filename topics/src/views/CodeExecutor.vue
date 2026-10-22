@@ -77,7 +77,7 @@ import ContentTab from "@/components/ContentTab.vue";
 import CodeEditor from "@/components/CodeEditor.vue";
 import {sources} from "@/sources.js";
 
-import {WasmProcessManager, Langs} from "@/executor/WasmProcessManager";
+import {WasmProcessManager, Langs} from "@/executor/WasmProcessManager.js";
 
 const languages = [
   {name: Langs.PYTHON, logo: 'https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg', isSupported: true, isReadonly: false},

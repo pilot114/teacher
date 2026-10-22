@@ -274,16 +274,16 @@
 </template>
 
 <script>
-import Plane from "./components/Plane";
-import FunctionGallery from "./components/FunctionGallery";
-import SchoolMath from "./components/SchoolMath";
-import Geometry from "./components/Geometry";
-import Stereometry from "./components/Stereometry";
-import Trigonometry from "./components/Trigonometry";
-import FunctionsGraphs from "./components/FunctionsGraphs";
-import CombinatoricsStats from "./components/CombinatoricsStats";
+import Plane from "./components/Plane.vue";
+import FunctionGallery from "./components/FunctionGallery.vue";
+import SchoolMath from "./components/SchoolMath.vue";
+import Geometry from "./components/Geometry.vue";
+import Stereometry from "./components/Stereometry.vue";
+import Trigonometry from "./components/Trigonometry.vue";
+import FunctionsGraphs from "./components/FunctionsGraphs.vue";
+import CombinatoricsStats from "./components/CombinatoricsStats.vue";
 import { evaluate, derivative } from 'mathjs';
-import { defaultColors } from './utils/functionExamples';
+import { defaultColors } from './utils/functionExamples.js';
 import {
     numericalIntegral,
     findAllRoots,
@@ -295,7 +295,7 @@ import {
     findAsymptotes,
     generatePolarPoints,
     // polarToCartesian
-} from './utils/mathUtils';
+} from './utils/mathUtils.js';
 
 export default {
     name: 'App',
