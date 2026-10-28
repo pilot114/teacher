@@ -7,7 +7,7 @@ COPY . .
 # sqlite здесь чистый Go, поэтому обходимся без cgo и получаем статический бинарник
 RUN CGO_ENABLED=0 go build -ldflags="-s -w" -o /teacher-api .
 
-FROM alpine:3.20
+FROM alpine:3.24
 
 RUN adduser -D -u 10001 app && mkdir -p /data && chown app /data
 COPY --from=build /teacher-api /usr/local/bin/teacher-api
