@@ -142,9 +142,15 @@ func (s *server) handleStartAttempt(w http.ResponseWriter, r *http.Request, user
 		return
 	}
 
+	number, err := s.store.nextAttempt(user.ID, body.Key)
+	if err != nil {
+		log.Printf("номер попытки %d %q: %v", user.ID, body.Key, err)
+		writeError(w, http.StatusInternalServerError, "не смог начать попытку")
+		return
+	}
+
 	// попытка засчитывается, как только ученик увидел вопросы
-	number := record.Attempts + 1
-	record.Attempts = number
+	record.Attempts++
 	record.Total = len(test.Questions)
 
 	if err := s.store.startAttempt(user.ID, body.Key, record, number); err != nil {

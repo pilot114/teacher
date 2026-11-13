@@ -275,6 +275,51 @@ func writeProgress(tx *sql.Tx, userID int64, key string, record Record, now stri
 	return err
 }
 
+// nextAttempt — номер следующей попытки по теме. Он идёт по истории, а не по счётчику в итоге:
+// счётчик сбрасывают (user reset-failed), а номер в истории — ключ попытки и повторяться не должен.
+func (s *Store) nextAttempt(userID int64, key string) (int, error) {
+	var number int
+	err := s.db.QueryRow(`SELECT COALESCE(MAX(number), 0) + 1 FROM attempts WHERE user_id = ? AND key = ?`, userID, key).
+		Scan(&number)
+
+	return number, err
+}
+
+// resetFailed обнуляет счётчик попыток по несданным тестам, где попытки кончились, и отдаёт их ключи.
+// История попыток остаётся.
+func (s *Store) resetFailed(login string) ([]string, error) {
+	var userID int64
+	err := s.db.QueryRow(`SELECT id FROM users WHERE login = ?`, login).Scan(&userID)
+	if errors.Is(err, sql.ErrNoRows) {
+		return nil, errNoUser
+	}
+	if err != nil {
+		return nil, err
+	}
+
+	rows, err := s.db.Query(
+		`UPDATE progress SET attempts = 0, updated_at = ?
+		 WHERE user_id = ? AND passed = 0 AND attempts >= ?
+		 RETURNING key`,
+		time.Now().UTC().Format(time.RFC3339), userID, maxAttempts,
+	)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	keys := []string{}
+	for rows.Next() {
+		var key string
+		if err := rows.Scan(&key); err != nil {
+			return nil, err
+		}
+		keys = append(keys, key)
+	}
+
+	return keys, rows.Err()
+}
+
 // startAttempt засчитывает попытку в итоге и помечает её начатой — одной транзакцией.
 func (s *Store) startAttempt(userID int64, key string, record Record, number int) error {
 	tx, err := s.db.Begin()

@@ -128,6 +128,29 @@ function lessonsFor(schedules, subjectName, startDate, count) {
   return lessons;
 }
 
+// первый урок каждой темы программы: ключ теста "предмет|тема" -> дата
+function themeStarts(program) {
+  const startDate = parseDate(program.startDate);
+  const starts = new Map();
+
+  for (const subject of program.subjects) {
+    const lessons = lessonsFor(program.schedules, subject.scheduleName, startDate, subject.topics.length);
+    subject.topics.forEach((topic, index) => {
+      const key = topic.theory && `${topic.theory.subject}|${topic.theory.topic}`;
+      if (key && lessons[index] && !starts.has(key)) {
+        starts.set(key, lessons[index].date);
+      }
+    });
+  }
+
+  return starts;
+}
+
+// сдавать тему можно с понедельника недели, предшествующей её первому уроку
+function opensOn(lessonDate) {
+  return addDays(startOfWeek(lessonDate), -7);
+}
+
 function inWeek(date, week) {
   return date >= week.from && date <= week.to;
 }
@@ -156,4 +179,6 @@ export {
   periodsOf,
   weeklyHours,
   inWeek,
+  themeStarts,
+  opensOn,
 };

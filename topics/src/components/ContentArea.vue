@@ -11,8 +11,16 @@
           </p>
         </div>
         <div class="practice" v-if="practice">
-          <button type="button" class="practice-btn" @click="$emit('open-practice')">Практика</button>
-          <span class="practice-hint">Тест по теме, {{ maxAttempts }} попытки</span>
+          <button
+            type="button"
+            class="practice-btn"
+            :disabled="Boolean(practice.opens)"
+            @click="$emit('open-practice')"
+          >
+            Практика
+          </button>
+          <span class="practice-hint" v-if="practice.opens">Тест откроется {{ formatDate(practice.opens) }}</span>
+          <span class="practice-hint" v-else>Тест по теме, {{ maxAttempts }} попытки</span>
         </div>
       </div>
       <div class="columns">
@@ -44,6 +52,7 @@
 <script>
 import ScatterText from './ScatterText.vue';
 import { MAX_ATTEMPTS } from '@/tests.js';
+import { formatDate } from '@/schedule.js';
 
 export default {
   components: {
@@ -66,6 +75,7 @@ export default {
     window.removeEventListener('keydown', this.handleKeydown);
   },
   methods: {
+    formatDate,
     handleKeydown(event) {
       this.viewAnswers = false;
       this.inputSequence += event.key;
@@ -143,8 +153,15 @@ export default {
   cursor: pointer;
 }
 
-.practice-btn:hover {
+.practice-btn:hover:not(:disabled) {
   background-color: #1755a8;
+}
+
+.practice-btn:disabled {
+  border-color: #c4c4c4;
+  background-color: #e6e6e6;
+  color: #888;
+  cursor: default;
 }
 
 .practice-hint {

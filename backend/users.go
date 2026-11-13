@@ -13,6 +13,7 @@ const userUsage = `Управление учётками:
   teacher-api user add <логин> [имя]
   teacher-api user password <логин>
   teacher-api user delete <логин>
+  teacher-api user reset-failed <логин>   снова дать попытки по несданным тестам
 
 Пароль спрашивается в консоли или берётся из переменной PASSWORD.`
 
@@ -38,6 +39,8 @@ func runUserCommand(args []string) int {
 		return changePassword(store, args[1:])
 	case "delete":
 		return deleteUser(store, args[1:])
+	case "reset-failed":
+		return resetFailed(store, args[1:])
 	default:
 		fmt.Println(userUsage)
 		return 1
@@ -138,6 +141,26 @@ func deleteUser(store *Store, args []string) int {
 	}
 
 	fmt.Println("учётка удалена вместе с её прогрессом")
+
+	return 0
+}
+
+func resetFailed(store *Store, args []string) int {
+	if len(args) == 0 {
+		fmt.Fprintln(os.Stderr, "нужен логин")
+		return 1
+	}
+
+	keys, err := store.resetFailed(strings.TrimSpace(args[0]))
+	if err != nil {
+		fmt.Fprintln(os.Stderr, err)
+		return 1
+	}
+
+	for _, key := range keys {
+		fmt.Println(key)
+	}
+	fmt.Printf("попытки сброшены у тестов: %d\n", len(keys))
 
 	return 0
 }

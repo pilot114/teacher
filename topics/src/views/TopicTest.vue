@@ -20,7 +20,7 @@
 
         <p class="rules">
           {{ test.count }} вопрос(ов) · для зачёта нужно {{ pass }} верных ·
-          <template v-if="stage === 'answering'">попытка {{ number }} из {{ maxAttempts }}</template>
+          <template v-if="stage === 'answering'">попытка {{ record.attempts }} из {{ maxAttempts }}</template>
           <template v-else>использовано попыток: {{ record.attempts }} из {{ maxAttempts }}</template>
           <span class="strict" v-if="answering || (stage === 'ready' && left)">
             Тест идёт в полноэкранном режиме. До проверки нельзя выходить из него (в том числе клавишей Esc), закрывать

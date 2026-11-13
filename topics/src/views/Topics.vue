@@ -11,7 +11,7 @@
   <content-area
     :content="selectedContent"
     :practice="practiceTarget"
-    @open-practice="practice = practiceTarget"
+    @open-practice="practice = practiceTarget.opens ? null : practiceTarget"
   ></content-area>
 
   <TopicTest
@@ -29,6 +29,8 @@ import ContentArea from '@/components/ContentArea.vue';
 import TopicTest from '@/views/TopicTest.vue';
 import { loadTestKeys, testKey } from '@/tests.js';
 import { trackTheory } from '@/history.js';
+import program from '@/../data/seven/progress.json';
+import { opensOn, startOfDay, themeStarts } from '@/schedule.js';
 import {
   defaultSubject,
   findSubject,
@@ -37,6 +39,8 @@ import {
   restoreSubject,
   subjectInGrade,
 } from '@/subjects.js';
+
+const starts = themeStarts(program);
 
 export default {
   name: 'App',
@@ -65,14 +69,24 @@ export default {
     selectedGrade() {
       return this.currentSubject.grade;
     },
-    // тест привязан к теме конспекта; если его нет — кнопки «Практика» тоже нет
+    // тест привязан к теме конспекта; если его нет — кнопки «Практика» тоже нет.
+    // Тему по программе можно сдать не раньше чем за неделю до её недели: opens — когда откроется
     practiceTarget() {
       if (!this.selectedTopic) {
         return null;
       }
 
-      const target = { subject: this.selectedSubject, topic: this.selectedTopic };
-      return this.testKeys.has(testKey(target.subject, target.topic)) ? target : null;
+      const key = testKey(this.selectedSubject, this.selectedTopic);
+      if (!this.testKeys.has(key)) {
+        return null;
+      }
+
+      const opens = starts.has(key) ? opensOn(starts.get(key)) : null;
+      return {
+        subject: this.selectedSubject,
+        topic: this.selectedTopic,
+        opens: opens && opens > startOfDay(new Date()) ? opens : null,
+      };
     },
   },
   methods: {

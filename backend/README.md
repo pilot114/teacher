@@ -48,6 +48,7 @@ docker exec -it teacher-api teacher-api user add masha "Маша"
 ./teacher-api user add <логин> [имя]
 ./teacher-api user password <логин>
 ./teacher-api user delete <логин>       # вместе с прогрессом
+./teacher-api user reset-failed <логин> # снова 3 попытки по несданным тестам, история остаётся
 ```
 
 Пароль спрашивается в консоли (без звёздочек) или берётся из переменной `PASSWORD`.
